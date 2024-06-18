@@ -1,0 +1,39 @@
+---
+import Header from '../components/Header.astro'
+import '../styles/global.css'
+
+interface Props {
+	title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{ title }</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<Header></Header>
+			<slot />
+		</div>
+	</body>
+</html>
+
+<style>
+	.wrapper {
+		padding: 0 20px;
+		margin: 0 auto 0;
+		width: 1000px;
+		background-color: #ffffff;
+		border-radius: 3px;
+		box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
+	}
+
+</style>
