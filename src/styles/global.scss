@@ -31,7 +31,7 @@ body {
     background-color: #f7f7f7; 
 }
 
-// ��ɫģʽ
+// 深色模式
 .drak {
     filter: invert(1) hue-rotate(180deg)
 }
@@ -39,5 +39,64 @@ body {
 .drak {
     img, video, .drak_bg {
         filter: invert(1) hue-rotate(180deg)
+    }
+}
+
+// markdown 文档格式化
+.md-header {
+    padding: 0 30px;
+    .md-time {
+        position: relative;
+        padding-left: 8px;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 1px;
+        color: #999;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            height: 20px;
+            width: 3px;
+            background-color: #eee;
+        }
+    }
+    .md-title {
+        font-size: 38px;
+    }
+}
+.md-content {
+    padding: 20px 30px;
+    font-family: '微软雅黑';
+    h2 {
+        font-size: 32px;
+        line-height: 64px;
+    }
+    p {
+        padding: 8px 0;
+        font-size: 16px;
+        line-height: 26px;
+        code {
+            padding: 2px 8px;
+            background-color: #eee;
+            border-radius: 3px;
+        }
+    }
+    .astro-code {
+        padding: 20px;
+        code {
+            font-family: 'monospace';
+            font-size: 14px;
+            line-height: 28px;
+            letter-spacing: 0.5px;
+        }
+    }
+    ul {
+        padding-left: 40px;
+    }
+    a {
+        font-size: 16px;
+        line-height: 26px;
     }
 }

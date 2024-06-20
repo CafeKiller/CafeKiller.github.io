@@ -1,10 +1,13 @@
 ---
+layout: ../../layouts/PostsLayout.astro
 title: '如何识别字符串中的中文'
 pubDate: 2023-03-22 12:00:00
 description: ''
 author: 'Cafe_Killer'
 tags: ["JavaScript", "Java", "Golang"]
 ---
+
+总所周知应为中文的特殊性，有不少计算机系统都不能完整的展示中文字符，而在国内开发有时候必须限制用户进行中文输入，比如用户中文名。。。
 
 ## JavaScript
 
