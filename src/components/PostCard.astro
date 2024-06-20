@@ -1,0 +1,19 @@
+---
+import "../styles/global.min.css"
+
+const { post } = Astro.props
+---
+<div class="post-card">
+    <h1>{ post.frontmatter.title }</h1>
+    <p>
+        { post.rawContent().replace(/\s*/g,"").slice(0,151) }
+    </p>
+</div>
+
+<style>
+    .post-card {
+        padding: 20px 0;
+        width: 100%;
+        border-bottom: 2px solid #ccc;
+    }
+</style>
