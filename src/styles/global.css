@@ -48,6 +48,12 @@ a:hover {
 
 :root {
   --main-color: #8b4513;
+  --black0: #000000;
+  --black3: #333333;
+  --black6: #666666;
+  --black9: #999999;
+  --blackc: #cccccc;
+  --blacke: #eeeeee;
 }
 
 html, body {

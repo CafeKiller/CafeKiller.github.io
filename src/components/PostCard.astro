@@ -2,18 +2,62 @@
 import "../styles/global.min.css"
 
 const { post } = Astro.props
+let desc = post.rawContent().replace(/\s*/g,"").slice(0,151)
+
+console.log(post.getHeadings());
+
 ---
-<div class="post-card">
-    <h1>{ post.frontmatter.title }</h1>
-    <p>
-        { post.rawContent().replace(/\s*/g,"").slice(0,151) }
-    </p>
-</div>
+<a class="post-card-box" href={post.url}>
+    <div class="post-card">
+    
+        <h1>{ post.frontmatter.title }</h1>
+        <p>
+            { desc }
+        </p>
+    </div>
+</a>
+
 
 <style>
+    .post-card-box {
+        display: block;
+    }
     .post-card {
-        padding: 20px 0;
+        position: relative;
+        padding: 20px 0 10px;
         width: 100%;
         border-bottom: 2px solid #ccc;
+    }
+    .post-card::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -1px;
+        height: 2px;
+        width: 0%;
+        background: var(--main-color);
+        transform: translateX(-50%);
+        transition: width .35s ease;
+    }
+    .post-card-box:hover .post-card h1 {
+        color: var(--main-color);
+    }
+    .post-card-box:hover .post-card p {
+        color: #666666;
+    }
+    .post-card-box:hover .post-card::before {
+        width: 100%;
+    }
+    .post-card h1 {
+        font-size: 28px;
+        line-height: 48px;
+        color: #333333;
+        transition: color .35s ease;
+    }
+    .post-card p {
+        font-size: 14px;
+        line-height: 26px;
+        color: #999999;
+        transition: color .35s ease;
     }
 </style>
