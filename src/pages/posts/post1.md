@@ -76,6 +76,7 @@ public static boolean isChinese(char c) {
 
 ## Golang
 
+
 GO 同样也是可以用正则处理的，使用 regexp 即可。但 Go 其实有更加优雅的处理方式：  
 
 ```go

@@ -1,7 +1,11 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "./BaseLayout.astro"
+import Catalogs from "../components/Catalogs.astro"
+
 import '../styles/global.min.css'
-const { frontmatter } = Astro.props;
+
+const { frontmatter , headings} = Astro.props
+
 ---
 
 <BaseLayout title={frontmatter.title}>
@@ -12,20 +16,21 @@ const { frontmatter } = Astro.props;
 
         <h1 class="md-title"> {frontmatter.title}</h1>
 
-        <p>Written by: {frontmatter.author}</p>
-
         { frontmatter.image ? <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} /> : '' }
+
+        <Catalogs headings={ headings }/>
     </section>
 
     
     <section class="md-content">
         <p><em>{frontmatter.description}</em></p>
         <slot />
+        <p>Written by: {frontmatter.author}</p>
+
+        <!-- <Catalogs  headings={ headings }/> -->
     </section>
+    
     
 
 </BaseLayout>
 
-<style>
-
-</style>

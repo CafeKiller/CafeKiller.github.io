@@ -1,0 +1,42 @@
+---
+import "../styles/global.min.css"
+
+type headType = {
+    depth: number
+    slug : string,
+    text: string
+}[]
+
+const  headings: headType  = Astro.props.headings as headType
+
+
+---
+<nav class="catalogs-box">
+    {
+        headings.map((item) => {
+            return (<a href={ '#' + item.slug } >- {item.text}</a> <br/>)
+        })
+    }
+</nav>
+
+<style>
+    .catalogs-box {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 18px;
+        min-width: 180px;
+        background: #f7f7f7;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    }
+    .catalogs-box a {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: var(--black3);
+        transition: all .25s ease;
+    }
+    .catalogs-box a:hover {
+        font-weight: 800;
+        color: var(--main-color);
+    }
+</style>
