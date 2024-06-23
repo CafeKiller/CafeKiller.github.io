@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import '../../styles/global.min.css'
+
+import { type tagType } from '../../types/astro'
+
+const createAllMd = async () => {
+    let _array:Array<any> = []
+
+    return _array.concat(await Astro.glob('../posts/*.md'))
+              .concat(await Astro.glob('../games/*.md'))
+              .concat(await Astro.glob('../articles/*.md'))
+}
+
+const allMdArray:Array<any> = await createAllMd()
+
+const tags: Array<string> = [...new Set(allMdArray.map((md) => md.frontmatter.tags).flat())]
+
+const fillterTags: Array<tagType> =  tags.map((tag) => {    
+    const filteredMds = allMdArray.filter((md) => md.frontmatter.tags.includes(tag))
+    return {
+        tag:  tag ,
+        count: filteredMds.length,
+    }
+}).sort((tag1, tag2) => tag2.count - tag1.count)
+---
+
+<BaseLayout title="全部标签">
+    <section class="tags-cont">
+        <h1 class="title">全部标签</h1>
+        <nav>
+            {fillterTags.map((item) => (
+                <a class="tag-item" href={`/MyBlog/tags/${item.tag}`}>{item.tag} <i>{item.count}</i> </a>
+            ))}
+        </nav>
+    </section>
+
+</BaseLayout>
+
+<style>
+    .tags-cont {
+        padding: 0 60px 0;
+    }
+    .title {
+        font-size: 32px;
+        line-height: 64px;
+    }
+    .tag-item {
+        margin-right: 20px;
+    }
+</style>
