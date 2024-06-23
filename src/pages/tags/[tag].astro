@@ -7,8 +7,8 @@ export async function getStaticPaths(): Promise<any[]> {
         let _array:Array<any> = []
 
         return _array.concat(await Astro.glob('../posts/*.md'))
-                .concat(await Astro.glob('../games/*.md'))
-                .concat(await Astro.glob('../articles/*.md'))
+                    .concat(await Astro.glob('../games/*.md'))
+                    .concat(await Astro.glob('../articles/*.md'))
     }
     // 获取所有 .md 文章对象
     const allPosts: Array<any> = await createAllMd()
@@ -29,13 +29,17 @@ export async function getStaticPaths(): Promise<any[]> {
 
 const { tag } = Astro.params
 const { posts } = Astro.props 
-
-console.log(posts);
 ---
 <BaseLayout title={ tag }>
     <p>包含「{tag}」标签的文章</p>
     <ul>
         <!-- 渲染 过滤后的文章集合 信息 -->
-        <!-- { posts.map( (post) => <a href="javascript:;" >{post.frontmatter.title}</a> )} -->
+        { posts.map( (post) => {
+                return (
+                    <li>
+                        <a href="javascript:;" >{post.frontmatter.title}</a>
+                    </li>
+                )
+            })}
     </ul>
 </BaseLayout>

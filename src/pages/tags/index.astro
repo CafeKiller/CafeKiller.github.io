@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
+import PostCard from '../../components/PostCard.astro'
 import '../../styles/global.min.css'
 
 import { type tagType } from '../../types/astro'
@@ -8,8 +9,8 @@ const createAllMd = async () => {
     let _array:Array<any> = []
 
     return _array.concat(await Astro.glob('../posts/*.md'))
-              .concat(await Astro.glob('../games/*.md'))
-              .concat(await Astro.glob('../articles/*.md'))
+                .concat(await Astro.glob('../games/*.md'))
+                .concat(await Astro.glob('../articles/*.md'))
 }
 
 const allMdArray:Array<any> = await createAllMd()
@@ -30,10 +31,21 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
         <h1 class="title">全部标签</h1>
         <nav>
             {fillterTags.map((item) => (
-                <a class="tag-item" href={`/MyBlog/tags/${item.tag}`}>{item.tag} <i>{item.count}</i> </a>
+                <a class="tag-item" href={`/MyBlog/tags/${item.tag}`}>
+                    {item.tag} 
+                    <i>({item.count})</i> 
+                </a>
             ))}
         </nav>
     </section>
+
+    <main>
+		{
+			allMdArray.reverse().map((md) => {
+				return (<PostCard post={md}/>)
+			})
+		}
+	</main>
 
 </BaseLayout>
 
@@ -45,7 +57,31 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
         font-size: 32px;
         line-height: 64px;
     }
+    .tags-cont nav {
+        padding: 20px 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+    }
     .tag-item {
-        margin-right: 20px;
+        display: block;
+        padding: 6px 20px;
+        font-size: 16px;
+        color: var(--black3);
+        border: 1px solid var(--blackc);
+        transition: all .2s ease;
+    }
+    .tag-item i {
+        font-style: normal;
+        font-size: 14px;
+        color: var(--black9);
+    }
+    .tag-item:hover {
+
+        border: 1px solid var(--main-color);
+    }
+
+    main {
+        padding: 0 60px 40px;
     }
 </style>
