@@ -190,3 +190,33 @@ body {
         }
     }
 }
+
+@media screen and (max-width: 786px) {
+    body {
+        padding-top: 0;
+    }
+    .header {
+        padding: 20px 0 40px;
+        flex-wrap: wrap;
+        height: auto;
+        nav {
+            margin-top: 60px;
+            width: 100%;
+            justify-content: center;
+            order: 1;
+        }
+        .header-title {
+            padding-right: 0;
+            width: 100%;
+            text-align: center;
+            orphans: 2;
+            .description {
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+    }
+    .footer-wrapper {
+        margin-top: 0;
+    }
+}
