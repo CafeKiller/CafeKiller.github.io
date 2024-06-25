@@ -2,10 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro'
 
-const allPosts = await Astro.glob('./posts/*.md')
+const createAllMd = async () => {
+	let _array:Array<any> = []
+
+	return _array.concat(await Astro.glob('../pages/posts/*.md'))
+				.concat(await Astro.glob('../pages/games/*.md'))
+				.concat(await Astro.glob('../pages/articles/*.md'))
+}
+
+const allPosts = await createAllMd()
 ---
 
-<BaseLayout title="CafeBlogs Index">
+<BaseLayout title="首页">
 	<main>
 		{
 			allPosts.reverse().map((post) => {
