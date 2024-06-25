@@ -10,7 +10,7 @@ const createAllMd = async () => {
 
     return _array.concat(await Astro.glob('../posts/*.md'))
                 .concat(await Astro.glob('../games/*.md'))
-                .concat(await Astro.glob('../articles/*.md'))
+                // .concat(await Astro.glob('../articles/*.md'))
 }
 
 const allMdArray:Array<any> = await createAllMd()
