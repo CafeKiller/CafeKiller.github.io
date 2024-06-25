@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 
+import '../../styles/global.min.css'
+
 export async function getStaticPaths(): Promise<any[]> {
   
     const createAllMd = async () => {
@@ -8,17 +10,18 @@ export async function getStaticPaths(): Promise<any[]> {
 
         return _array.concat(await Astro.glob('../posts/*.md'))
                     .concat(await Astro.glob('../games/*.md'))
-                    // .concat(await Astro.glob('../articles/*.md'))
+                    .concat(await Astro.glob('../articles/*.md'))
     }
     // 获取所有 .md 文章对象
     const allPosts: Array<any> = await createAllMd()
 
     // 过滤文章对象中的 tag (不重复) 转换为数组
-    const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+    const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+                                    .concat(['posts', 'games', 'articles'])
     
-
     // 通过 tag 过滤出相关 .md 文章集合
     return uniqueTags.map((tag) => {
+        
         const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
         return {
             params: { tag },
@@ -28,18 +31,96 @@ export async function getStaticPaths(): Promise<any[]> {
 }
 
 const { tag } = Astro.params
-const { posts } = Astro.props 
+let { posts } = Astro.props 
+
+switch (tag) {
+    case 'posts':
+        posts = await Astro.glob('../posts/*.md')
+        break
+    case 'games':
+        posts = await Astro.glob('../games/*.md')
+        break
+    case 'articles':
+        posts = await Astro.glob('../articles/*.md')
+        break
+}
 ---
 <BaseLayout title={ tag }>
-    <p>包含「{tag}」标签的文章</p>
-    <ul>
-        <!-- 渲染 过滤后的文章集合 信息 -->
-        { posts.map( (post:any) => {
-                return (
-                    <li>
-                        <a href="javascript:;" >{post.frontmatter.title}</a>
-                    </li>
-                )
-            })}
-    </ul>
+    <main class='filter-cont'>
+        <h1 class='title'>包含「{tag}」标签的文章</h1>
+        <ul class='filter-list'>
+            <!-- 渲染 过滤后的文章集合 信息 -->
+            { 
+                posts.map( (post:any) => {
+                    return (
+                        <li>
+                            <a href="javascript:;" >
+                                {post.frontmatter.title}
+                                <span></span>
+                            </a>
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    </main>
 </BaseLayout>
+
+<style>
+    .filter-cont {
+        padding: 20px 30px 40px;
+    }
+    .filter-cont .title {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 42px;
+    } 
+    .filter-list {
+        margin-top: 38px;
+    }
+    .filter-list li {
+        position: relative;
+        list-style: none;
+        padding-left: 48px;
+        margin-bottom: 10px;
+    }
+    .filter-list li::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 24px;
+        width: 8px;
+        height: 8px;
+        background-color: var(--black6);
+        transform: rotateZ(45deg) translateY(-50%);
+        transition: all .25s ease;
+    }
+    .filter-list li a {
+        position: relative;
+        font-size: 18px;
+        line-height: 38px;
+        color: var(--black6);
+        transition: all .25s ease;
+    }
+    .filter-list li a span {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background-color: var(--black6);
+        color: var(--black6);
+        transition: all .25s ease;
+    }
+    .filter-list li:hover::before {
+        background-color: var(--main-color);
+    }
+    .filter-list li:hover a {
+        color: var(--main-color);
+    }
+    .filter-list li:hover a span {
+        width: 100%;
+        color: var(--main-color);
+        background-color: var(--main-color);
+    }
+</style>

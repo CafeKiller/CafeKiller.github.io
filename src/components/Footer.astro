@@ -6,7 +6,15 @@ type tagType = {
     count: number
 }
 
-const allPosts: Array<any> = await Astro.glob('../pages/posts/*.md')
+const createAllMd = async () => {
+    let _array:Array<any> = []
+
+    return _array.concat(await Astro.glob('../pages/posts/*.md'))
+                .concat(await Astro.glob('../pages/games/*.md'))
+                .concat(await Astro.glob('../pages/articles/*.md'))
+}
+
+const allPosts: Array<any> = await createAllMd()
 
 const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
 
@@ -21,17 +29,30 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
 
 <footer class="footer-wrapper">
     <div class="footer-cont">
+        
         <nav class="tags">
-            <div class="title">标签</div>
+            <h1 class="title">标签</h1 >
             {
                 fillterTags.map((item) => {
                     return ( 
-                        <a href="javascript:alert('敬请期待')" class="item"> 
+                        <a href={"/MyBlog/tags/" + item.tag} class="item"> 
                             { item.tag } <span>({ item.count })</span> 
                         </a> )
                 })
             }
         </nav>
+
+        <nav class="categos">
+            <h1  class="title">分类</h1 >
+            <a href="javascript:alert('0')" class="item" style="--color:#3cb371">技术</a>
+            <a href="javascript:alert('0')" class="item" style="--color:#b22222">游戏</a>
+            <a href="javascript:alert('0')" class="item" style="--color:#7b68ee">杂谈</a>
+            <!-- <a href="javascript:alert('0')" class="item" style="--color:#2a52be">艺术</a> -->
+        </nav>
+
+        <section class="bottom-links">
+            <a class="repo-link" target="_blank" href="https://github.com/CafeKiller/MyBlog">Repository</a>
+        </section>
     </div>
 </footer>
 
@@ -43,35 +64,78 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
         box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
     }
     .footer-cont {
-        padding: 40px 0 60px;
+        padding: 40px 0 40px;
         margin: 0 auto 0;
         max-width: 886px;
 		min-width: 766px;
     }
-    .tags {
+    .categos, .tags {
+        padding: 0 60px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        gap: 8px;
     }
+    .categos .title,
     .tags .title {
         margin-bottom: 10px;
+        font-weight: 400;
         font-size: 24px;
         line-height: 42px;
         width: 100%;
         text-align: center;
     }
     .tags .item {
-        margin: 0 6px;
+        /* margin: 0 6px; */
         padding: 4px 12px;
         font-size: 14px;
         color: var(--black3);
         border: 1px solid var(--blackc);
-        transition: border .15s ease;
+        transition: all .15s ease;
     }
     .tags .item span {
         color: var(--black9);
     }
     .tags .item:hover {
+        color: var(--main-color);
         border: 1px solid var(--main-color);
+    }
+    .categos {
+        margin-top: 38px;
+    }
+    .categos .item {
+        padding: 6px 26px;
+        font-size: 16px;
+        text-indent: 6px;
+        letter-spacing: 6px;
+        color: var(--color);
+        border: 2px solid var(--color);
+        transition: all .15s ease;
+        background-color: #ffffff;
+        transition: all .25s ease;
+    }
+    .categos .item:hover {
+        color: #ffffff;
+        background-color: var(--color);
+    }
+    .bottom-links {
+        position: relative;
+        margin: 50px auto 0;
+        width: 100%;
+        text-align: center;
+    }
+    .bottom-links::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: -10px;
+        width: 30px;
+        height: 1px;
+        background-color: var(--black9);
+        transform: translateX(-50%);
+    }
+    .repo-link {
+        font-size: 14px;
+        color: var(--black6);
     }
 </style>
