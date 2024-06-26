@@ -143,6 +143,9 @@ body {
     .md-title {
         font-size: 38px;
     }
+    img {
+        display: block;
+    }
 }
 .md-content {
     position: relative;
@@ -189,6 +192,12 @@ body {
             padding-left: 20px;
         }
     }
+    img {
+        display: block;
+        margin: 10px auto 10px;
+        height: 220px;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 786px) {
@@ -211,6 +220,7 @@ body {
             text-align: center;
             orphans: 2;
             .description {
+                width: 100%;
                 right: 50%;
                 transform: translateX(50%);
             }

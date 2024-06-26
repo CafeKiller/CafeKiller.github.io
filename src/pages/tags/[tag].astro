@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
 
 import '../../styles/global.min.css'
 
@@ -8,21 +9,21 @@ export async function getStaticPaths(): Promise<any[]> {
     const createAllMd = async () => {
         let _array:Array<any> = []
 
-        return _array.concat(await Astro.glob('../posts/*.md'))
-                    .concat(await Astro.glob('../games/*.md'))
-                    .concat(await Astro.glob('../articles/*.md'))
+        return _array.concat(await getCollection('posts'))
+                    .concat(await getCollection('games'))
+                    .concat(await getCollection('articles'))
     }
     // 获取所有 .md 文章对象
     const allPosts: Array<any> = await createAllMd()
 
     // 过滤文章对象中的 tag (不重复) 转换为数组
-    const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+    const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.data.tags).flat())]
                                     .concat(['posts', 'games', 'articles'])
     
     // 通过 tag 过滤出相关 .md 文章集合
     return uniqueTags.map((tag) => {
         
-        const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
+        const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
         return {
             params: { tag },
             props: { posts: filteredPosts },
@@ -30,32 +31,35 @@ export async function getStaticPaths(): Promise<any[]> {
     });
 }
 
-const { tag } = Astro.params
+let { tag } = Astro.params
 let { posts } = Astro.props 
 
 switch (tag) {
     case 'posts':
-        posts = await Astro.glob('../posts/*.md')
+        posts = await getCollection('posts')
+        tag = '技术博客'
         break
     case 'games':
-        posts = await Astro.glob('../games/*.md')
+        posts = await getCollection('games')
+        tag = '游戏讨论'
         break
     case 'articles':
-        posts = await Astro.glob('../articles/*.md')
+        posts = await getCollection('articles')
+        tag = '各类杂谈'
         break
 }
 ---
 <BaseLayout title={ tag }>
     <main class='filter-cont'>
-        <h1 class='title'>包含「{tag}」标签的文章</h1>
+        <h1 class='title'>与「 { tag } 」相关的文章</h1>
         <ul class='filter-list'>
             <!-- 渲染 过滤后的文章集合 信息 -->
             { 
                 posts.map( (post:any) => {
                     return (
                         <li>
-                            <a href="javascript:;" >
-                                {post.frontmatter.title}
+                            <a href={`/MyBlog/${post.collection}/${post.slug}`} >
+                                {post.data.title}
                                 <span></span>
                             </a>
                         </li>
