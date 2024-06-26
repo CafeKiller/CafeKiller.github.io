@@ -1,9 +1,12 @@
 ---
+import { getCollection } from 'astro:content'
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 import PostCard from '../components/PostCard.astro'
 
-const allPosts = await Astro.glob('./posts/*.md')
+// const allPosts = await Astro.glob('./posts/*.md')
+const allPosts = await getCollection('posts')
 ---
 
 <BaseLayout title="CafeBlogs Blogs">
@@ -11,6 +14,7 @@ const allPosts = await Astro.glob('./posts/*.md')
 		{
 			allPosts.reverse().map((post) => {
 				return (<PostCard post={post}/>)
+				// return ( <a href={`/MyBlog/posts/${post.slug}`}>{post.data.title}</a> )
 			})
 		}
 	</main>

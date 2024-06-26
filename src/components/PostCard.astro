@@ -1,13 +1,16 @@
 ---
+import { formatDate } from '../utils/dateUtil'
+
 import "../styles/global.min.css"
 
 const { post } = Astro.props
-let desc = post.rawContent().replace(/\s*/g,"").slice(0,151)
+
+let desc = post.body.replace(/\s*/g,"").slice(0,151)
 ---
-<a class="post-card-box" href={post.url}>
+<a class="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`}>
     <div class="post-card">
-        <span class="time">{ post.frontmatter.pubDate.toString().slice(0,10) }</span>
-        <h1 class="title">{ post.frontmatter.title }</h1>
+        <span class="time">{ formatDate( post.data.pubDate ).slice(0,10) }</span>
+        <h1 class="title">{ post.data.title }</h1>
         <p class="description">
             { desc + '......'}
         </p>
