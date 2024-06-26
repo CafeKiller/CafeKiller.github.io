@@ -39,51 +39,14 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
                 </a>
             ))}
         </nav>
+
+        <main class="all-cont">
+            {
+                allMdArray.reverse().map((md) => {
+                    return (<PostCard post={md}/>)
+                })
+            }
+        </main>
     </section>
 
-    <main>
-		{
-			allMdArray.reverse().map((md) => {
-				return (<PostCard post={md}/>)
-			})
-		}
-	</main>
-
 </BaseLayout>
-
-<style>
-    .tags-cont {
-        padding: 0 60px 0;
-    }
-    .title {
-        font-size: 32px;
-        line-height: 64px;
-    }
-    .tags-cont nav {
-        padding: 20px 0 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 20px;
-    }
-    .tag-item {
-        display: block;
-        padding: 6px 20px;
-        font-size: 16px;
-        color: var(--black3);
-        border: 1px solid var(--blackc);
-        transition: all .2s ease;
-    }
-    .tag-item i {
-        font-style: normal;
-        font-size: 14px;
-        color: var(--black9);
-    }
-    .tag-item:hover {
-
-        border: 1px solid var(--main-color);
-    }
-
-    main {
-        padding: 0 60px 40px;
-    }
-</style>
