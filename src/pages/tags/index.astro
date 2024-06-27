@@ -2,16 +2,14 @@
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import PostCard from '@/components/PostCard.astro'
 import { type tagType } from '@/types/astro'
-import { allPosts } from '@/utils/astroUtil'
+import { allMdArr } from '@/utils/astroUtil'
 
 import '@/styles/global.min.css'
 
-const allMdArray:Array<any> = allPosts
-
-const tags: Array<string> = [...new Set(allMdArray.map((md) => md.data.tags).flat())]
+const tags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
 
 const fillterTags: Array<tagType> =  tags.map((tag) => {    
-    const filteredMds = allMdArray.filter((md) => md.data.tags.includes(tag))
+    const filteredMds = allMdArr.filter((md) => md.data.tags.includes(tag))
     return {
         tag:  tag ,
         count: filteredMds.length,
@@ -33,7 +31,7 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
 
         <main class="all-cont">
             {
-                allMdArray.reverse().map((md) => {
+                allMdArr.reverse().map((md) => {
                     return (<PostCard post={md}/>)
                 })
             }

@@ -1,23 +1,84 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import PostCard from '@/components/PostCard.astro'
+import { createYearMdObj } from '@/utils/astroUtil'
+import { formatDate } from '@/utils/dateUtil'
 
-const posts = await getCollection('posts')
+import '@/styles/global.min.css'
+
+type navType = {
+	url: string
+	title: string
+	date: Date
+}
+
+const fillterMd = createYearMdObj()
 ---
 
 <BaseLayout title="CafeBlogs Blogs">
 	<main>
 		{
-			posts.reverse().map((post) => {
-				return (<PostCard post={post}/>)
+			Object.keys(fillterMd).reverse().map((year: string) => {
+				return (
+					<section class="year-cont">
+						<h1 class="title">{ year }</h1>
+						<nav class="nav-cont">
+							{fillterMd[year].map((item: navType) => {
+								return (
+									<span>{formatDate(item.date).slice(5, 10)}</span>
+									<a href={'/MyBlog'+item.url}>{item.title}</a> 
+									<br/>
+								)
+							})}
+						</nav>
+
+					</section>
+				)
 			})
 		}
 	</main>
 </BaseLayout>
 
-<style>
+<style lang="scss">
 	main {
 		padding: 0 30px 60px;
+		position: relative;
+	}
+	.year-cont {
+		position: relative;
+		padding-bottom: 60px;
+		width: 100%;
+		&::before {
+			position: absolute;
+			content: "";
+			left: 100px;
+			width: 2px;
+			height: 100%;
+			background-color: var(--blackc);
+		}
+		.title {
+			position: absolute;
+			left: 0;
+			// top: 8px;
+			width: 10%;
+			font-size: 32px;
+			font-weight: 400;
+			line-height: 32px;
+			margin-bottom: 10px;
+			color: var(--black6);
+			background-color: #ffffff;
+		}
+		.nav-cont {
+			padding-left: 120px;
+			a {
+				font-size: 16px;
+				line-height: 32px;
+				color: #000;
+				text-decoration: none;
+				&:hover {
+					color: #000;
+					text-decoration: underline;
+				}
+			}
+		}
 	}
 </style>

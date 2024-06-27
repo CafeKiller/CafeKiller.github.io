@@ -5,6 +5,11 @@ type iLogOptType = {
     }
 }
 
+type iLogObj = {
+    
+    [property: string] : Function 
+}
+
 function ILog(options?: iLogOptType) {
 
     const config = Object.assign({
@@ -28,7 +33,7 @@ function ILog(options?: iLogOptType) {
     }
 
     return (() => {
-        const _obj = {}
+        const _obj: iLogObj = {}
         Object.keys(config).forEach( key => {
             Object.defineProperty(_obj, key, {
                 value: (textOrTitle: string, content = '') => {

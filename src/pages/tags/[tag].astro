@@ -1,20 +1,20 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
-import { allPosts } from '@/utils/astroUtil'
+import { allMdArr } from '@/utils/astroUtil'
 
 import '@/styles/global.min.css'
 
 export async function getStaticPaths(): Promise<any[]> {
 
     // 过滤文章对象中的 tag (不重复) 转换为数组
-    const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+    const uniqueTags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
                                     .concat(['posts', 'games', 'articles'])
     
     // 通过 tag 过滤出相关 .md 文章集合
     return uniqueTags.map((tag) => {
         
-        const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+        const filteredPosts = allMdArr.filter((md) => md.data.tags.includes(tag));
         return {
             params: { tag },
             props: { posts: filteredPosts },

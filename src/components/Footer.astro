@@ -1,5 +1,5 @@
 ---
-import { allPosts } from '@/utils/astroUtil'
+import { allMdArr } from '@/utils/astroUtil'
 
 import '@/styles/global.min.css'
 
@@ -8,10 +8,10 @@ type tagType = {
     count: number
 }
 
-const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+const uniqueTags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
 
 const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {    
-    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
+    const filteredPosts = allMdArr.filter((md) => md.data.tags.includes(tag))
     return {
         tag:  tag ,
         count: filteredPosts.length,
