@@ -16,7 +16,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
         tag:  tag ,
         count: filteredPosts.length,
     }
-})
+}).sort((tag1, tag2) => tag2.count - tag1.count)
 ---
 
 <footer class="footer-wrapper">
@@ -35,7 +35,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
         </nav>
 
         <nav class="categos">
-            <h1  class="title">分类</h1 >
+            <h1 class="title">分类</h1 >
             <a href="/MyBlog/tags" class="item" style="--color:#2a52be">全部</a>
             <a href="/MyBlog/tags/posts" class="item" style="--color:#3cb371">技术</a>
             <a href="/MyBlog/tags/games" class="item" style="--color:#b22222">游戏</a>
@@ -47,3 +47,94 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
         </section>
     </div>
 </footer>
+
+<style lang="scss">
+    // Footer 通用底部 组件样式
+    .footer-wrapper {
+        margin-top: 80px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
+        .footer-cont {
+            padding: 40px 0 40px;
+            margin: 0 auto 0;
+            max-width: 886px;
+            .categos, .tags {
+                padding: 0 60px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+                .title {
+                    margin-bottom: 10px;
+                    font-weight: 400;
+                    font-size: 24px;
+                    line-height: 42px;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+            .tags {
+                .item {
+                    /* margin: 0 6px; */
+                    padding: 4px 12px;
+                    font-size: 14px;
+                    color: var(--black3);
+                    border: 1px solid var(--blackc);
+                    transition: all .15s ease;
+                    span {
+                        color: var(--black9);
+                    }
+                    &:hover {
+                        color: var(--main-color);
+                        border: 1px solid var(--main-color);
+                    }
+                }
+            }
+            .categos {
+                margin-top: 38px;
+                .item {
+                    padding: 6px 26px;
+                    font-size: 16px;
+                    text-indent: 6px;
+                    letter-spacing: 6px;
+                    color: var(--color);
+                    border: 2px solid var(--color);
+                    transition: all .15s ease;
+                    background-color: #ffffff;
+                    transition: all .25s ease;
+                    &:hover {
+                        color: #ffffff;
+                        background-color: var(--color);
+                    }
+                }
+            }
+            .bottom-links {
+                position: relative;
+                margin: 50px auto 0;
+                width: 100%;
+                text-align: center;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: -10px;
+                    width: 30px;
+                    height: 1px;
+                    background-color: var(--black9);
+                    transform: translateX(-50%);
+                }
+                .repo-link {
+                    font-size: 14px;
+                    color: var(--black6);
+                }
+            }
+        }
+    }
+    // 移动端or小屏适配
+    @media screen and (max-width: 786px) {
+        .footer-wrapper {
+            margin-top: 20px;
+        }
+    }
+</style>

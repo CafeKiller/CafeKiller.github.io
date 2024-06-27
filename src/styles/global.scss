@@ -20,10 +20,10 @@ a {
 // COMMON NED
 
 // 全局样式
-@font-face {
-    font-family: 'FanZ_LTYuanJian';
-    src: url('/public/FanZ_LTYuanJian.woff2');
-}
+// @font-face {
+//     font-family: 'FanZ_LTYuanJian';
+//     src: url('/public/FanZ_LTYuanJian.woff2');
+// }
 :root {
     --main-color: #8b4513;
     --black0: #000000;
@@ -39,11 +39,11 @@ a {
     --body-bgcolor: #f7f7f7; 
 }
 html, body {
-    font-family: 'PingFang SC,Songti SC,Helvetica,Arial,sans-serif'
+    font-family: 'PingFang SC,Songti SC,Helvetica,Arial,sans-serif';
+    background-color: var(--body-bgcolor);
 }
 body { 
     padding-top: 60px; 
-    background-color: var(--body-bgcolor);
     &::-webkit-scrollbar {
         height: 4px;
         width: 4px;
@@ -55,35 +55,14 @@ body {
     }
 }
 
-// Tags 页面样式
-.tags-cont {
-    padding: 0 60px 40px;
-    .title {
-        font-size: 32px;
-        line-height: 64px;
-    }
-    nav {
-        padding: 20px 0 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 20px;
-    }
-    .tag-item {
-        display: block;
-        padding: 6px 20px;
-        font-size: 16px;
-        color: var(--black3);
-        border: 1px solid var(--blackc);
-        transition: all .2s ease;
-        i {
-            font-style: normal;
-            font-size: 14px;
-            color: var(--black9);
-        }
-        &:hover {
-            border: 1px solid var(--main-color);
-        }
-    }
+// BaseLayout 外层容器样式
+.wrapper {
+    padding: 0 20px;
+    margin: 0 auto 0;
+    max-width: 886px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
 }
 
 // markdown 布局样式
@@ -95,7 +74,7 @@ body {
         font-size: 14px;
         line-height: 24px;
         letter-spacing: 1px;
-        color: #999;
+        color: var(--black9);
         &::before {
             content: '';
             position: absolute;
@@ -103,7 +82,7 @@ body {
             top: 2px;
             height: 20px;
             width: 3px;
-            background-color: #eee;
+            background-color: var(--blacke);
         }
     }
     .md-title {
@@ -130,7 +109,7 @@ body {
         letter-spacing: 1px;
         code {
             padding: 2px 8px;
-            background-color: #eee;
+            background-color: var(--blacke);
             border-radius: 3px;
         }
     }
@@ -169,207 +148,52 @@ body {
     }
 }
 
-// Header 通用头部 组件样式
-.header {
-    padding: 10px 0 80px;
-    margin: 0 auto 0;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
+
+// Tags 页面样式
+.tags-cont {
+    padding: 0 60px 40px;
+    .title {
+        font-size: 32px;
+        line-height: 64px;
+    }
     nav {
+        padding: 20px 0 0;
         display: flex;
-        align-self: flex-end;
-        a {
-            width: 100px;
-            height: 50px;
-            font-family: 'FanZ_LTYuanJian';
-            font-size: 18px;
-            line-height: 50px;
-            text-align: center;
-            color: #333333;
-            transition: all .25s ease;
-            border-bottom: 3px solid transparent;
-            &:hover {
-                color: var(--main-color);
-                text-decoration: none;
-                background-color: #f4f4f4;
-                border-bottom: 3px solid var(--main-color);
-            }
-        }
+        flex-wrap: wrap;
+        gap: 10px 20px;
     }
-    .header-title {
-        position: relative;
-        align-self: flex-end;
-        padding-right: 20px;
-        .text {
-            font-family: 'FanZ_LTYuanJian';
-            font-weight: 600;
-            font-size: 48px;
-            line-height: 60px;
-            letter-spacing: 3px;
-            color: #333333;
-            z-index: 10;
-        }
-        .description {
-            position: absolute;
-            right: 20px;
-            bottom: -30px;
-            font-size: 16px;
-            vertical-align: middle;
-            color: #999999;
-            span {
-                transition: all .2s ease;
-                &:hover {
-                    color: #555555;
-                }
-            }
-        }
-    }
-}
-
-// Catalogs 文章目录 组件样式
-.catalogs-box {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 18px;
-    min-width: 180px;
-    background: #f7f7f7;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
-    a {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 24px;
+    .tag-item {
+        display: block;
+        padding: 6px 20px;
+        font-size: 16px;
         color: var(--black3);
-        transition: all .25s ease;
-        &a:hover {
-            font-weight: 800;
-            color: var(--main-color);
+        border: 1px solid var(--blackc);
+        transition: all .2s ease;
+        i {
+            font-style: normal;
+            font-size: 14px;
+            color: var(--black9);
+        }
+        &:hover {
+            border: 1px solid var(--main-color);
         }
     }
 }
 
-// Footer 通用底部 组件样式
-.footer-wrapper {
-    margin-top: 80px;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
-    .footer-cont {
-        padding: 40px 0 40px;
-        margin: 0 auto 0;
-        max-width: 886px;
-        .categos, .tags {
-            padding: 0 60px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            .title {
-                margin-bottom: 10px;
-                font-weight: 400;
-                font-size: 24px;
-                line-height: 42px;
-                width: 100%;
-                text-align: center;
-            }
-        }
-        .tags {
-            .item {
-                /* margin: 0 6px; */
-                padding: 4px 12px;
-                font-size: 14px;
-                color: var(--black3);
-                border: 1px solid var(--blackc);
-                transition: all .15s ease;
-                span {
-                    color: var(--black9);
-                }
-                &:hover {
-                    color: var(--main-color);
-                    border: 1px solid var(--main-color);
-                }
-            }
-        }
-        .categos {
-            margin-top: 38px;
-            .item {
-                padding: 6px 26px;
-                font-size: 16px;
-                text-indent: 6px;
-                letter-spacing: 6px;
-                color: var(--color);
-                border: 2px solid var(--color);
-                transition: all .15s ease;
-                background-color: #ffffff;
-                transition: all .25s ease;
-                &:hover {
-                    color: #ffffff;
-                    background-color: var(--color);
-                }
-            }
-        }
-        .bottom-links {
-            position: relative;
-            margin: 50px auto 0;
-            width: 100%;
-            text-align: center;
-            &::before {
-                content: '';
-                position: absolute;
-                left: 50%;
-                top: -10px;
-                width: 30px;
-                height: 1px;
-                background-color: var(--black9);
-                transform: translateX(-50%);
-            }
-            .repo-link {
-                font-size: 14px;
-                color: var(--black6);
-            }
-        }
-    }
-}
 
 // 移动端or小屏适配
 @media screen and (max-width: 786px) {
     body {
         padding-top: 0;
     }
-    .header {
-        padding: 20px 0 40px;
-        flex-wrap: wrap;
-        height: auto;
-        nav {
-            margin-top: 60px;
-            width: 100%;
-            justify-content: center;
-            order: 1;
-        }
-        .header-title {
-            padding-right: 0;
-            width: 100%;
-            text-align: center;
-            orphans: 2;
-            .description {
-                width: 100%;
-                right: 50%;
-                transform: translateX(50%);
-            }
-        }
-    }
-    .footer-wrapper {
-        margin-top: 0;
+    .md-header {
+        padding: 0 6px;
     }
     .tags-cont {
-        padding: 0 4px 0;
+        padding: 0 10px 40px;
         nav {
             gap: 5px 10px;
         }
-    }
-    .md-header {
-        padding: 0 6px;
     }
 }
 
@@ -378,5 +202,8 @@ body {
     filter: invert(1) hue-rotate(180deg);
     img, video, .drak_bg {
         filter: invert(1) hue-rotate(180deg)
+    }
+    .wrapper {
+        background-color: var(--blacke);
     }
 }

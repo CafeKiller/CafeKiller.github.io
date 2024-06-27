@@ -13,3 +13,89 @@ import '@/styles/global.min.css'
         <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
     </div>
 </header>
+
+<style lang="scss">
+    // Header 通用头部 组件样式
+    .header {
+        padding: 10px 0 80px;
+        margin: 0 auto 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        nav {
+            display: flex;
+            align-self: flex-end;
+            a {
+                width: 100px;
+                height: 50px;
+                font-family: 'FanZ_LTYuanJian';
+                font-size: 18px;
+                line-height: 50px;
+                text-align: center;
+                color: var(--black3);
+                transition: all .25s ease;
+                border-bottom: 3px solid transparent;
+                &:hover {
+                    color: var(--main-color);
+                    text-decoration: none;
+                    background-color: var(--blacke);
+                    border-bottom: 3px solid var(--main-color);
+                }
+            }
+        }
+        .header-title {
+            position: relative;
+            align-self: flex-end;
+            padding-right: 20px;
+            .text {
+                font-family: 'FanZ_LTYuanJian';
+                font-weight: 600;
+                font-size: 48px;
+                line-height: 60px;
+                letter-spacing: 3px;
+                color: var(--black3);
+                z-index: 10;
+            }
+            .description {
+                position: absolute;
+                right: 20px;
+                bottom: -30px;
+                font-size: 16px;
+                vertical-align: middle;
+                color: var(--black9);
+                span {
+                    transition: all .2s ease;
+                    &:hover {
+                        color: var(--main-color);
+                    }
+                }
+            }
+        }
+    }
+    // 移动端or小屏适配
+    @media screen and (max-width: 786px) {
+        .header {
+            padding: 20px 0 40px;
+            flex-wrap: wrap;
+            height: auto;
+            nav {
+                margin-top: 60px;
+                width: 100%;
+                justify-content: center;
+                order: 1;
+            }
+            .header-title {
+                padding-right: 0;
+                width: 100%;
+                text-align: center;
+                orphans: 2;
+                .description {
+                    width: 100%;
+                    right: 50%;
+                    transform: translateX(50%);
+                }
+            }
+        }
+    }
+</style>
