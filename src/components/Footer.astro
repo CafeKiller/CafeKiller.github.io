@@ -1,22 +1,12 @@
 ---
-import { getCollection } from 'astro:content'
+import { allPosts } from '@/utils/astroUtil'
 
-import '../styles/global.min.css'
+import '@/styles/global.min.css'
 
 type tagType = {
     tag: string
     count: number
 }
-
-const createAllMd = async () => {
-    let _array:Array<any> = []
-
-    return _array.concat(await getCollection('posts'))
-        .concat(await getCollection('games'))
-        .concat(await getCollection('articles'))
-}
-
-const allPosts: Array<any> = await createAllMd()
 
 const uniqueTags: Array<string> = [...new Set(allPosts.map((post) => post.data.tags).flat())]
 

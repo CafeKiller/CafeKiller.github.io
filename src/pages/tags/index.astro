@@ -1,21 +1,12 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import PostCard from '../../components/PostCard.astro'
-import { getCollection } from 'astro:content'
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import PostCard from '@/components/PostCard.astro'
+import { type tagType } from '@/types/astro'
+import { allPosts } from '@/utils/astroUtil'
 
-import '../../styles/global.min.css'
+import '@/styles/global.min.css'
 
-import { type tagType } from '../../types/astro'
-
-const createAllMd = async () => {
-    let _array:Array<any> = []
-
-    return _array.concat(await getCollection('posts'))
-            .concat(await getCollection('games'))
-            .concat(await getCollection('articles'))
-}
-
-const allMdArray:Array<any> = await createAllMd()
+const allMdArray:Array<any> = allPosts
 
 const tags: Array<string> = [...new Set(allMdArray.map((md) => md.data.tags).flat())]
 

@@ -56,10 +56,7 @@ body {
 
 // 深色模式
 .drak {
-    filter: invert(1) hue-rotate(180deg)
-}
-
-.drak {
+    filter: invert(1) hue-rotate(180deg);
     img, video, .drak_bg {
         filter: invert(1) hue-rotate(180deg)
     }

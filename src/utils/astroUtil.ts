@@ -1,13 +1,11 @@
-import { type AstroGlobal } from 'astro'
+import { getCollection } from 'astro:content'
 
-const createAllMd = async (Astro: AstroGlobal) => {
-    let _array:Array<any> = []
+const createAllMd = async () => {
+	let _array:Array<any> = []
 
-    return _array.concat(import.meta.glob('../pages/posts/*.md'))
-                // .concat(await Astro.glob('../pages/games/*.md'))
-                // .concat(await Astro.glob('../pages/articles/*.md'))
+	return _array.concat(await getCollection('posts'))
+				.concat(await getCollection('games'))
+				.concat(await getCollection('articles'))
 }
 
-export default {
-    createAllMd
-}
+export const allPosts = await createAllMd()
