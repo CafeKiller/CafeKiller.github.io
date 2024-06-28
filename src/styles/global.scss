@@ -41,6 +41,7 @@ a {
 html, body {
     font-family: 'PingFang SC,Songti SC,Helvetica,Arial,sans-serif';
     background-color: var(--body-bgcolor);
+    scroll-behavior: smooth;
 }
 body { 
     padding-top: 60px; 
@@ -87,9 +88,12 @@ body {
     }
     .md-title {
         font-size: 38px;
+        text-shadow: 4px 4px 0 rgba(0, 0, 0, .15);
     }
     img {
+        margin: 10px 0 0;
         display: block;
+        height: 150px;
     }
 }
 .md-content { // 主体
@@ -137,7 +141,7 @@ body {
         text-decoration: underline;
     }
     blockquote {
-        margin: 8px 0 0;
+        margin: 8px 0 8px;
         background-color: var(--blacke);
         border-left: 3px solid var(--main-color);
         p {

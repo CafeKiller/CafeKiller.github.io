@@ -31,7 +31,7 @@ const createYearMdObj = () : yearType => {
 
 	years.forEach((year) => {
 		
-		let _arr: Array<navType> = []
+		const _arr: Array<navType> = []
 		
 		allMdArr.forEach((md) => {
 			if (formatDate(md.data.pubDate).slice(0,4) === year.toString()) {

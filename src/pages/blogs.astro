@@ -24,9 +24,10 @@ const fillterMd = createYearMdObj()
 						<nav class="nav-cont">
 							{fillterMd[year].map((item: navType) => {
 								return (
-									<span>{formatDate(item.date).slice(5, 10)}</span>
-									<a href={'/MyBlog'+item.url}>{item.title}</a> 
-									<br/>
+									<div class="nav-item">
+										<span>{formatDate(item.date).slice(5, 10)}</span>
+										<a href={'/MyBlog'+item.url}>{item.title}</a> 
+									</div>
 								)
 							})}
 						</nav>
@@ -58,7 +59,7 @@ const fillterMd = createYearMdObj()
 		.title {
 			position: absolute;
 			left: 0;
-			// top: 8px;
+			top: 6px;
 			width: 10%;
 			font-size: 32px;
 			font-weight: 400;
@@ -69,16 +70,28 @@ const fillterMd = createYearMdObj()
 		}
 		.nav-cont {
 			padding-left: 120px;
-			a {
-				font-size: 16px;
-				line-height: 32px;
-				color: #000;
-				text-decoration: none;
-				&:hover {
-					color: #000;
-					text-decoration: underline;
+			.nav-item {
+				display: flex;
+				align-items: center;
+				span {
+					margin: 0 8px;
+					color: var(--black9);
+				}
+				a {
+					font-size: 16px;
+					line-height: 32px;
+					color: var(--black3);
+					text-decoration: none;
+					&:hover {
+						color: var(--main-color);
+						text-decoration: underline;
+					}
 				}
 			}
+			
+		}
+		&:last-of-type {
+			padding-bottom: 30px;
 		}
 	}
 </style>
