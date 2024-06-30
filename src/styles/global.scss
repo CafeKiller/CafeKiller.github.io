@@ -13,7 +13,6 @@ a {
         text-decoration: none;
     }
 }
-* img[src],
 * img[src=""] {
     display: none;
 }
@@ -39,7 +38,7 @@ a {
     --body-bgcolor: #f7f7f7; 
 }
 html, body {
-    font-family: 'PingFang SC,Songti SC,Helvetica,Arial,sans-serif';
+    font-family: 'Songti SC, Helvetica, Arial, sans-serif';
     background-color: var(--body-bgcolor);
     scroll-behavior: smooth;
 }
@@ -185,6 +184,68 @@ body {
         &:hover {
             border: 1px solid var(--main-color);
         }
+    }
+}
+
+// About 关于页面样式
+.about-wrapper {
+    position: relative;
+    padding: 10px 60px 100px;
+    .title {
+        margin-bottom: 20px;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 46px;
+        color: var(--black3);
+        transition: all .2s ease;
+        &:hover {
+            color: var(--main-color);
+        }
+    }
+    .about-cont {
+        display: flex;
+        justify-content: space-between;
+        .left {
+            width: 55%;
+            font-size: 16px;
+            line-height: 26px;
+            color: var(--black6);
+            p {
+                margin-bottom: 20px;
+            }
+        }
+        .right {
+            margin-left: 80px;
+            width: 40%;
+            text-align: right;
+            p {
+                margin-top: 8px;
+                font-size: 10px;
+                line-height: 12px;
+                color: var(--black9);
+            }
+        }
+    }
+    .my-links {
+        position: absolute;
+        right: 60px;
+        top: 280px;
+        width: 160px;
+        background: #fafafa;
+        a {
+            padding: 8px 16px;
+            display: block;
+            background: #fafafa;
+            color: var(--black6);
+            border-bottom: 2px solid #fafafa;
+            transition: all .2s ease;
+            &:hover {
+                color: var(--brcolor);
+                background: var(--bgcolor);
+                border-bottom: 2px solid var(--brcolor);
+            }
+        }
+        
     }
 }
 

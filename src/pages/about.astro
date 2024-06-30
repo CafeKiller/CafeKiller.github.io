@@ -1,9 +1,36 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import '@/styles/global.min.css'
 ---
 
 <BaseLayout title="CafeBlogs About">
-	<main>
-		
+	<main class="about-wrapper">
+		<h1 class="title">关于我</h1>
+		<div class="about-cont">
+			
+			<div class="left">
+				<p class="p--first">这里是咖啡Killer的博客网站，我的一方小天地</p>
+				<p>一个喜欢荒木飞吕彦和硬核画风的阿宅、一个躲在网络角落处还喜欢碎碎念的小角色、一个想努力成全栈开发大佬的菜鸟、一个总是三分钟热度持续性混吃等死，偶尔会间歇性发奋图强的普通人。
+					平时喜欢玩游戏、看动漫、写代码和捣鼓各类奇怪玩意，一起变强啊！</p>
+				<p>现在我正在努力让自己变的有趣呢</p>
+			</div>
+
+			<div class="right">
+				<img src="../../public/header.jpg" alt="头像_熊猫">
+				<br>
+				<p>熊猫头像，来自广告 <br> —— <br>《never say no to panda》</p>
+			</div>
+		</div>
+
+		<nav class="my-links">
+			<a href="https://gitee.com/coffeekiller002" target="_blank"
+				style="--bgcolor:rgba(199,29,35,.05);--brcolor:#c71d23;">Gitee</a>
+			
+			<a href="https://github.com/CafeKiller" target="_blank"
+				style="--bgcolor:rgba(31,35,40,.05);--brcolor:#1f2328;">Github</a>
+
+			<a href="https://space.bilibili.com/16437457" target="_blank"
+				style="--bgcolor:rgba(8,163,214,.05);--brcolor:#08a3d6;">Bilibili</a>
+		</nav>
 	</main>
 </BaseLayout>
