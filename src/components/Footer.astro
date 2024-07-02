@@ -53,7 +53,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
     .footer-wrapper {
         margin-top: 80px;
         width: 100%;
-        background-color: #fff;
+        background-color: var(--blackf);
         box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
         .footer-cont {
             padding: 40px 0 40px;
@@ -101,10 +101,10 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
                     color: var(--color);
                     border: 2px solid var(--color);
                     transition: all .15s ease;
-                    background-color: #ffffff;
+                    background-color: var(--blackf);
                     transition: all .25s ease;
                     &:hover {
-                        color: #ffffff;
+                        color: var(--blackf);
                         background-color: var(--color);
                     }
                 }
@@ -135,6 +135,14 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
     @media screen and (max-width: 786px) {
         .footer-wrapper {
             margin-top: 20px;
+        }
+    }
+
+    // 黑夜模式
+    html.dark {
+        .footer-wrapper {
+            background-color: var(--blackf);
+            box-shadow: none;
         }
     }
 </style>

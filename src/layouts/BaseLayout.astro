@@ -28,7 +28,7 @@ const { title } = Astro.props
 		<meta name="Keywords" content="coffee blog, 咖啡blog, cafe blog, blog, 博客, cafe博客, 咖啡, cafe"/>
 		<title>{ title } - MyBlog</title>
 
-		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 	</head>
 
 	<body class="">
@@ -45,5 +45,5 @@ const { title } = Astro.props
 <script>
 	import { log } from '@/utils/iLogUtil'
 	log.success("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
-	log.success("Copyright", "Coffee_Killer")
+	log.success("Copyright", "Coffee_Killer")	
 </script>
