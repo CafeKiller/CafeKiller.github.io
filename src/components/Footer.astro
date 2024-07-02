@@ -72,6 +72,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
                     line-height: 42px;
                     width: 100%;
                     text-align: center;
+                    color: var(--fontcolor1);
                 }
             }
             .tags {
@@ -79,11 +80,11 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
                     /* margin: 0 6px; */
                     padding: 4px 12px;
                     font-size: 14px;
-                    color: var(--black3);
+                    color: var(--fontcolor2);
                     border: 1px solid var(--blackc);
                     transition: all .15s ease;
                     span {
-                        color: var(--black9);
+                        color: var(--fontcolor4);
                     }
                     &:hover {
                         color: var(--main-color);
@@ -101,7 +102,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
                     color: var(--color);
                     border: 2px solid var(--color);
                     transition: all .15s ease;
-                    background-color: var(--blackf);
+                    background-color: transparent;
                     transition: all .25s ease;
                     &:hover {
                         color: var(--blackf);
@@ -126,7 +127,7 @@ const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {
                 }
                 .repo-link {
                     font-size: 14px;
-                    color: var(--black6);
+                    color: var(--fontcolor2);
                 }
             }
         }

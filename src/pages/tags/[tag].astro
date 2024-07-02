@@ -65,61 +65,64 @@ switch (tag) {
     </main>
 </BaseLayout>
 
-<style>
+<style lang="scss">
     .filter-cont {
         padding: 20px 30px 40px;
-    }
-    .filter-cont .title {
-        font-weight: 400;
-        font-size: 28px;
-        line-height: 42px;
-    } 
-    .filter-list {
-        margin-top: 38px;
-    }
-    .filter-list li {
-        position: relative;
-        list-style: none;
-        padding-left: 48px;
-        margin-bottom: 10px;
-    }
-    .filter-list li::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 24px;
-        width: 8px;
-        height: 8px;
-        background-color: var(--black6);
-        transform: rotateZ(45deg) translateY(-50%);
-        transition: all .25s ease;
-    }
-    .filter-list li a {
-        position: relative;
-        font-size: 18px;
-        line-height: 38px;
-        color: var(--black6);
-        transition: all .25s ease;
-    }
-    .filter-list li a span {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 1px;
-        background-color: var(--black6);
-        color: var(--black6);
-        transition: all .25s ease;
-    }
-    .filter-list li:hover::before {
-        background-color: var(--main-color);
-    }
-    .filter-list li:hover a {
-        color: var(--main-color);
-    }
-    .filter-list li:hover a span {
-        width: 100%;
-        color: var(--main-color);
-        background-color: var(--main-color);
+        .title {
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 42px;
+            color: var(--fontcolor1);
+        } 
+        .filter-list {
+            margin-top: 38px;
+            li {
+                position: relative;
+                list-style: none;
+                padding-left: 48px;
+                margin-bottom: 10px;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 24px;
+                    width: 8px;
+                    height: 8px;
+                    background-color: var(--fontcolor2);
+                    transform: rotateZ(45deg) translateY(-50%);
+                    transition: all .25s ease;
+                }
+                a {
+                    position: relative;
+                    font-size: 18px;
+                    line-height: 38px;
+                    color: var(--fontcolor2);
+                    transition: all .25s ease;
+                    span {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 0;
+                        height: 1px;
+                        background-color: var(--fontcolor2);
+                        color: var(--fontcolor2);
+                        transition: all .25s ease;
+                    }
+                }
+                &:hover {
+                    &::before {
+                        background-color: var(--main-color);
+                    }
+                    a {
+                        color: var(--main-color);
+                        span {
+                            width: 100%;
+                            color: var(--main-color);
+                            background-color: var(--main-color);
+                        }
+                    }
+                }
+            }
+        }
     }
 </style>

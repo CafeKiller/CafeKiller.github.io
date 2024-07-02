@@ -7,14 +7,34 @@ img{ border:0 }
 button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
 td,th,ul,ol{padding:0}
+
 a {
     text-decoration:none;
     &:hover {
         text-decoration: none;
     }
 }
+
 * img[src=""] {
     display: none;
+}
+
+html, body {
+    font-family: 'Songti SC, Helvetica, Arial, sans-serif';
+    background-color: var(--body-bgcolor);
+    scroll-behavior: smooth;
+}
+body { 
+    padding-top: 60px; 
+    &::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+        background-color: var(--body-bgcolor);
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: var(--main-color);
+        border-radius: 2px;
+    }
 }
 // COMMON NED
 
@@ -40,25 +60,23 @@ html {
     --color2: #b22222;
     --color3: #7b68ee;
     --color4: #2a52be;
-    --body-bgcolor: #f7f7f7; 
+    --body-bgcolor: #f7f7f7;
+
+    --fontcolor1: #333333;
+    --fontcolor2: #666666;
+    --fontcolor3: #999999;
+    --fontcolor4: #cccccc;
 }
-html, body {
-    font-family: 'Songti SC, Helvetica, Arial, sans-serif';
-    background-color: var(--body-bgcolor);
-    scroll-behavior: smooth;
+// 深色模式
+.dark {
+    --body-bgcolor: #23262f; 
+    --blackf: #17181c;
+    --fontcolor1: #eeeeee;
+    --fontcolor2: #aaaaaa;
+    --fontcolor3: #777777;
+    --fontcolor4: #555555;
 }
-body { 
-    padding-top: 60px; 
-    &::-webkit-scrollbar {
-        height: 4px;
-        width: 4px;
-        background-color: var(--blacke);
-    }
-    &::-webkit-scrollbar-thumb{
-        background-color: var(--main-color);
-        border-radius: 2px;
-    }
-}
+
 
 // BaseLayout 外层容器样式
 .wrapper {
@@ -75,11 +93,11 @@ body {
     padding: 0 30px;
     .md-time {
         position: relative;
-        padding-left: 8px;
+        padding-left: 12px;
         font-size: 14px;
         line-height: 24px;
         letter-spacing: 1px;
-        color: var(--black9);
+        color: var(--fontcolor3);
         &::before {
             content: '';
             position: absolute;
@@ -87,11 +105,12 @@ body {
             top: 2px;
             height: 20px;
             width: 3px;
-            background-color: var(--blacke);
+            background-color:var(--fontcolor3);
         }
     }
     .md-title {
         font-size: 38px;
+        color: var(--fontcolor1);
         text-shadow: 4px 4px 0 rgba(0, 0, 0, .15);
     }
     img {
@@ -103,13 +122,14 @@ body {
 
 .md-content { // 主体
     position: relative;
-    padding: 20px 30px;
+    padding: 20px 30px 20px;
     font-family: '微软雅黑';
     h2 {
         margin-top: 40px;
         font-weight: 400;
         font-size: 26px;
         line-height: 54px;
+        color: var(--fontcolor1);
     }
     p {
         padding: 8px 0;
@@ -117,10 +137,12 @@ body {
         line-height: 26px;
         letter-spacing: 1px;
         text-indent: 32px;
+        color: var(--fontcolor1);
         code {
             padding: 2px 8px;
-            background-color: var(--blacke);
+            background-color: var(--fontcolor4);
             border-radius: 3px;
+            color: var(--fontcolor1);
         }
     }
     .astro-code {
@@ -135,8 +157,16 @@ body {
     ul,ol {
         padding-left: 40px;
         li {
+            position: relative;
             font-size: 16px;
             line-height: 26px;
+            color: var(--fontcolor1);
+            &::marker {
+                font-size: 12px;
+            }
+            &>p {
+               text-indent: 0; 
+            }
         }
     }
     a {
@@ -148,10 +178,11 @@ body {
     }
     blockquote {
         margin: 8px 0 8px;
-        background-color: var(--blacke);
+        background-color: var(--fontcolor4);
         border-left: 3px solid var(--main-color);
         p {
             padding-left: 20px;
+            background-color: var(--fontcolor4);
         }
     }
     img {
@@ -163,12 +194,41 @@ body {
     }
 }
 
+.md-footer {
+    margin: 40px auto 0;
+    padding: 0 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    border-left: 3px solid var(--fontcolor3);
+    border-right: 3px solid var(--fontcolor3);
+    background-color: var(--body-bgcolor);
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-indent: 0;
+        font-size: 14px;
+        line-height: 32px;
+        color: var(--fontcolor2);
+        vertical-align: middle;
+        a {
+            font-size: 14px;
+            color: var(--main-color);
+        }
+    }
+}
+
 // Tags 页面样式
 .tags-cont {
     padding: 0 60px 40px;
     .title {
         font-size: 32px;
         line-height: 64px;
+        color: var(--fontcolor1);
     }
     nav {
         padding: 20px 0 0;
@@ -180,13 +240,13 @@ body {
         display: block;
         padding: 6px 20px;
         font-size: 16px;
-        color: var(--black3);
-        border: 1px solid var(--blackc);
+        color: var(--fontcolor1);
+        border: 1px solid var(--fontcolor4);
         transition: all .2s ease;
         i {
             font-style: normal;
             font-size: 14px;
-            color: var(--black9);
+            color: var(--fontcolor3);
         }
         &:hover {
             border: 1px solid var(--main-color);
@@ -203,7 +263,7 @@ body {
         font-weight: 400;
         font-size: 36px;
         line-height: 46px;
-        color: var(--black3);
+        color: var(--fontcolor1);
         transition: all .2s ease;
         &:hover {
             color: var(--main-color);
@@ -216,14 +276,14 @@ body {
             width: 55%;
             font-size: 16px;
             line-height: 26px;
-            color: var(--black6);
+            color: var(--fontcolor2);
             p {
                 margin-bottom: 20px;
             }
             .p--last {
                 margin-top: 60px;
                 font-size: 12px;
-                color: var(--blackc);
+                color: var(--fontcolor4);
             }
         }
         .right {
@@ -234,7 +294,7 @@ body {
                 margin-top: 8px;
                 font-size: 10px;
                 line-height: 12px;
-                color: var(--black9);
+                color: var(--fontcolor2);
             }
         }
     }
@@ -243,13 +303,13 @@ body {
         right: 60px;
         top: 280px;
         width: 160px;
-        background: #fafafa;
+        background: var(--body-bgcolor);
         a {
             padding: 8px 16px;
             display: block;
-            background: #fafafa;
-            color: var(--black6);
-            border-bottom: 2px solid #fafafa;
+            background: var(--body-bgcolor);
+            color: var(--fontcolor2);
+            border-bottom: 2px solid var(--body-bgcolor);
             transition: all .2s ease;
             &:hover {
                 color: var(--brcolor);
@@ -308,23 +368,6 @@ body {
         }
         .my-links {
             display: none;
-        }
-    }
-}
-
-// 深色模式
-.dark {
-    --body-bgcolor: #23262f; 
-    --blackf: #17181c;
-    p, h1, h2, h3, a {
-        filter: $invert;
-        img {
-            filter: $invert;
-        }
-    }
-    .md-content {
-        blockquote {
-            background-color: var(--black3);
         }
     }
 }

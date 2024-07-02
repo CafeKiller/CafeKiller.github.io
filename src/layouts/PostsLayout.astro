@@ -28,12 +28,25 @@ const { frontmatter , headings} = Astro.props
     <section class="md-content">
         <p><em>{frontmatter.description}</em></p>
         <slot />
-        <p>Written by: {frontmatter.author}</p>
+        <!-- <p>Written by: {frontmatter.author}</p> -->
 
         <!-- <Catalogs  headings={ headings }/> -->
+
+        <section class="md-footer">
+            <div>Written by: {frontmatter.author}</div>
+            <div>
+                归类于
+                {
+                    frontmatter.tags.map((tag:string) => {
+                        return (<a href={'/MyBlog/tags/' + tag} target="_blank">{ tag }</a>)
+                    })
+                }
+                相关
+            </div>
+        </section>
+        
     </section>
-    
-    
+
 
 </BaseLayout>
 

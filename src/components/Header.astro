@@ -65,13 +65,13 @@ import '@/styles/global.min.css'
                 font-size: 18px;
                 line-height: 50px;
                 text-align: center;
-                color: var(--black3);
+                color: var(--fontcolor1);
                 transition: all .25s ease;
                 border-bottom: 3px solid transparent;
                 &:hover {
                     color: var(--main-color);
                     text-decoration: none;
-                    background-color: var(--blacke);
+                    background-color: #f2f3f5;
                     border-bottom: 3px solid var(--main-color);
                 }
             }
@@ -86,7 +86,7 @@ import '@/styles/global.min.css'
                 font-size: 48px;
                 line-height: 60px;
                 letter-spacing: 3px;
-                color: var(--black3);
+                color: var(--fontcolor1);
                 z-index: 10;
             }
             .description {
@@ -95,7 +95,7 @@ import '@/styles/global.min.css'
                 bottom: -30px;
                 font-size: 16px;
                 vertical-align: middle;
-                color: var(--black9);
+                color: var(--fontcolor3);
                 span {
                     transition: all .2s ease;
                     &:hover {
@@ -126,6 +126,19 @@ import '@/styles/global.min.css'
                     width: 100%;
                     right: 50%;
                     transform: translateX(50%);
+                }
+            }
+        }
+    }
+
+    // 黑夜模式
+    html.dark {
+        .header {
+            nav {
+                a {
+                    &:hover {
+                        background-color: #111113bb;
+                    }
                 }
             }
         }
