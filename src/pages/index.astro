@@ -8,9 +8,11 @@ import { allMdArr } from '@/utils/astroUtil'
 <BaseLayout title="首页">
 	<main>
 		{
-			allMdArr.reverse().map((md) => {
-					return (<PostCard post={md}/>)
-			})
+			allMdArr
+					.sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
+					.map((md) => {
+						return (<PostCard post={md}/>)
+					})
 		}
 	</main>
 </BaseLayout>

@@ -17,8 +17,7 @@ const createAllMd = async () => {
 	return _array.concat(await getCollection('posts'))
 				.concat(await getCollection('games'))
 				.concat(await getCollection('articles'))
-				// 按发布日期降序排序
-				.sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
+				
 }
 
 const allMdArr = await createAllMd()

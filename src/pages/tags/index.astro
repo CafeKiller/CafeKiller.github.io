@@ -31,7 +31,9 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
 
         <main class="all-cont">
             {
-                allMdArr.reverse().map((md) => {
+                allMdArr
+                    .sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
+                    .map((md) => {
                     return (<PostCard post={md}/>)
                 })
             }
