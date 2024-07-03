@@ -125,4 +125,23 @@ switch (tag) {
             }
         }
     }
+
+    // 移动端适配
+	@media screen and (max-width: 786px) {
+		.filter-cont {
+            padding: 10px 10px 20px;
+            .filter-list {
+                margin-top: 18px;
+                li {
+                    padding-left: 24px;
+                    margin-bottom: 6px;
+                    &::before {
+                        left: 8px;
+                        width: 6px;
+                        height: 6px;
+                    }
+                }
+            }
+        }
+	}
 </style>

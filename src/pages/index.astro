@@ -1,15 +1,17 @@
 ---
+import { getCollection } from 'astro:content'
+
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostCard from '@/components/PostCard.astro'
 
-import { allMdArr } from '@/utils/astroUtil'
+const collection = await getCollection('posts')
 ---
 
 <BaseLayout title="首页">
 	<main>
 		{
-			allMdArr
-					.sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
+			collection
+					.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 					.map((md) => {
 						return (<PostCard post={md}/>)
 					})
@@ -20,5 +22,10 @@ import { allMdArr } from '@/utils/astroUtil'
 <style>
 	main {
 		padding: 0 30px 60px;
+	}
+	@media screen and (max-width: 786px) {
+		main {
+			padding: 0 10px 60px;
+		}
 	}
 </style>
