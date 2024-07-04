@@ -7,42 +7,14 @@ const baseCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         pubDate: z.date(),
-        description: z.string(),
+        description: z.string().optional(),
         author: z.string(),
+        featured: z.boolean().optional(),
+        draft: z.boolean().optional(),
         image: z.object({
             url: z.string(),
             alt: z.string()
-        }),
-        tags: z.array(z.string())
-    })
-})
-
-const gamesCollection = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        pubDate: z.date(),
-        description: z.string(),
-        author: z.string(),
-        image: z.object({
-            url: z.string(),
-            alt: z.string()
-        }),
-        tags: z.array(z.string())
-    })
-})
-
-const articlesCollection = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        pubDate: z.date(),
-        description: z.string(),
-        author: z.string(),
-        image: z.object({
-            url: z.string(),
-            alt: z.string()
-        }),
+        }).optional(),
         tags: z.array(z.string())
     })
 })

@@ -28,12 +28,11 @@ body {
     padding-top: 60px; 
     &::-webkit-scrollbar {
         height: 4px;
-        width: 4px;
+        width: 6px;
         background-color: var(--body-bgcolor);
     }
     &::-webkit-scrollbar-thumb{
         background-color: var(--main-color);
-        border-radius: 2px;
     }
 }
 // COMMON NED
@@ -69,8 +68,8 @@ html {
 }
 // 深色模式
 .dark {
-    --body-bgcolor: #23262f; 
-    --blackf: #17181c;
+    --body-bgcolor: #161b22; 
+    --blackf: #212737;
     --fontcolor1: #eeeeee;
     --fontcolor2: #aaaaaa;
     --fontcolor3: #777777;

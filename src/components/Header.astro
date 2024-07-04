@@ -8,44 +8,11 @@ import '@/styles/global.min.css'
         <a href="/MyBlog/blogs">博客</a>
         <a href="/MyBlog/about">关于</a>
     </nav>
-    <div class="header-title">
+    <div class="header-title" id="theme-btn">
         <h1 class="text">Cafe Blogs</h1>
         <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
     </div>
 </header>
-
-<script is:inline>
-
-    const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('__cafe-blog_theme')) {
-            return localStorage.getItem('__cafe-blog_theme')
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark'
-        }
-        return 'light'
-    })()
-
-    if (theme === 'light') {
-        document.documentElement.classList.remove('dark')
-    } else {
-        document.documentElement.classList.add('dark')
-    }
-
-    window.localStorage.setItem('__cafe-blog_theme', theme)
-
-    const handleToggleClick = () => {
-        const element = document.documentElement
-        element.classList.toggle("dark")
-
-        const isDark = element.classList.contains("dark")
-        localStorage.setItem("__cafe-blog_theme", isDark ? "dark" : "light")
-    }
-
-
-    document.querySelector(".header-title h1")
-            .addEventListener("click", handleToggleClick)
-</script>
 
 <style lang="scss">
     // Header 通用头部 组件样式
