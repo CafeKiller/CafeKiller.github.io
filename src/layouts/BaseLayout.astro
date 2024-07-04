@@ -1,10 +1,10 @@
 ---
-import Header from '@/components/Header.astro'
-import Footer from '@/components/Footer.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
 
-import { SITE, LOCALE } from '@/config'
+import { SITE, LOCALE } from '@config'
 
-import '@/styles/global.min.css'
+import '@styles/global.min.css'
 
 export interface Props {
 	title?: string
@@ -81,7 +81,7 @@ const {
 <script is:inline src="/toggleTheme.js"></script>
 
 <script>
-	import { log } from '@/utils/iLogUtil'
+	import { log } from '@utils/iLogUtil'
 	log.success("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
 	log.success("Copyright", "Coffee_Killer")	
 </script>

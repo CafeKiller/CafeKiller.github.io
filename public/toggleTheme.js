@@ -1,12 +1,12 @@
-const primaryColorScheme = "" // Ô¤ÉèÖ÷ÌâÉ«
+const primaryColorScheme = "" // é¢„è®¾ä¸»é¢˜è‰²
 
-// »ñÈ¡±¾µØ´æ´¢µÄ Ö÷ÌâÉ«
+// èŽ·å–æœ¬åœ°å­˜å‚¨çš„ ä¸»é¢˜è‰²
 const currentTheme = localStorage.getItem("__cafe-blog_theme")
 
 /**
- * @description »ñÈ¡ÓÃ»§Éè±¸µÄÆ«ºÃÖ÷ÌâÉ«, ÓÅÏÈ»ñÈ¡±¾µØ´æ´¢ÖÐµÄÖ÷ÌâÉ«,
- * Æä´Î»ñÈ¡Ô¤ÉèµÄÖ÷ÌâÉ«, ×îºó»ñÈ¡ÏµÍ³µÄÆ«ºÃÖ÷ÌâÉ«.
- * @returns { String } ·µ»ØÖ÷ÌâÉ«
+ * @description èŽ·å–ç”¨æˆ·è®¾å¤‡çš„åå¥½ä¸»é¢˜è‰², ä¼˜å…ˆèŽ·å–æœ¬åœ°å­˜å‚¨ä¸­çš„ä¸»é¢˜è‰²,
+ * å…¶æ¬¡èŽ·å–é¢„è®¾çš„ä¸»é¢˜è‰², æœ€åŽèŽ·å–ç³»ç»Ÿçš„åå¥½ä¸»é¢˜è‰².
+ * @returns { String } è¿”å›žä¸»é¢˜è‰²
  * */ 
 function getPreferTheme() {
     
@@ -19,17 +19,17 @@ function getPreferTheme() {
         : "light"
 }
 
-// »ñÈ¡ÓÃ»§Éè±¸µÄÆ«ºÃÖ÷Ìâ
+// èŽ·å–ç”¨æˆ·è®¾å¤‡çš„åå¥½ä¸»é¢˜
 let themeValue = getPreferTheme()
 
-// ÉèÖÃÆ«ºÃ
+// è®¾ç½®åå¥½
 function setPreference() {
     localStorage.setItem("__cafe-blog_theme", themeValue)
     reflectPreference()
 }
 
 /**
- * @description ½«ÉèÖÃµÄÆ«ºÃÖ÷ÌâÉ«ÏìÓ¦µ½Ò³ÃæÑùÊ½ºÍ½á¹¹ÖÐ
+ * @description å°†è®¾ç½®çš„åå¥½ä¸»é¢˜è‰²å“åº”åˆ°é¡µé¢æ ·å¼å’Œç»“æž„ä¸­
  * */ 
 function reflectPreference() {
     
@@ -42,7 +42,7 @@ function reflectPreference() {
         document.documentElement.classList.remove('dark')
     }
 
-    // ÉèÖÃ meta Öµ
+    // è®¾ç½® meta å€¼
     const body = document.body
     if (body) {
         const computedStyles = window.getComputedStyle(body)
@@ -54,10 +54,10 @@ function reflectPreference() {
 
 reflectPreference()
 
-// ÉèÖÃÖ÷ÌâÇÐ»»°´Å¥
+// è®¾ç½®ä¸»é¢˜åˆ‡æ¢æŒ‰é’®
 window.onload = () => {
     function setThemeFeature() {
-        // ÉèÖÃ³õÊ¼Öµ£¬ÒÔ±ãÆÁÄ»ÔÄ¶ÁÆ÷ÄÜ¹»»ñÈ¡×îÐÂµÄÖµ
+        // è®¾ç½®åˆå§‹å€¼ï¼Œä»¥ä¾¿å±å¹•é˜…è¯»å™¨èƒ½å¤ŸèŽ·å–æœ€æ–°çš„å€¼
         reflectPreference();
 
         document.querySelector("#theme-btn")?.addEventListener("click", () => {
@@ -68,11 +68,11 @@ window.onload = () => {
 
     setThemeFeature()
 
-    // "astro:after-swap" ÊÂ¼þÓÃÓÚÐÂÒ³ÃæÌæ»»¾ÉÒ³ÃæÊ±Ê¹ÓÃ
+    // "astro:after-swap" äº‹ä»¶ç”¨äºŽæ–°é¡µé¢æ›¿æ¢æ—§é¡µé¢æ—¶ä½¿ç”¨
     document.addEventListener("astro:after-swap", setThemeFeature)
 }
 
-// Í¬²½ÏµÍ³¸ü¸Ä
+// åŒæ­¥ç³»ç»Ÿæ›´æ”¹
 window.matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", ({ matches: isDark }) => {  
             themeValue = isDark ? "dark" : "light"
