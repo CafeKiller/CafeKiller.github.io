@@ -1,10 +1,14 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import PostCard from '@/components/PostCard.astro'
-import { type tagType } from '@/types/astro'
-import { allMdArr } from '@/utils/astroUtil'
+import BaseLayout from "@layouts/BaseLayout.astro"
+import PostCard from '@components/PostCard.astro'
+import { allMdArr } from '@utils/astroUtil'
 
-import '@/styles/global.min.css'
+import '@styles/global.min.css'
+
+type tagType = {
+    tag: string
+    count: number
+}
 
 const tags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
 
