@@ -9,3 +9,9 @@ export const SITE: Site = {
     lightAndDarkMode: true,
     postPerPage: 5,
 }
+
+export const LOCALE = {
+    lang: "zh",
+    langTag: ["zh-CN"],
+} as const
+  
