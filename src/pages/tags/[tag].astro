@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
-import { allMdArr } from '@utils/astroUtil'
+import { allMdArr } from '@/utils/astroUtil'
 
-import '@styles/global.min.css'
+import '@/styles/global.min.css'
 
 export async function getStaticPaths(): Promise<any[]> {
 
