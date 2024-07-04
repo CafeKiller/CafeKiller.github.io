@@ -68,6 +68,7 @@ html {
 }
 // 深色模式
 .dark {
+    --main-color: #ff8033;
     --body-bgcolor: #161b22; 
     --blackf: #212737;
     --fontcolor1: #eeeeee;
@@ -82,6 +83,7 @@ html {
     padding: 0 20px;
     margin: 0 auto 0;
     max-width: 886px;
+    min-height: calc(100vh - 120px);
     background-color: var(--blackf);
     border-radius: 3px;
     box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
@@ -151,6 +153,15 @@ html {
             font-size: 14px;
             line-height: 28px;
             letter-spacing: 0.5px;
+        }
+        &::-webkit-scrollbar {
+            height: 4px;
+            width: 6px;
+            background-color: var(--body-bgcolor);
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: var(--main-color);
+            border-radius: 2px;
         }
     }
     ul,ol {
@@ -348,7 +359,7 @@ html {
             line-height: 36px;
         }
         img {
-            width: 375px;
+            width: 60vw;
             object-fit: cover;
         }
         blockquote {
