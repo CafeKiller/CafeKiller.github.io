@@ -14,9 +14,7 @@ type yearType = {
 
 const createAllMd = async () => {
 	let _array:Array<any> = []
-	return _array.concat(await getCollection('posts'))
-				.concat(await getCollection('games'))
-				.concat(await getCollection('articles'))
+	return _array.concat(await getCollection('blog'))
 				
 }
 

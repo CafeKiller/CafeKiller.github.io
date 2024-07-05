@@ -11,42 +11,41 @@ const { frontmatter , headings} = Astro.props
 ---
 
 <BaseLayout title={frontmatter.title}>
-
+    <div class="md-wrapper">
+        <section class="md-header">
+            <p class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10)}</p>
     
-    <section class="md-header">
-        <p class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10)}</p>
-
-        <h1 class="md-title"> {frontmatter.title}</h1>
-
-        { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
-
-        <Catalogs headings={ headings }/>
-
-    </section>
-
+            <h1 class="md-title"> {frontmatter.title}</h1>
     
-    <section class="md-content">
-        <p><em>{frontmatter.description}</em></p>
-        <slot />
-        <!-- <p>Written by: {frontmatter.author}</p> -->
-
-        <!-- <Catalogs  headings={ headings }/> -->
-
+            { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
+    
+            <Catalogs headings={ headings }/>
+    
+        </section>
+    
+        
+        <section class="md-content">
+            <p><em>{frontmatter.description}</em></p>
+            <slot />
+            <!-- <p>Written by: {frontmatter.author}</p> -->
+    
+            <!-- <Catalogs  headings={ headings }/> -->
+            
+        </section>
+    
         <section class="md-footer">
-            <div>Written by: {frontmatter.author}</div>
-            <div>
-                归类于
-                {
-                    frontmatter.tags.map((tag:string) => {
-                        return (<a href={'/MyBlog/tags/' + tag} target="_blank">{ tag }</a>)
-                    })
-                }
-                相关
+            <div class="md-footer-cont">
+                <div>Written by: {frontmatter.author}</div>
+                <div>
+                    归类于
+                    {
+                        frontmatter.tags.map((tag:string) => {
+                            return (<a href={'/MyBlog/tags/' + tag} target="_blank">{ tag }</a>)
+                        })
+                    }
+                    相关
+                </div>
             </div>
         </section>
-        
-    </section>
-
-
+    </div>
 </BaseLayout>
-

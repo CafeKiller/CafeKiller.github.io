@@ -37,3 +37,100 @@ import '@styles/global.min.css'
 		</nav>
 	</main>
 </BaseLayout>
+
+<style lang="scss">
+	// About 关于页面样式
+	.about-wrapper {
+		position: relative;
+		padding: 10px 60px 60px;
+		.title {
+			margin-bottom: 20px;
+			font-weight: 400;
+			font-size: 36px;
+			line-height: 46px;
+			color: var(--fontcolor1);
+			transition: all .2s ease;
+			&:hover {
+				color: var(--main-color);
+			}
+		}
+		.about-cont {
+			display: flex;
+			justify-content: space-between;
+			.left {
+				width: 55%;
+				font-size: 16px;
+				line-height: 26px;
+				color: var(--fontcolor2);
+				p {
+					margin-bottom: 20px;
+				}
+				.p--last {
+					margin-top: 60px;
+					font-size: 12px;
+					color: var(--fontcolor4);
+				}
+			}
+			.right {
+				margin-left: 80px;
+				width: 40%;
+				text-align: right;
+				p {
+					margin-top: 8px;
+					font-size: 10px;
+					line-height: 12px;
+					color: var(--fontcolor2);
+				}
+			}
+		}
+		.my-links {
+			position: absolute;
+			right: 60px;
+			top: 280px;
+			width: 160px;
+			background: var(--body-bgcolor);
+			a {
+				padding: 8px 16px;
+				display: block;
+				background: var(--body-bgcolor);
+				color: var(--fontcolor2);
+				border-bottom: 2px solid var(--body-bgcolor);
+				transition: all .2s ease;
+				&:hover {
+					color: var(--brcolor);
+					background: var(--bgcolor);
+					border-bottom: 2px solid var(--brcolor);
+				}
+			}
+			
+		}
+	}
+
+	// 移动端or小屏适配
+	@media screen and (max-width: 786px) {
+		.about-wrapper  {
+			padding: 10px 20px 30px; 
+			.title {
+				text-align: center;
+			}
+			.about-cont {
+				flex-direction: column;
+				.left {
+					margin: 0 auto 0;
+					order: 2;
+					width: 100%;
+				}
+				.right {
+					margin-left: 0;
+					margin-bottom: 20px;
+					width: 100%;
+					order: 1;
+					text-align: center;
+				}
+			}
+			.my-links {
+				display: none;
+			}
+		}
+	}
+</style>

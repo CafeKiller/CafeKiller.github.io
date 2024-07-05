@@ -21,6 +21,7 @@ const baseCollection = defineCollection({
 
 // 导出一个单独的 `collections` 对象来注册你的集合
 export const collections = {
+    blog: baseCollection,
     posts: baseCollection,
     games: baseCollection,
     articles: baseCollection,

@@ -109,11 +109,30 @@ const fillterMd = createYearMdObj()
 			}
 			.title {
 				position: relative;
-				margin-bottom: 10px;
+				margin-bottom: 20px;
 				top: 0;
 			}
 			.nav-cont {
-				padding-left: 0;
+				padding-left: 24px;
+				.nav-item {
+					position: relative;
+					margin-bottom: 8px;
+					span {
+						order: 2;
+					}
+					a {
+						order: 1;
+					}
+					&::before {
+						content: '';
+						position: absolute;
+						left: -14px;
+						width: 6px;
+						height: 6px;
+						background-color: var(--fontcolor3);
+						transform: rotateZ(45deg);
+					}
+				}
 			}
 			&:last-of-type {
 				padding-bottom: 8px;

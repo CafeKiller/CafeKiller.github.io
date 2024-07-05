@@ -6,8 +6,9 @@ import "@styles/global.min.css"
 const { post } = Astro.props
 
 let desc = post.body.replace(/\s*/g,"").slice(0,151)
+let borderLen = (Math.random() * (77-33)+33).toFixed(2)
 ---
-<a class="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`}>
+<a class="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`} style={`--border-len:${ borderLen }%`}>
     <div class="post-card">
         <span class="time">{ formatDate( post.data.pubDate ).slice(0,10) }</span>
         <h1 class="title">{ post.data.title }</h1>
@@ -23,13 +24,13 @@ let desc = post.body.replace(/\s*/g,"").slice(0,151)
         display: block;
         .post-card {
             position: relative;
-            padding: 60px 0 40px;
+            padding: 20px 0 80px;
             width: 100%;
             &::before {
                 content: "";
                 position: absolute;
                 left: 50%;
-                bottom: -1px;
+                bottom: 62px;
                 height: 2px;
                 width: 0%;
                 background: var(--main-color);
@@ -69,16 +70,19 @@ let desc = post.body.replace(/\s*/g,"").slice(0,151)
                 }
             }
             .post-card::before {
-                width: 80%;
+                width: var(--border-len);
             }
         }
     }
 
-    	// “∆∂Ø∂À  ≈‰
+    // ÁßªÂä®Á´ØorÂ∞èÂ±èÈÄÇÈÖç
 	@media screen and (max-width: 786px) {
 		.post-card-box {
             .post-card {
-                padding: 40px 0 20px;
+                padding: 20px 0 40px;
+                &::before {
+                    display: none;
+                }
             }
         }
 	}

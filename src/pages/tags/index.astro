@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
-import PostCard from '@components/PostCard.astro'
+import BlogCard from '@components/BlogCard.astro'
 import { allMdArr } from '@utils/astroUtil'
 
 type tagType = {
@@ -38,10 +38,54 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
                 allMdArr
                     .sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
                     .map((md) => {
-                    return (<PostCard post={md}/>)
+                    return (<BlogCard post={md}/>)
                 })
             }
         </main>
     </section>
 
 </BaseLayout>
+
+<style lang="scss">
+    // Tags 页面样式
+    .tags-cont {
+        padding: 0 60px 40px;
+        .title {
+            font-size: 32px;
+            line-height: 64px;
+            color: var(--fontcolor1);
+        }
+        nav {
+            padding: 20px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+        }
+        .tag-item {
+            display: block;
+            padding: 6px 20px;
+            font-size: 16px;
+            color: var(--fontcolor1);
+            border: 1px solid var(--fontcolor4);
+            transition: all .2s ease;
+            i {
+                font-style: normal;
+                font-size: 14px;
+                color: var(--fontcolor3);
+            }
+            &:hover {
+                border: 1px solid var(--main-color);
+            }
+        }
+    }
+
+    // 移动端or小屏适配
+    @media screen and (max-width: 786px) {
+        .tags-cont {
+            padding: 0 10px 40px;
+            nav {
+                gap: 5px 10px;
+            }
+        }
+    }
+</style>

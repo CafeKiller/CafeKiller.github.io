@@ -2,9 +2,9 @@
 import { getCollection } from 'astro:content'
 
 import BaseLayout from '@layouts/BaseLayout.astro'
-import PostCard from '@components/PostCard.astro'
+import BlogCard from '@components/BlogCard.astro'
 
-const collection = await getCollection('posts')
+const collection = await getCollection('blog')
 ---
 
 <BaseLayout title="首页">
@@ -13,7 +13,7 @@ const collection = await getCollection('posts')
 			collection
 					.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 					.map((md) => {
-						return (<PostCard post={md}/>)
+						return (<BlogCard post={md}/>)
 					})
 		}
 	</main>
@@ -21,7 +21,7 @@ const collection = await getCollection('posts')
 
 <style>
 	main {
-		padding: 0 30px 60px;
+		padding: 0 0 60px;
 	}
 	@media screen and (max-width: 786px) {
 		main {
