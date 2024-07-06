@@ -4,4 +4,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://CafeKiller.github.io',
     base: 'MyBlog',
+    redirects: {
+        '/MyBlog/blog': '/MyBlog/tags'
+    }
 });

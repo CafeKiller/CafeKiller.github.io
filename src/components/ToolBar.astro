@@ -7,7 +7,12 @@ const currentUrlPath = Astro.url.pathname.replace(/\/$/, "").replace(SITE.webPre
 
 const breadcrumbList = currentUrlPath.split('/').slice(1)
 
-console.log("breadcrumbList",breadcrumbList)
+const capitalizeFirstLetter = (str:string) => {
+  if (str.length > 1) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  return str
+}
 
 const breadcrumbListToUrl = (current: string) => {
     const _idx = breadcrumbList.indexOf(current)
@@ -22,8 +27,10 @@ const breadcrumbListToUrl = (current: string) => {
 ---
 
 <div class="toolbar" aria-label="toolbar">
+    
     <ul class="navigation">
-        <li class={ breadcrumbList.length === 0 ? 'hide' : ''}>
+        <!-- <li class={ breadcrumbList.length === 0 ? 'hide' : ''}> -->
+        <li>
             <a href={SITE.webPrefix +'/' }>Home</a>
             <span aria-hidden="true">&raquo;</span>
         </li>
@@ -32,37 +39,87 @@ const breadcrumbListToUrl = (current: string) => {
                 return index+1 === breadcrumbList.length 
                     ? (
                         <li>
-                            <a href={breadcrumbListToUrl(breadcrumb)}>{ decodeURIComponent(breadcrumb) }</a>
+                            <a href={breadcrumbListToUrl(breadcrumb)}>{ 
+                                capitalizeFirstLetter(decodeURIComponent(breadcrumb))
+                            }</a>
                             <span aria-hidden="true"></span>
                         </li>
                     ) 
                     : (
                         <li>
-                            <a href={breadcrumbListToUrl(breadcrumb)}>{ decodeURIComponent(breadcrumb) }</a>
+                            <a href={breadcrumbListToUrl(breadcrumb)}>{ 
+                                 capitalizeFirstLetter(decodeURIComponent(breadcrumb))
+                            }</a>
                             <span aria-hidden="true">&raquo;</span>
                         </li>
                     ) 
             }) 
         }
     </ul>
+
+    <div class="theme-box" id="theme-btn" style="opacity: 0;">
+        <svg class="icon" id="theme-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1756" width="200" height="200">
+            <!-- dark 显示: 太阳 -->
+            <g id="icon-dark">
+                <path d="M510 192a32 32 0 0 1-32-32V80a32 32 0 1 1 64 0v80a32 32 0 0 1-32 32z m224.864 93.136a32 32 0 0 1 0-45.248l56.576-56.576a32 32 0 1 1 45.248 45.248l-56.56 56.56a32 32 0 0 1-45.264 0.016z m93.136 224.864a32 32 0 0 1 32-32h80a32 32 0 1 1 0 64h-80a32 32 0 0 1-32-32z m-93.136 224.864a32 32 0 0 1 45.248 0l56.56 56.56a32 32 0 1 1-45.248 45.248l-56.576-56.56a32 32 0 0 1 0.016-45.248zM510 828a32 32 0 0 1 32 32v80a32 32 0 1 1-64 0v-80a32 32 0 0 1 32-32z m-224.864-93.136a32 32 0 0 1 0 45.248l-56.56 56.56a32 32 0 0 1-45.248-45.248l56.576-56.56a32 32 0 0 1 45.232 0zM192 510a32 32 0 0 1-32 32H80a32 32 0 1 1 0-64h80a32 32 0 0 1 32 32z m93.136-224.864a32 32 0 0 1-45.248 0l-56.576-56.56a32 32 0 0 1 45.248-45.248l56.56 56.576a32 32 0 0 1 0.016 45.232zM510 272c132.544 0 240 107.456 240 240 0 132.544-107.456 240-240 240-132.544 0-240-107.456-240-240 0-132.544 107.456-240 240-240z m0 64c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176z" fill="#000000" p-id="15629"></path>
+            </g>
+            <!-- light 显示: 月亮 -->
+            <g id="icon-light">
+                <path d="M408.32 143.872c6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667C196.266667 151.552 85.333333 305.152 85.333333 484.352c0 235.946667 191.146667 426.666667 426.666667 426.666667 179.2 0 332.8-110.933333 395.946667-267.946667 6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667c-39.253333 15.786667-82.346667 24.746667-127.146667 24.746667-188.586667 0-341.333333-152.746667-341.333333-341.333333 0-44.8 8.533333-87.893333 24.32-127.146667zM170.666667 484.352a340.48 340.48 0 0 1 131.84-269.226667c-2.56 18.346667-3.84 37.12-3.84 55.893334 0 235.52 191.146667 426.666667 426.666666 426.666666 18.773333 0 37.546667-1.28 55.893334-3.84A341.248 341.248 0 0 1 170.666667 484.352z" p-id="3046" fill="#000000"></path>
+            </g>
+        </svg>
+        
+    </div>
 </div>
+
+<script>
+    import SVGMorpheus from "@assets/lib/svg-morpheus";
+
+    let iconTheme = getPreferTheme()
+    const themeIcons = new SVGMorpheus('#theme-icon', {
+        iconId: 'icon-' + iconTheme
+    }, () => {
+        document.querySelector('.theme-box')?.setAttribute('style', 'opacity: 0.5;')
+    })
+    
+    const toggleThemeSvg = () => {
+        themeIcons.to("icon-light", { duration: 300 });
+        if (iconTheme == 'dark') {
+            iconTheme = 'light'
+            themeIcons.to("icon-"+iconTheme, { duration: 300 });
+            document.body.style.fill = "#" + (Math.random() + "").slice(-6);
+        } else {
+            iconTheme = 'dark'
+            themeIcons.to("icon-"+iconTheme, { duration: 300 });
+            
+        }
+    }
+
+    document.querySelector('#theme-btn')?.addEventListener('click', toggleThemeSvg)
+</script>
 
 <style lang="scss">
     .toolbar {
         position: relative;
         width: 100%;
         line-height: var(--fontsize30);
+        display: flex;
+        justify-content: space-between;
         .navigation {
             display: flex;
             li {
                 margin-right: 4px;
-                font-size: var(--fontsize14);
+                font-size: var(--fontsize16);
                 list-style: none;
                 a {
                     color: var(--fontcolor4);
+                    transition: all .2s ease;
+                    &:hover {
+                        color: var(--fontcolor2);
+                    }
                 }
                 span {
-                    font-size: 18px;
+                    font-size: 20px;
                     color: var(--fontcolor4);
                     cursor: default;
                 }
@@ -73,6 +130,42 @@ const breadcrumbListToUrl = (current: string) => {
                     visibility: hidden;
                 }
             }           
+        }
+        .theme-box {
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            filter: invert(34%) sepia(9%) saturate(0%) hue-rotate(35deg) brightness(95%) contrast(98%);
+            opacity: .5;
+            transition: all .2s ease;
+            .icon {
+                pointer-events: none;
+                width: 24px;
+                height: 24px;
+                color: var(--fontcolor4);
+                transform: scaleX(-1);
+            }
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    html.dark {
+        .toolbar {
+            .theme-box {
+                filter: invert(98%) sepia(2%) saturate(433%) hue-rotate(206deg) brightness(116%) contrast(87%);
+                .icon {
+                    &.dark {
+                        display: none;
+                    }
+                    &.light {
+                        display: block;
+                    }
+                }
+            }
         }
     }
 </style>
