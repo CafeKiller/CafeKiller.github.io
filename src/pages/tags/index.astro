@@ -2,23 +2,11 @@
 import BaseLayout from "@layouts/BaseLayout.astro"
 import BlogCard from '@components/BlogCard.astro'
 import { allMdArr } from '@utils/astroUtil'
-
-type tagType = {
-    tag: string
-    count: number
-}
-
 import '@styles/global.min.css'
 
-const tags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
+import { getUniqueTags } from "@utils/astroUtil"
 
-const fillterTags: Array<tagType> =  tags.map((tag) => {    
-    const filteredMds = allMdArr.filter((md) => md.data.tags.includes(tag))
-    return {
-        tag:  tag ,
-        count: filteredMds.length,
-    }
-}).sort((tag1, tag2) => tag2.count - tag1.count)
+const fillterTags = getUniqueTags(allMdArr)
 ---
 
 <BaseLayout title="全部标签">
@@ -36,10 +24,8 @@ const fillterTags: Array<tagType> =  tags.map((tag) => {
         <main class="all-cont">
             {
                 allMdArr
-                    .sort((post1, post2) => post2.data.pubDate - post1.data.pubDate)
-                    .map((md) => {
-                    return (<BlogCard post={md}/>)
-                })
+                    .sort((post1, post2) => Number(post2.data.pubDate) - Number(post1.data.pubDate))
+                    .map((md) =>  (<BlogCard post={md}/>))
             }
         </main>
     </section>

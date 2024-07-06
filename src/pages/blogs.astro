@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { createYearMdObj } from '@utils/astroUtil'
+import { createYearHistories } from '@utils/astroUtil'
 import { formatDate } from '@utils/dateUtil'
 
 import '@styles/global.min.css'
@@ -11,7 +11,7 @@ type navType = {
 	date: Date
 }
 
-const fillterMd = createYearMdObj()
+const fillterMd = createYearHistories()
 ---
 
 <BaseLayout title="CafeBlogs Blogs">

@@ -1,5 +1,5 @@
 ---
-import { allMdArr } from '@utils/astroUtil'
+import { allMdArr, getUniqueTags } from '@utils/astroUtil'
 
 import '@styles/global.min.css'
 
@@ -8,15 +8,9 @@ type tagType = {
     count: number
 }
 
-const uniqueTags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
+const fillterTags:tagType[] = getUniqueTags(allMdArr)
 
-const fillterTags: Array<tagType> =  uniqueTags.map((tag) => {    
-    const filteredPosts = allMdArr.filter((md) => md.data.tags.includes(tag))
-    return {
-        tag:  tag ,
-        count: filteredPosts.length,
-    }
-}).sort((tag1, tag2) => tag2.count - tag1.count)
+console.log("allMdArr", allMdArr.filter(blog => blog.data.draft))
 ---
 
 <footer class="footer-wrapper">
