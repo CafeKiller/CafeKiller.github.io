@@ -37,12 +37,6 @@ body {
 }
 // COMMON NED
 
-// 全局样式
-// @font-face {
-//     font-family: 'FanZ_LTYuanJian';
-//     src: url('/public/FanZ_LTYuanJian.woff2');
-// }
-
 $invert: invert(1) hue-rotate(180deg);
 
 html {
@@ -105,50 +99,20 @@ html {
 
 // markdown 布局样式
 .md-wrapper {
-    padding: 0 0 80px;
-    // markdown 文档首部
-    .md-header { 
-        .md-time {
-            position: relative;
-            padding-left: 12px;
-            font-size: 14px;
-            line-height: 24px;
-            letter-spacing: 1px;
-            color: var(--fontcolor3);
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 2px;
-                height: 20px;
-                width: 3px;
-                background-color:var(--fontcolor3);
-            }
-        }
-        .md-title {
-            font-size: 38px;
-            color: var(--fontcolor1);
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, .15);
-        }
-        img {
-            margin: 10px 0 0;
-            display: block;
-            height: 150px;
-        }
-    }
-
     // markdown 文档主体内容
     .md-content { 
         position: relative;
         padding: 20px 0 20px;
         font-family: '微软雅黑';
-        h2 {
+        h1, h2, h3 {
             margin-top: 40px;
             font-weight: 400;
-            font-size: 26px;
+            font-size: 32px;
             line-height: 54px;
             color: var(--fontcolor1);
         }
+        h2 { font-size: 26px; line-height: 46px; margin-top: 30px; }
+        h3 { font-size: 20px; line-height: 38px; margin-top: 20px; }
         p {
             padding: 8px 0;
             font-size: 16px;
@@ -190,20 +154,20 @@ html {
                 position: relative;
                 font-size: 16px;
                 color: var(--fontcolor1);
-                &::marker {
-                    font-size: 12px;
-                }
-                &>p {
-                text-indent: 0; 
-                }
+                &::marker { font-size: 12px; }
+                &>p { text-indent: 0; }
+                blockquote { padding: 0; }
+                ul, ol {  margin-top: 6px; }
             }
         }
         ol {
             li {
-                &::marker {
-                    font-size: 16px;
-                }           
+                &::marker { font-size: 16px; }           
             }
+        }
+        .contains-task-list {
+            padding-left: 16px;
+            .task-list-item { list-style: none; }
         }
         a {
             font-size: 16px;
@@ -213,14 +177,16 @@ html {
             text-decoration: underline;
         }
         blockquote {
+            padding: 4px 20px;
             margin: 8px 0 8px;
-            background-color: var(--fontcolor4);
+            background-color: var(--fontcolor5);
             border-left: 3px solid var(--main-color);
             p {
                 text-indent: 0;
                 padding: 4px 20px;
                 background-color: var(--fontcolor5) ;
             }
+            blockquote { padding: 0 8px; }  
         }
         img {
             display: block;
@@ -229,45 +195,10 @@ html {
             text-align: center;
             object-fit: cover;
         }
-    }
-
-    // markdown 文档底部
-    .md-footer {
-        padding: 0 60px 0;
-        position: absolute;
-        left: 50%;
-        bottom: 28px;
-        width: 100%;
-        transform: translateX(-50%);
-        box-sizing: border-box;
-        .md-footer-cont {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 0 16px 0;
-            border-left: 3px solid var(--fontcolor3);
-            border-right: 3px solid var(--fontcolor3);
-            background-color: var(--body-bgcolor);
-            box-sizing: border-box;
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-indent: 0;
-                font-size: 14px;
-                line-height: 36px;
-                color: var(--fontcolor2);
-                vertical-align: middle;
-                a {
-                    margin: 0 6px;
-                    font-size: 14px;
-                    color: var(--main-color);
-                    text-decoration: underline;
-                }
-            }
+        hr {
+            margin: 26px 0;
+            background: var(--fontcolor1);
         }
-
     }
 }
 
@@ -281,10 +212,6 @@ html {
         padding: 0 32px;
     }
     .md-wrapper {
-        padding: 0 12px 90px;
-        .md-header {
-            padding: 0 6px;
-        }
         .md-content {
             padding: 20px 4px 40px;
             p {
@@ -307,16 +234,6 @@ html {
             ul, ol {
                 margin-top: 8px;
                 padding-left: 20px;
-            }
-        }
-        .md-footer {
-            padding: 0 44px 0;
-            .md-footer-cont {
-                padding: 10px 16px 10px;
-                flex-direction: column;  
-                div {
-                    line-height: 28px;
-                }
             }
         }
     }

@@ -50,3 +50,99 @@ const { frontmatter , headings} = Astro.props
         </section>
     </div>
 </BaseLayout>
+
+<style lang="scss">
+    // markdown 布局样式
+    .md-wrapper {
+        padding: 0 0 80px;
+        // markdown 文档首部
+        .md-header { 
+            .md-time {
+                position: relative;
+                padding-left: 12px;
+                font-size: 14px;
+                line-height: 24px;
+                letter-spacing: 1px;
+                color: var(--fontcolor3);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 2px;
+                    height: 20px;
+                    width: 3px;
+                    background-color:var(--fontcolor3);
+                }
+            }
+            .md-title {
+                font-size: 38px;
+                color: var(--fontcolor1);
+                text-shadow: 2px 2px 0 rgba(0, 0, 0, .15);
+            }
+            img {
+                margin: 10px 0 0;
+                display: block;
+                height: 150px;
+            }
+        }
+
+        // markdown 文档底部
+        .md-footer {
+            padding: 0 60px 0;
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            width: 100%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+            .md-footer-cont {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 0 16px 0;
+                border-left: 3px solid var(--fontcolor3);
+                border-right: 3px solid var(--fontcolor3);
+                background-color: var(--body-bgcolor);
+                box-sizing: border-box;
+                div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-indent: 0;
+                    font-size: 14px;
+                    line-height: 36px;
+                    color: var(--fontcolor2);
+                    vertical-align: middle;
+                    a {
+                        margin: 0 6px;
+                        font-size: 14px;
+                        color: var(--main-color);
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+        }
+    }
+
+    // 移动端or小屏适配
+    @media screen and (max-width: 786px) {
+        .md-wrapper {
+            padding: 0 12px 90px;
+            .md-header {
+                padding: 0 6px;
+            }
+            .md-footer {
+                padding: 0 44px 0;
+                .md-footer-cont {
+                    padding: 10px 16px 10px;
+                    flex-direction: column;  
+                    div {
+                        line-height: 28px;
+                    }
+                }
+            }
+        }
+    }
+</style>
