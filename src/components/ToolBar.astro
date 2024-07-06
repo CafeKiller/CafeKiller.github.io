@@ -1,13 +1,78 @@
 ---
+import { SITE } from "@config";
+
 import "@styles/global.min.css"
+
+const currentUrlPath = Astro.url.pathname.replace(/\/$/, "").replace(SITE.webPrefix, '')
+
+const breadcrumbList = currentUrlPath.split('/').slice(1)
+
+console.log("breadcrumbList",breadcrumbList)
+
+const breadcrumbListToUrl = (current: string) => {
+    const _idx = breadcrumbList.indexOf(current)
+    let _url = `${SITE.webPrefix}`
+    breadcrumbList.map((breadcrumb,index) => {
+        if(index <= _idx) {
+            _url += `/${breadcrumb}`
+        }
+    }) 
+    return decodeURIComponent(_url)
+}
 ---
 
-<div class="toolbar">
-
+<div class="toolbar" aria-label="toolbar">
+    <ul class="navigation">
+        <li class={ breadcrumbList.length === 0 ? 'hide' : ''}>
+            <a href={SITE.webPrefix +'/' }>Home</a>
+            <span aria-hidden="true">&raquo;</span>
+        </li>
+        {
+            breadcrumbList.map((breadcrumb, index) => {
+                return index+1 === breadcrumbList.length 
+                    ? (
+                        <li>
+                            <a href={breadcrumbListToUrl(breadcrumb)}>{ decodeURIComponent(breadcrumb) }</a>
+                            <span aria-hidden="true"></span>
+                        </li>
+                    ) 
+                    : (
+                        <li>
+                            <a href={breadcrumbListToUrl(breadcrumb)}>{ decodeURIComponent(breadcrumb) }</a>
+                            <span aria-hidden="true">&raquo;</span>
+                        </li>
+                    ) 
+            }) 
+        }
+    </ul>
 </div>
 
 <style lang="scss">
     .toolbar {
+        position: relative;
         width: 100%;
+        line-height: var(--fontsize30);
+        .navigation {
+            display: flex;
+            li {
+                margin-right: 4px;
+                font-size: var(--fontsize14);
+                list-style: none;
+                a {
+                    color: var(--fontcolor4);
+                }
+                span {
+                    font-size: 18px;
+                    color: var(--fontcolor4);
+                    cursor: default;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+                &.hide {
+                    visibility: hidden;
+                }
+            }           
+        }
     }
 </style>

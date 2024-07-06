@@ -5,7 +5,8 @@ export type Site = {
     title: string
     ogImage?: string
     lightAndDarkMode: boolean
-    postPerPage: number
+    postPerPage: number,
+    webPrefix: string,
 }
   
 

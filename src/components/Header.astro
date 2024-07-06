@@ -1,99 +1,112 @@
 ---
+import ToolBar from "@components/ToolBar.astro"
+
 import '@styles/global.min.css'
 ---
+<section class="head-wrapper">
+    <header class="header">
+        <nav>
+            <a href="/MyBlog/">首页</a>
+            <a href="/MyBlog/blogs">博客</a>
+            <a href="/MyBlog/about">关于</a>
+        </nav>
+        <div class="header-title" id="theme-btn">
+            <h1 class="text">Cafe Blogs</h1>
+            <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
+        </div>
+    </header>
+    <ToolBar />
+</section>
 
-<header class="header">
-    <nav>
-        <a href="/MyBlog/">首页</a>
-        <a href="/MyBlog/blogs">博客</a>
-        <a href="/MyBlog/about">关于</a>
-    </nav>
-    <div class="header-title" id="theme-btn">
-        <h1 class="text">Cafe Blogs</h1>
-        <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
-    </div>
-</header>
 
 <style lang="scss">
     // Header 通用头部 组件样式
-    .header {
-        padding: 10px 0 84px;
-        margin: 0 auto 0;
-        width: 100%;
-        height: 80px;
-        display: flex;
-        justify-content: space-between;
-        nav {
-            order: 2;
+    .head-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+        .header {
+            padding: 10px 0 64px;
+            margin: 0 auto 0;
+            width: 100%;
+            height: 80px;
             display: flex;
-            align-self: flex-end;
-            a {
-                padding: 12px 30px;
-                font-family: 'FanZ_LTYuanJian';
-                font-size: 18px;
-                text-align: center;
-                color: var(--fontcolor1);
-                transition: all .25s ease;
-                border-bottom: 3px solid transparent;
-                &:hover {
-                    color: var(--main-color);
-                    text-decoration: none;
-                    background-color: #f2f3f5;
-                    border-bottom: 3px solid var(--main-color);
-                }
-            }
-        }
-        .header-title {
-            order: 1;
-            position: relative;
-            align-self: flex-end;
-            padding-right: 20px;
-            .text {
-                font-family: 'FanZ_LTYuanJian';
-                font-weight: 600;
-                font-size: 48px;
-                line-height: 60px;
-                letter-spacing: 3px;
-                color: var(--fontcolor1);
-                z-index: 10;
-            }
-            .description {
-                position: absolute;
-                left: 6px;
-                bottom: -30px;
-                font-size: 16px;
-                vertical-align: middle;
-                color: var(--fontcolor3);
-                span {
-                    transition: all .2s ease;
+            justify-content: space-between;
+            transition: all .3s ease;
+            nav {
+                order: 2;
+                display: flex;
+                align-self: flex-end;
+                a {
+                    padding: 12px 30px;
+                    font-family: 'FanZ_LTYuanJian';
+                    font-size: 18px;
+                    text-align: center;
+                    color: var(--fontcolor1);
+                    transition: all .25s ease;
+                    border-bottom: 3px solid transparent;
                     &:hover {
                         color: var(--main-color);
+                        text-decoration: none;
+                        background-color: #f2f3f5;
+                        border-bottom: 3px solid var(--main-color);
+                    }
+                }
+            }
+            .header-title {
+                order: 1;
+                position: relative;
+                align-self: flex-end;
+                padding-right: 20px;
+                .text {
+                    font-family: 'FanZ_LTYuanJian';
+                    font-weight: 600;
+                    font-size: 48px;
+                    line-height: 60px;
+                    letter-spacing: 3px;
+                    color: var(--fontcolor1);
+                    z-index: 10;
+                }
+                .description {
+                    position: absolute;
+                    left: 0;
+                    bottom: -30px;
+                    font-size: 16px;
+                    vertical-align: middle;
+                    color: var(--fontcolor3);
+                    span {
+                        transition: all .2s ease;
+                        &:hover {
+                            color: var(--main-color);
+                        }
                     }
                 }
             }
         }
     }
+
     // 移动端or小屏适配
     @media screen and (max-width: 786px) {
-        .header {
-            padding: 20px 0 40px;
-            flex-wrap: wrap;
-            height: auto;
-            nav {
-                margin-top: 52px;
-                width: 100%;
-                justify-content: center;
-                order: 2;
-            }
-            .header-title {
-                padding-right: 0;
-                width: 100%;
-                text-align: center;
-                order: 1;
-                .description {
+        .head-wrapper {
+            .header {
+                padding: 20px 0 40px;
+                flex-wrap: wrap;
+                height: auto;
+                nav {
+                    margin-top: 52px;
                     width: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
+                    justify-content: center;
+                    order: 2;
+                }
+                .header-title {
+                    padding-right: 0;
+                    width: 100%;
+                    text-align: center;
+                    order: 1;
+                    .description {
+                        width: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
                 }
             }
         }
@@ -101,11 +114,13 @@ import '@styles/global.min.css'
 
     // 黑夜模式
     html.dark {
-        .header {
-            nav {
-                a {
-                    &:hover {
-                        background-color: #11111344;
+        .head-wrapper {
+            .header {
+                nav {
+                    a {
+                        &:hover {
+                            background-color: #11111344;
+                        }
                     }
                 }
             }
