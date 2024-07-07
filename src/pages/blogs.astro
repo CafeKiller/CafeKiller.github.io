@@ -72,10 +72,14 @@ const fillterMd = createYearHistories()
 				display: flex;
 				align-items: center;
 				span {
+					align-self: flex-start;
 					margin: 0 8px;
+					line-height: 32px;
 					color: var(--fontcolor3);
 				}
 				a {
+					display: block;
+					max-width: 80%;
 					font-size: 16px;
 					line-height: 32px;
 					color: var(--fontcolor1);
@@ -127,6 +131,7 @@ const fillterMd = createYearHistories()
 						content: '';
 						position: absolute;
 						left: -14px;
+						top: 13.5px;
 						width: 6px;
 						height: 6px;
 						background-color: var(--fontcolor3);

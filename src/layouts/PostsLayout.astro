@@ -70,6 +70,21 @@ const { frontmatter , headings} = Astro.props
         }
     }
     document.addEventListener('scroll', updateScrollProgress)
+
+    const createCodeLanguageTag = () => {
+        const allCodeDom = document.querySelectorAll('.astro-code')
+        allCodeDom.forEach( (codeDom) => {
+            const codeLanguage = codeDom.getAttribute('data-language')
+            if (codeLanguage) {
+                const _span = document.createElement('span')
+                _span.classList.add('code-language')
+                _span.innerText = codeLanguage
+                codeDom.prepend(_span)
+            }
+        })
+    }
+
+    createCodeLanguageTag()
 </script>
 
 <style lang="scss">

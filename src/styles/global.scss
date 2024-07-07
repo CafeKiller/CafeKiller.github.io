@@ -137,7 +137,17 @@ html {
             }
         }
         .astro-code {
+            position: relative;
             padding: 20px;
+            font-family: 'IBM Plex Sans';
+            .code-language {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 14px;
+                color: var(--fontcolor3);
+                pointer-events: none;
+            }
             code {
                 font-family: 'monospace';
                 font-size: 14px;
@@ -241,7 +251,7 @@ html {
                 object-fit: cover;
             }
             blockquote {
-                background-color: var(--blackc);
+                background-color: var(--fontcolor5);
                 p {
                     padding: 4px 12px;
                 }
