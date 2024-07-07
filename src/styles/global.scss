@@ -105,11 +105,20 @@ html {
         padding: 20px 0 20px;
         font-family: '微软雅黑';
         h1, h2, h3 {
+            position: relative;
+            padding-left: 20px;
             margin-top: 40px;
             font-weight: 400;
             font-size: 32px;
             line-height: 54px;
             color: var(--fontcolor1);
+            &::before {
+                position: absolute;
+                content: '#';
+                left: 0;
+                top: 2px;
+                color: var(--fontcolor4);
+            }
         }
         h2 { font-size: 26px; line-height: 46px; margin-top: 30px; }
         h3 { font-size: 20px; line-height: 38px; margin-top: 20px; }
@@ -158,6 +167,12 @@ html {
                 &>p { text-indent: 0; }
                 blockquote { padding: 0; }
                 ul, ol {  margin-top: 6px; }
+                code {
+                    padding: 2px 8px;
+                    background-color: var(--fontcolor4);
+                    border-radius: 3px;
+                    color: var(--fontcolor1);
+                }
             }
         }
         ol {
@@ -177,13 +192,13 @@ html {
             text-decoration: underline;
         }
         blockquote {
-            padding: 4px 20px;
+            padding: 4px 10px;
             margin: 8px 0 8px;
             background-color: var(--fontcolor5);
             border-left: 3px solid var(--main-color);
             p {
                 text-indent: 0;
-                padding: 4px 20px;
+                padding: 4px 10px;
                 background-color: var(--fontcolor5) ;
             }
             blockquote { padding: 0 8px; }  

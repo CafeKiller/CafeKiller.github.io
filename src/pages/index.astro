@@ -1,16 +1,17 @@
 ---
-import { getCollection } from 'astro:content'
+import { allMdArr } from "@utils/astroUtil";
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCard from '@components/BlogCard.astro'
 
-const collection = await getCollection('blog')
+const collection = allMdArr
 ---
 
 <BaseLayout title="首页">
 	<main>
 		{
 			collection
+					.filter(md => md.data.class === '技术')
 					.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 					.map((md) => {
 						return (<BlogCard post={md}/>)
