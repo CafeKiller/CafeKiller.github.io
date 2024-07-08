@@ -13,7 +13,7 @@ const { frontmatter , headings} = Astro.props
 <BaseLayout title={frontmatter.title}>
 
     <div class="progress-content" id="md-progress">
-        <div class="progress-bar" id="md-progress-bar"></div>
+        <div class="progress-bar" id="md-progress-bar" style="width: 0%;"></div>
     </div>
     
 
@@ -59,12 +59,12 @@ const { frontmatter , headings} = Astro.props
 
 <script is:inline>
     const updateScrollProgress = () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-        const scrolled = (winScroll / height) * 100
         if (document) {
             const mdBar = document.getElementById("md-progress-bar")
             if (mdBar) {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+                const scrolled = (winScroll / height) * 100
                 mdBar.style.width = scrolled + "%"
             }
         }

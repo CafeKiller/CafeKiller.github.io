@@ -1,9 +1,15 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { getCollection } from 'astro:content'
+import { formatDate } from '@utils/dateUtil'
 import { allMdArr } from '@utils/astroUtil'
 
+import type { CollectionEntry } from "astro:content"
+
 import '@styles/global.min.css'
+
+export interface Props {
+    posts: CollectionEntry<"blog">[]
+}
 
 export async function getStaticPaths(): Promise<any[]> {
 
@@ -14,7 +20,7 @@ export async function getStaticPaths(): Promise<any[]> {
     // 通过 tag 过滤出相关 .md 文章集合
     return uniqueTags.map((tag) => {
         
-        const filteredPosts = allMdArr.filter((md) => md.data.tags.includes(tag));
+        const filteredPosts: CollectionEntry<'blog'>[] = allMdArr.filter((md) => md.data.tags.includes(tag));
         return {
             params: { tag },
             props: { posts: filteredPosts },
@@ -50,13 +56,16 @@ let title = `与「 ${ tag } 」相关的文章`
         <ul class='filter-list'>
             <!-- 渲染 过滤后的文章集合 信息 -->
             { 
-                posts.map( (post:any) => {
+                posts
+                .sort((p1, p2) => Number(p2.data.pubDate.getTime()) - Number(p1.data.pubDate.getTime()))
+                .map((post) => {
                     return (
                         <li>
                             <a href={`/MyBlog/${post.collection}/${post.slug}`} >
                                 {post.data.title}
                                 <span></span>
                             </a>
+                            <span class="date"> { formatDate(post.data.pubDate).slice(0, 10) } </span>
                         </li>
                     )
                 })
@@ -84,12 +93,12 @@ let title = `与「 ${ tag } 」相关的文章`
                 &::before {
                     content: "";
                     position: absolute;
-                    top: 50%;
+                    top: 15px;
                     left: 24px;
                     width: 8px;
                     height: 8px;
                     background-color: var(--fontcolor2);
-                    transform: rotateZ(45deg) translateY(-50%);
+                    transform: rotateZ(45deg);
                     transition: all .25s ease;
                 }
                 a {
@@ -121,6 +130,11 @@ let title = `与「 ${ tag } 」相关的文章`
                             background-color: var(--main-color);
                         }
                     }
+                }
+                .date {
+                    margin-left: 4px;
+                    font-size: 12px;
+                    color: var(--fontcolor3);
                 }
             }
         }

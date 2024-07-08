@@ -17,7 +17,10 @@ const fillterTags:tagType[] = getUniqueTags(allMdArr)
         <nav class="tags">
             <h1 class="title">标签</h1 >
             {
-                fillterTags.map((item) => {
+                fillterTags
+                .sort((t1, t2) => t2.count - t1.count)
+                .slice(0, 10)
+                .map((item) => {
                     return ( 
                         <a href={"/MyBlog/tags/" + item.tag} class="item"> 
                             { item.tag } <span>({ item.count })</span> 
