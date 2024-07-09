@@ -83,8 +83,16 @@ const { frontmatter , headings} = Astro.props
             }
         })
     }
-
     createCodeLanguageTag()
+
+    const createATagJump = () => {
+        const cont = document.querySelector('.md-content')
+        const allATag = cont.querySelectorAll('a')
+        allATag.forEach( (aTag) => {
+            aTag.setAttribute('target', '_blank')
+        })
+    }
+    createATagJump()
 </script>
 
 <style lang="scss">

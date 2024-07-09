@@ -5,7 +5,9 @@ import "@styles/global.min.css"
 
 const { post } = Astro.props
 
-let desc = post.body.replace(/\s*/g,"").slice(0,151)
+let desc = post.body.replace(/\s*/g,"") // 过滤空格
+                    .replace(/(\*\*|__|\$\$|\$\)|`|~~|==|{|}|##+|#+|==+|>+|-+|\\(|\\)|\\[|\\]|\\{|\\})/g,"") // 过滤markdown格式化字符
+                    .slice(0,151)
 let borderLen = (Math.random() * (77-33)+33).toFixed(2)
 ---
 <a class="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`} style={`--border-len:${ borderLen }%`}>
