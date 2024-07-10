@@ -223,6 +223,16 @@ html {
             margin: 26px 0;
             background: var(--fontcolor1);
         }
+        ima-desc {
+            margin-top: -12px;
+            display: block;
+            width: 100%;
+            font-size: 12px;
+            line-height: 18px;
+            letter-spacing: 0;
+            color: var(--fontcolor3);
+            text-align: center;
+        }
     }
 }
 
