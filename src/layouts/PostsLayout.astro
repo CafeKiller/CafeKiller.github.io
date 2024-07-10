@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
 import Catalogs from "@components/Catalogs.astro"
+import Comments from '@components/Comment'
 
 import { formatDate } from '@utils/dateUtil'
 
@@ -9,6 +10,8 @@ import '@styles/global.min.css'
 const { frontmatter , headings} = Astro.props
 
 ---
+
+
 
 <BaseLayout title={frontmatter.title}>
 
@@ -54,8 +57,19 @@ const { frontmatter , headings} = Astro.props
                 </div>
             </div>
         </section>
+
+        <div class="md-comment">
+            <Comments client:only="react" />
+        </div>
+
     </div>
+
+
+    
+
 </BaseLayout>
+
+
 
 <script is:inline>
     const updateScrollProgress = () => {
@@ -108,9 +122,10 @@ const { frontmatter , headings} = Astro.props
             background-color: var(--main-color);
         }
     }
+
     // markdown 布局样式
     .md-wrapper {
-        padding: 0 0 80px;
+        padding: 0 0 40px;
         // markdown 文档首部
         .md-header { 
             .md-time {
@@ -180,6 +195,10 @@ const { frontmatter , headings} = Astro.props
             }
 
         }
+    }
+
+    .md-comment {
+        padding: 0 0 48px;
     }
 
     // 移动端or小屏适配

@@ -21,7 +21,7 @@ type tagType = {
 const createAllMd = async () => {
 	let _array: CollectionEntry<'blog'>[] = []
 	return _array.concat(await getCollection('blog'))
-				 .filter(blog => !blog.data.draft)
+				 .filter(postFilter)
 }
 
 const allMdArr = await createAllMd()

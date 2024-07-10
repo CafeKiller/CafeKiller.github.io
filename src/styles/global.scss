@@ -104,7 +104,7 @@ html {
     // markdown 文档主体内容
     .md-content { 
         position: relative;
-        padding: 20px 0 20px;
+        padding: 20px 0 40px;
         font-family: '微软雅黑';
         h1, h2, h3 {
             position: relative;
@@ -129,7 +129,6 @@ html {
             font-size: 16px;
             line-height: 26px;
             letter-spacing: 1px;
-            text-indent: 32px;
             color: var(--fontcolor1);
             code {
                 padding: 2px 8px;
@@ -176,7 +175,6 @@ html {
                 font-size: 16px;
                 color: var(--fontcolor1);
                 &::marker { font-size: 12px; }
-                &>p { text-indent: 0; }
                 blockquote { padding: 0; }
                 ul, ol {  margin-top: 6px; }
                 code {
@@ -209,7 +207,6 @@ html {
             background-color: var(--fontcolor5);
             border-left: 3px solid var(--main-color);
             p {
-                text-indent: 0;
                 padding: 4px 10px;
                 background-color: var(--fontcolor5) ;
             }

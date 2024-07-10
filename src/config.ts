@@ -9,6 +9,8 @@ export const SITE: Site = {
     lightAndDarkMode: true,
     postPerPage: 5,
     webPrefix: '/MyBlog',
+    githubAccount: 'CafeKiller',
+    repoName: 'MyBlog',
 }
 
 export const LOCALE = {

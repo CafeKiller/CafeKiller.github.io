@@ -7,6 +7,8 @@ export type Site = {
     lightAndDarkMode: boolean
     postPerPage: number,
     webPrefix: string,
+    githubAccount?: string,
+    repoName?: string,
 }
   
 

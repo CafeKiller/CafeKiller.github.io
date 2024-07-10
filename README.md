@@ -8,10 +8,9 @@ The build process is based on the official Astro documentation and tutorials.
 
 # TODO
 
-- [ ] 增加评论功能
+- [x] 增加评论功能
 - [ ] 增加搜索功能
-- [ ] 增加评论功能
 - [ ] 增加国际化
-- [ ] 完善增加黑夜模式
+- [x] 完善增加黑夜模式
 - [ ] 增加文章分页功能
 
