@@ -61,7 +61,7 @@ const {
 		
 		<title>{ title + SITE.title }</title>
 
-		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cafekiller/cafe.cdn/images/favicon.ico" type="image/x-icon">
 	</head>
 
 	<body style="zoom: var(--zoom)">
@@ -85,7 +85,7 @@ const {
 	 * 其次获取预设的主题色, 最后获取系统的偏好主题色.
 	 * @returns { String } 返回主题色
 	 * */ 
-	function getPreferTheme() {
+	const getPreferTheme = () => {
 		
 		if (currentTheme) return currentTheme
 
@@ -100,7 +100,7 @@ const {
 	let themeValue = getPreferTheme()
 
 	// 设置偏好
-	function setPreference() {
+	const setPreference = () => {
 		localStorage.setItem("__cafe-blog_theme", themeValue)
 		reflectPreference()
 	}
@@ -108,7 +108,7 @@ const {
 	/**
 	 * @description 将设置的偏好主题色响应到页面样式和结构中
 	 * */ 
-	function reflectPreference() {
+	const reflectPreference = () => {
 		
 		document.firstElementChild.setAttribute("data-theme", themeValue)
 		document.body.setAttribute("data-theme", themeValue)
@@ -161,7 +161,11 @@ const {
 </script>
 
 <script>
-	import { log } from '@utils/iLogUtil'
-	log.success("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
-	log.success("Copyright", "Coffee_Killer")	
+	import { themeValue } from '@utils/themeUtil'
+	import { iLog } from '@utils/iLogUtil'
+
+	iLog.info("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
+	iLog.info("Copyright", "Coffee_Killer")	
+
+	iLog.info("当前用户的主题偏好：", themeValue)
 </script>

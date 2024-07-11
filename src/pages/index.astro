@@ -3,16 +3,22 @@ import { allMdArr } from "@utils/astroUtil";
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCard from '@components/BlogCard.astro'
+import { getPagination } from "@utils/postsUtil";
 
-const collection = allMdArr
+const posts = allMdArr
+				.filter(md => md.data.class === '技术')
+				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
+
+const collection = getPagination({
+	posts: posts, page: 1, isIndex: true
+}).paginatedPosts
 ---
 
 <BaseLayout title="首页">
 	<main>
 		{
 			collection
-					.filter(md => md.data.class === '技术')
-					.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
+					// .filter(md => md.data.class === '技术')
 					.map((md) => {
 						return (<BlogCard post={md}/>)
 					})

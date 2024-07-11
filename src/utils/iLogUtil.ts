@@ -13,8 +13,8 @@ type iLogObj = {
 function ILog(options?: iLogOptType) {
 
     const config = Object.assign({
-        info: { defaTitle:'Info', color:'#909399'},
-        error: { defaTitle:'Error', color:'#F56C6C'},
+        info: { defaTitle:'Info', color:'#ff8033'},
+        error: { defaTitle:'Error', color:'#ef4444'},
         warning: { defaTitle:'Warning', color:'#E6A23C'},
         success: { defaTitle:'Success', color:'#67C23A'},
     }, options)
@@ -47,4 +47,9 @@ function ILog(options?: iLogOptType) {
     })()
 }
 
-export const log = ILog()
+const iLog = ILog()
+
+export {
+    iLog,
+    ILog,
+}
