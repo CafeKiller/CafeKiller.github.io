@@ -1,20 +1,13 @@
 ---
-import { allMdArr } from "@utils/astroUtil"
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCardList from "@components/BlogCardList"
-
-
-const posts = allMdArr
-				.filter(md => md.data.class === '技术')
-				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 ---
 
 <BaseLayout title="首页">
 	<main>
-		<BlogCardList client:only="react" posts={posts} />
+		<BlogCardList client:only="react"/>
 	</main>
 
-	
 </BaseLayout>
 
 <style>
