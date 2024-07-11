@@ -3,13 +3,14 @@ import { allMdArr } from "@utils/astroUtil";
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCard from '@components/BlogCard.astro'
-import { getPagination } from "@utils/postsUtil";
+import { getPagination } from "@utils/postsUtil"
+import type { CollectionEntry } from "astro:content"
 
 const posts = allMdArr
 				.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 
-const collection = getPagination({
+const collection: CollectionEntry<'blog'>[] = getPagination({
 	posts: posts, page: 1, isIndex: true
 }).paginatedPosts
 ---
@@ -18,7 +19,6 @@ const collection = getPagination({
 	<main>
 		{
 			collection
-					// .filter(md => md.data.class === '技术')
 					.map((md) => {
 						return (<BlogCard post={md}/>)
 					})
