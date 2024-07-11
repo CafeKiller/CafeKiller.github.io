@@ -5,6 +5,7 @@ interface GetPaginationProps<T> {
     page: number | string 
     isIndex?: boolean 
 }
+
 export const getPageNumbers = (numberOfPosts: number) => {
     const numberOfPages = Math.ceil(numberOfPosts / SITE.postPerPage)
 
@@ -23,23 +24,17 @@ export const getPagination = <T>({ posts, page, isIndex=false}: GetPaginationPro
     const totalPagesArray = getPageNumbers( posts.length )
 
     const totalPages = totalPagesArray.length
-
     
     const currentPage = isIndex 
                         ? 1 : 
                         (page && !isNaN(Number(page)) && totalPagesArray.includes(Number(page))) 
                             ? Number(page) 
                             : 0
-    
 
     const lastPost = isIndex ? SITE.postPerPage : currentPage * SITE.postPerPage
-    console.log("lastPost",lastPost);
-    
     
     const startPost = isIndex ? 0 : lastPost - SITE.postPerPage
-    console.log("startPost", startPost);
 
-    
     const paginatedPosts = posts.slice(startPost, lastPost)
 
     return {

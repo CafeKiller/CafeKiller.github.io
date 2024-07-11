@@ -1,29 +1,20 @@
 ---
-import { allMdArr } from "@utils/astroUtil";
-
+import { allMdArr } from "@utils/astroUtil"
 import BaseLayout from '@layouts/BaseLayout.astro'
-import BlogCard from '@components/BlogCard.astro'
-import { getPagination } from "@utils/postsUtil"
-import type { CollectionEntry } from "astro:content"
+import BlogCardList from "@components/BlogCardList"
+
 
 const posts = allMdArr
 				.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
-
-const collection: CollectionEntry<'blog'>[] = getPagination({
-	posts: posts, page: 1, isIndex: true
-}).paginatedPosts
 ---
 
 <BaseLayout title="首页">
 	<main>
-		{
-			collection
-					.map((md) => {
-						return (<BlogCard post={md}/>)
-					})
-		}
+		<BlogCardList client:only="react" posts={posts} />
 	</main>
+
+	
 </BaseLayout>
 
 <style>

@@ -1,0 +1,68 @@
+// BlogCard TSX 组件
+.post-card-box {
+    display: block;
+    .post-card {
+        position: relative;
+        padding: 20px 0 80px;
+        width: 100%;
+        transition: all .3s ease;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 62px;
+            height: 2px;
+            width: 0%;
+            background: var(--main-color);
+            transform: translateX(-50%);
+            transition: width .35s ease;
+        }
+        .time {
+            padding-left: 10px;
+            font-size: 16px;
+            line-height: 26px;
+            color: var(--fontcolor3);
+            border-left: 2px solid var(--black9);
+        }
+        .title {
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 56px;
+            color: var(--fontcolor1);
+            transition: color .35s ease;
+        }
+        .description {
+            word-break: break-all;
+            font-size: 16px;
+            line-height: 32px;
+            letter-spacing: 1px;
+            color: var(--fontcolor3);
+            transition: color .35s ease;
+        }
+    }
+    &:hover {
+        .post-card {
+            .title {
+                color: var(--main-color);
+            }
+            .description {
+                color:  var(--fontcolor2);
+            }
+        }
+        .post-card::before {
+            width: var(--border-len);
+        }
+    }
+}
+
+// 移动端or小屏适配
+@media screen and (max-width: 786px) {
+    .post-card-box {
+        .post-card {
+            padding: 20px 0 40px;
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
