@@ -80,6 +80,22 @@ const breadcrumbListToUrl = (current: string) => {
 <script>
     import SVGMorpheus from "@assets/lib/svg-morpheus.min";
 
+    const primaryColorScheme = "" // 预设主题色
+
+    // 获取本地存储的 主题色
+    const currentTheme = localStorage.getItem("__cafe-blog_theme")
+
+    function getPreferTheme() {
+    
+        if (currentTheme) return currentTheme
+
+        if (primaryColorScheme) return primaryColorScheme
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+    }
+
     let iconTheme = getPreferTheme()
     const themeIcons = new SVGMorpheus('#theme-icon', {
         iconId: 'icon-' + iconTheme
