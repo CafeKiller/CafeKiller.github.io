@@ -4,14 +4,14 @@ This is my blog system, currently using Astro + TypeScript + React + Github Acti
 
 The build process is based on the official Astro documentation and tutorials.
 
-> ÕâÊÇÎÒµÄ²©¿ÍÏµÍ³£¬Ä¿Ç°ÊÇÊ¹ÓÃ Astro + TypeScript + React + Github Action ½øĞĞ´î½¨Óë²¿Êğ£¬ÕâÊÇÒ»¸ö¾²Ì¬Ò³Ãæ£¬Î´À´¿ÉÄÜ»¹»á¼ÌĞø¸üĞÂ¡£
+> è¿™æ˜¯æˆ‘çš„åšå®¢ç³»ç»Ÿï¼Œç›®å‰æ˜¯ä½¿ç”¨ Astro + TypeScript + React + Github Action è¿›è¡Œæ­å»ºä¸éƒ¨ç½²ï¼Œè¿™æ˜¯ä¸€ä¸ªé™æ€é¡µé¢ï¼Œæœªæ¥å¯èƒ½è¿˜ä¼šç»§ç»­æ›´æ–°ã€‚
 
 # TODO
 
-- [x] Ôö¼ÓÆÀÂÛ¹¦ÄÜ | Add comment function
-- [ ] Ôö¼ÓËÑË÷¹¦ÄÜ | Add search function
-- [ ] Ôö¼Ó¹ú¼Ê»¯ | Add internationalization
-- [x] ÍêÉÆÔö¼ÓºÚÒ¹Ä£Ê½ | Improve dark mode
-- [ ] Ôö¼ÓÎÄÕÂ·ÖÒ³¹¦ÄÜ | Add article paging function
-- [ ] Ìí¼Ó×Ô¶¨Òåµ¯´° | Add custom dialog
+- [x] å¢åŠ è¯„è®ºåŠŸèƒ½ | Add comment function
+- [ ] å¢åŠ æœç´¢åŠŸèƒ½ | Add search function
+- [ ] å¢åŠ å›½é™…åŒ– | Add internationalization
+- [x] å®Œå–„å¢åŠ é»‘å¤œæ¨¡å¼ | Improve dark mode
+- [x] å¢åŠ æ–‡ç« åˆ†é¡µåŠŸèƒ½ | Add article paging function
+- [x] é­”æ”¹è‡ªå®šä¹‰å¼¹çª— | Update custom dialog [message](https://gitee.com/snwjas/message.js/tree/master)
 
