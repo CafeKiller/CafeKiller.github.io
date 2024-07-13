@@ -21,6 +21,9 @@ const  headings: headType  = Astro.props.headings as headType
 <style lang="scss">
     // Catalogs 文章目录 组件样式
     .catalogs-box {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
         display: inline-block;
         margin-top: 20px;
         padding: 12px 18px;

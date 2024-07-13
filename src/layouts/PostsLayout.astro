@@ -21,16 +21,14 @@ const { frontmatter , headings} = Astro.props
     
 
     <div class="md-wrapper">
+
         <section class="md-header">
-            
-    
             <h1 class="md-title"> {frontmatter.title}</h1>
             <p class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10)}</p>
     
             { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
     
             <Catalogs headings={ headings }/>
-    
         </section>
     
         
@@ -61,6 +59,18 @@ const { frontmatter , headings} = Astro.props
         <div class="md-comment">
             <Comments client:only="react" />
         </div>
+
+        <div class="bottom-contr">
+            <a href="javascript:toTop();" class="to-top">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4257" width="200" height="200">
+                    <path d="M512.454303 298.931677l422.502218 424.319432-180.812777 0 0 300.748891-484.287489 0-0.908607-300.748891-178.086957 0zM994.924579 0l0 120.84472-965.849157 0 0-120.84472 965.849157 0z" p-id="4258" fill="#000000"></path>
+                </svg>
+            </a>
+            <div class="bottom-catalogs">
+                <Catalogs headings={ headings }/>
+            </div>
+        </div>
+
 
     </div>
 
@@ -104,6 +114,29 @@ const { frontmatter , headings} = Astro.props
         })
     }
     createATagJump()
+
+    const updateToTopBtn = () => {
+        const toTopBtn = document.querySelector('.to-top')
+        if (toTopBtn) {
+            if (document.documentElement.scrollTop > 500) {
+                document.querySelector('.to-top').classList.add('show')
+                document.querySelector('.bottom-catalogs').classList.add('show')
+            } else {
+                document.querySelector('.to-top').classList.remove('show')
+                document.querySelector('.bottom-catalogs').classList.remove('show')
+            }
+        }
+    }
+    document.addEventListener('scroll', updateToTopBtn)
+
+    const toTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
+</script>
 </script>
 
 <style lang="scss">
@@ -122,6 +155,7 @@ const { frontmatter , headings} = Astro.props
 
     // markdown 布局样式
     .md-wrapper {
+        position: relative;
         padding: 0 0 40px;
         // markdown 文档首部
         .md-header { 
@@ -156,7 +190,7 @@ const { frontmatter , headings} = Astro.props
 
         // markdown 文档底部
         .md-footer {
-            padding: 0 60px 0;
+            padding: 0 0 0;
             position: absolute;
             left: 50%;
             bottom: 28px;
@@ -192,11 +226,72 @@ const { frontmatter , headings} = Astro.props
             }
 
         }
+
+        .bottom-contr {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            z-index: 100;
+            .to-top {
+                order: 2;
+                margin-right: 10px;
+                align-self: flex-end;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 3px;
+                background-color: var(--blackf);
+                box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+                opacity: 0;
+                transition: all .1s ease;
+                pointer-events: none;
+                .icon {
+                    width: 16px;
+                    height: 16px;
+                    filter: invert(0%) sepia(0%) saturate(7471%) hue-rotate(258deg) brightness(90%) contrast(108%);
+                    transition: all .2s ease;
+                    &:hover {
+                        filter: invert(77%) sepia(39%) saturate(6102%) hue-rotate(334deg) brightness(98%) contrast(106%);;
+                    }
+                }
+                &.show {
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+            .bottom-catalogs {
+                order: 3;
+                transition: all .25s ease;
+                opacity: 0;
+                pointer-events: none;
+                &.show {
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+        
     }
 
     .md-comment {
         padding: 0 0 48px;
     }
+    
+    html.dark {
+        .md-wrapper {
+            .bottom-contr {
+                .to-top {
+                    .icon {
+                        filter: invert(100%) sepia(7%) saturate(571%) hue-rotate(1deg) brightness(116%) contrast(87%);
+                    }
+                }
+            }
+        }
+    }
+
 
     // 移动端or小屏适配
     @media screen and (max-width: 786px) {
@@ -213,6 +308,17 @@ const { frontmatter , headings} = Astro.props
                     div {
                         line-height: 28px;
                     }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        .md-wrapper {
+            .bottom-contr {
+                .bottom-catalogs {
+                    order: 1;
+                    opacity: 0 !important;
+                    pointer-events: none;
                 }
             }
         }
