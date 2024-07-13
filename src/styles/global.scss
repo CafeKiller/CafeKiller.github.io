@@ -236,6 +236,12 @@ html {
     }
 }
 
+.blogs-list {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 420px);
+}
+
 
 // 移动端or小屏适配
 @media screen and (max-width: 786px) {

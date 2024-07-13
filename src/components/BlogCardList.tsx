@@ -1,11 +1,13 @@
 import * as React from 'react'
 
 import BlogCard from '@components/BlogCard'
+import Paginator from '@components/Paginator'
 import type { CollectionEntry } from "astro:content"
 import { getQueryString, changeURLArg } from "@utils/urlUtil"
 import { getPagination } from "@utils/postsUtil"
-import { iLog } from '@utils/iLogUtil'
 import { allMdArr } from "@utils/astroUtil"
+
+import '@styles/global.min.css'
 
 function getPosts(): CollectionEntry<"blog">[] {
     return allMdArr.filter(md => md.data.class === '技术')
@@ -24,7 +26,9 @@ const BlogCardList = () => {
     
     React.useEffect(() => {
         setMounted(true)
-        setPage(getQueryString('page') === '' ? "1" : getQueryString('page'))
+        const _query = (getQueryString('page') === '' || Number(getQueryString('page')) <= 0) 
+                        ? "1" : getQueryString('page')
+        setPage(_query)
         if (page === "1") {
             const { totalPages, paginatedPosts } = getPagination({
                 posts: getPosts(), page: 1, isIndex: false
@@ -34,17 +38,15 @@ const BlogCardList = () => {
         }
         if (Number(page) > totalPages) {
             setPage(totalPages.toString())
-        }
+        } 
     }, [])
 
     React.useEffect(() => {
         if (page !== "1") {
-
             if (Number(page) > totalPages) {
                 setPage(totalPages.toString())
                 return 
             }
-
             const { paginatedPosts } = getPagination({
                 posts: getPosts(), page: page, isIndex: false
             })
@@ -63,8 +65,9 @@ const BlogCardList = () => {
                     .map((md) => {
                         return (<BlogCard post={md} key={md.slug}/>)
                     })
+                
             }
-            <div>总页数: { totalPages }, 当前页码: { page }</div>
+            <Paginator totalPages={totalPages} />
         </div>
     )
 }

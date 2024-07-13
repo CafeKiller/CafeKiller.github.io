@@ -2,6 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro"
 import BlogCard from '@components/BlogCard.astro'
 import { allMdArr } from '@utils/astroUtil'
+import BlogCardList from "@components/BlogCardList"
 import '@styles/global.min.css'
 
 import { getUniqueTags } from "@utils/astroUtil"
@@ -22,11 +23,7 @@ const fillterTags = getUniqueTags(allMdArr)
         </nav>
 
         <main class="all-cont">
-            {
-                allMdArr
-                    .sort((post1, post2) => Number(post2.data.pubDate) - Number(post1.data.pubDate))
-                    .map((md) =>  (<BlogCard post={md}/>))
-            }
+            <BlogCardList client:only="react"/>
         </main>
     </section>
 
@@ -35,7 +32,7 @@ const fillterTags = getUniqueTags(allMdArr)
 <style lang="scss">
     // Tags 页面样式
     .tags-cont {
-        padding: 0 60px 40px;
+        padding: 0 20px 100px;
         transition: all .3s ease;
         .title {
             font-size: 32px;
