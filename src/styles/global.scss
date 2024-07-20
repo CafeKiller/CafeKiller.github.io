@@ -2,7 +2,6 @@
 body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{margin:0;}
 body,button,input,select,textarea{font:12px/1.5 tahoma,sans-serif}
 h1,h2,h3,h4,h5,h6{font-size:100%}
-em,b{font-style:normal}
 img{ border:0 } 
 button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
@@ -166,7 +165,7 @@ html {
             }
         }
         ul,ol {
-            margin-top: 16px;
+            margin: 8px auto 8px;
             padding-left: 40px;
             li {
                 margin-bottom: 4px;
@@ -220,8 +219,9 @@ html {
             object-fit: cover;
         }
         hr {
-            margin: 26px 0;
-            background: var(--fontcolor1);
+            margin: 26px auto;
+            width: 80%;
+            background: var(--fontcolor2);
         }
         ima-desc {
             margin-top: -12px;
@@ -232,6 +232,29 @@ html {
             letter-spacing: 0;
             color: var(--fontcolor3);
             text-align: center;
+        }
+        table {
+            color: var(--fontcolor1);
+            margin: 16px auto 16px;
+            border: 2px solid var(--fontcolor2);
+            tr {
+                border-bottom: 1px solid var(--fontcolor3);
+            }
+            th {
+                padding: 12px 0;
+                min-width: 80px;
+                font-size: 16px;
+                line-height: 20px;
+                border: 1px solid var(--fontcolor3);
+            }
+            td {
+                color: var(--fontcolor2);
+                padding: 12px 4px;
+                min-width: 80px;
+                font-size: 14px;
+                line-height: 18px;
+                border: 1px solid var(--fontcolor3);
+            }
         }
     }
 }
