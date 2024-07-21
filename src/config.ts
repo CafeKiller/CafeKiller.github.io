@@ -7,7 +7,7 @@ export const SITE: Site = {
     title: ' - CafeBlogs',
     ogImage: 'https://s21.ax1x.com/2024/07/01/pkcx1nx.png',
     lightAndDarkMode: true,
-    postPerPage: 3,
+    postPerPage: 5,
     webPrefix: '/MyBlog',
     githubAccount: 'CafeKiller',
     repoName: 'MyBlog',

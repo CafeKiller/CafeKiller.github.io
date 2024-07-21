@@ -256,6 +256,17 @@ html {
                 border: 1px solid var(--fontcolor3);
             }
         }
+        .scroll-x {
+            overflow-x: scroll;
+            &::-webkit-scrollbar {
+                height: 4px;
+                width: 6px;
+                background-color: var(--body-bgcolor);
+            }
+            &::-webkit-scrollbar-thumb{
+                background-color: var(--fontcolor3);
+            }
+        }
     }
 }
 
@@ -286,7 +297,11 @@ html {
             }
             img {
                 width: 70vw;
-                object-fit: cover;
+                height: auto;
+                object-fit: contain;
+            }
+            hr {
+                margin: 12px auto;
             }
             blockquote {
                 background-color: var(--fontcolor5);

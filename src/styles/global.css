@@ -320,6 +320,20 @@ html {
   border: 1px solid var(--fontcolor3);
 }
 
+.md-wrapper .md-content .scroll-x {
+  overflow-x: scroll;
+}
+
+.md-wrapper .md-content .scroll-x::-webkit-scrollbar {
+  height: 4px;
+  width: 6px;
+  background-color: var(--body-bgcolor);
+}
+
+.md-wrapper .md-content .scroll-x::-webkit-scrollbar-thumb {
+  background-color: var(--fontcolor3);
+}
+
 .blogs-list {
   position: relative;
   width: 100%;
@@ -345,7 +359,11 @@ html {
   }
   .md-wrapper .md-content img {
     width: 70vw;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+  }
+  .md-wrapper .md-content hr {
+    margin: 12px auto;
   }
   .md-wrapper .md-content blockquote {
     background-color: var(--fontcolor5);
