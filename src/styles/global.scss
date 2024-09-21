@@ -96,6 +96,7 @@ html {
     border-radius: 3px;
     box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
     transition: all .3s ease;
+    font-family: "PingFang SC";
 }
 
 // markdown 布局样式
@@ -104,7 +105,7 @@ html {
     .md-content { 
         position: relative;
         padding: 20px 0 40px;
-        font-family: '微软雅黑';
+        font-family: 'PingFang SC';
         h1, h2, h3 {
             position: relative;
             padding-left: 20px;
@@ -134,6 +135,7 @@ html {
                 background-color: var(--fontcolor4);
                 border-radius: 3px;
                 color: var(--fontcolor1);
+                font-family: "PingFang SC";
             }
         }
         .astro-code {
