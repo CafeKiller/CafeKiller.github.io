@@ -25,9 +25,10 @@
             border-left: 2px solid var(--black9);
         }
         .title {
+            padding: 8px 0;
             font-weight: 600;
             font-size: 28px;
-            line-height: 56px;
+            line-height: 38px;
             color: var(--fontcolor1);
             transition: color .35s ease;
         }
