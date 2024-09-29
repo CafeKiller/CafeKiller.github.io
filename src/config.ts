@@ -8,7 +8,7 @@ export const SITE: Site = {
     ogImage: 'https://s21.ax1x.com/2024/07/01/pkcx1nx.png',
     lightAndDarkMode: true,
     postPerPage: 4,
-    webPrefix: '/MyBlog',
+    webPrefix: '',
     githubAccount: 'CafeKiller',
     repoName: 'MyBlog',
 }

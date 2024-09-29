@@ -48,7 +48,7 @@ const { frontmatter , headings} = Astro.props
                     归类于
                     {
                         frontmatter.tags.map((tag:string) => {
-                            return (<a href={'/MyBlog/tags/' + tag} target="_blank">{ tag }</a>)
+                            return (<a href={'/tags/' + tag} target="_blank">{ tag }</a>)
                         })
                     }
                     相关

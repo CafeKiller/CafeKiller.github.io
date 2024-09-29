@@ -26,7 +26,7 @@ const fillterMd = createYearHistories()
 								return (
 									<div class="nav-item">
 										<span>{formatDate(item.date).slice(5, 10)}</span>
-										<a href={'/MyBlog'+item.url}>{item.title}</a> 
+										<a href={''+item.url}>{item.title}</a> 
 									</div>
 								)
 							})}

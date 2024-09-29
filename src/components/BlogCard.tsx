@@ -27,7 +27,7 @@ const BlogCard = ({post}: {post: CollectionEntry<'blog'>}) => {
     }, [])
 
     return (
-        <a className="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`} style={{"--border-len": borderLen } as React.CSSProperties }>
+        <a className="post-card-box" href={`/${post.collection}/${post.slug}`} style={{"--border-len": borderLen } as React.CSSProperties }>
             <div className="post-card">
                 <span className="time">{ formatDate( post.data.pubDate ).slice(0,10) }</span>
                 <h1 className="title">{ post.data.title }</h1>

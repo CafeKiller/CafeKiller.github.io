@@ -22,7 +22,7 @@ const fillterTags:tagType[] = getUniqueTags(allMdArr)
                 .slice(0, 10)
                 .map((item) => {
                     return ( 
-                        <a href={"/MyBlog/tags/" + item.tag} class="item"> 
+                        <a href={"/tags/" + item.tag} class="item"> 
                             { item.tag } <span>({ item.count })</span> 
                         </a> )
                 })
@@ -31,10 +31,10 @@ const fillterTags:tagType[] = getUniqueTags(allMdArr)
 
         <!-- <nav class="categos">
             <h1 class="title">分类</h1 >
-            <a href="/MyBlog/tags" class="item" style="--color:#2a52be">全部</a>
-            <a href="/MyBlog/tags/posts" class="item" style="--color:#3cb371">技术</a>
-            <a href="/MyBlog/tags/games" class="item" style="--color:#b22222">游戏</a>
-            <a href="/MyBlog/tags/articles" class="item" style="--color:#7b68ee">杂谈</a>
+            <a href="/tags" class="item" style="--color:#2a52be">全部</a>
+            <a href="/tags/posts" class="item" style="--color:#3cb371">技术</a>
+            <a href="/tags/games" class="item" style="--color:#b22222">游戏</a>
+            <a href="/tags/articles" class="item" style="--color:#7b68ee">杂谈</a>
         </nav> -->
 
         <section class="bottom-links">

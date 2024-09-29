@@ -10,7 +10,7 @@ let desc = post.body.replace(/\s*/g,"") // 过滤空格
                     .slice(0,151)
 let borderLen = (Math.random() * (77-33)+33).toFixed(2)
 ---
-<a class="post-card-box" href={`/MyBlog/${post.collection}/${post.slug}`} style={`--border-len:${ borderLen }%`}>
+<a class="post-card-box" href={`/${post.collection}/${post.slug}`} style={`--border-len:${ borderLen }%`}>
     <div class="post-card">
         <span class="time">{ formatDate( post.data.pubDate ).slice(0,10) }</span>
         <h1 class="title">{ post.data.title }</h1>

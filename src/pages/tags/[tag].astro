@@ -61,7 +61,7 @@ let title = `与「 ${ tag } 」相关的文章`
                 .map((post) => {
                     return (
                         <li>
-                            <a href={`/MyBlog/${post.collection}/${post.slug}`} >
+                            <a href={`/${post.collection}/${post.slug}`} >
                                 {post.data.title}
                                 <span></span>
                             </a>

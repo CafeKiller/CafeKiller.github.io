@@ -15,7 +15,7 @@ const fillterTags = getUniqueTags(allMdArr)
         <h1 class="title">全部标签</h1>
         <nav>
             {fillterTags.map((item) => (
-                <a class="tag-item" href={`/MyBlog/tags/${item.tag}`}>
+                <a class="tag-item" href={`/tags/${item.tag}`}>
                     {item.tag} 
                     <i>({item.count})</i> 
                 </a>
