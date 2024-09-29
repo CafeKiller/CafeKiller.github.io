@@ -71,24 +71,3 @@ const Comments = () => {
 
 
 export default Comments
-
-
-/*
-<script src="https://giscus.app/client.js"
-        data-repo="CafeKiller/MyBlog"
-        data-repo-id="R_kgDOMKfLMQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOMKfLMc4CgsOf"
-        data-mapping="title"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-</script>
-*/ 
-
