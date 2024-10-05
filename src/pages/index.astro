@@ -1,13 +1,18 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import DevComp  from '@components/DevComp.astro'
 import BlogCardList from "@components/BlogCardList"
+
+const isProd = import.meta.env.PROD;
 ---
 
 <BaseLayout title="首页">
 	<main>
+
+		<DevComp />
+
 		<BlogCardList client:only="react"/>
 	</main>
-
 </BaseLayout>
 
 <style>
