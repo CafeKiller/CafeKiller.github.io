@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro'
 import DevComp  from '@components/DevComp.astro'
 import BlogCardList from "@components/BlogCardList"
+import { allMdArr } from '@utils/astroUtil';
 
 const isProd = import.meta.env.PROD;
 ---
@@ -11,7 +12,7 @@ const isProd = import.meta.env.PROD;
 
 		<DevComp />
 
-		<BlogCardList client:only="react"/>
+		<BlogCardList posts={ allMdArr } client:only="react"/>
 	</main>
 </BaseLayout>
 
