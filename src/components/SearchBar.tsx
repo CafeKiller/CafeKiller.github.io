@@ -34,7 +34,8 @@ const SearchBar = () => {
             const _url = changeURLArg(window.location.href, 'q', inputVal);
             window.history.pushState({}, '', _url)
         } else {
-            history.replaceState(history.state, "", window.location.pathname);
+            const { search } = window.location;
+            history.replaceState(history.state, "", `${window.location.pathname}${search}`);
         }
     })
 
