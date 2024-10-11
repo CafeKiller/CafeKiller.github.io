@@ -2,9 +2,13 @@ import * as React from 'react'
 
 import QDialog from '@utils/msgUtil'
 import { getQueryString, changeURLArg } from "@utils/urlUtil"
+import { urlChangeEvent } from '@utils/eventUtil'
 
 import '@styles/global.min.css'
 import '@styles/Paginator.min.css'
+
+
+
 
 const Paginator = ({totalPages } : { totalPages: number }) => {
     
@@ -23,10 +27,12 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
             return
         } else {
             _url = changeURLArg(window.location.href, 'page', page)
+            setCurrentPage(page.toString())
+            document.dispatchEvent(urlChangeEvent({page : page}));
         }
 
         window.history.pushState({}, '', _url)
-        window.location.reload()
+        
     }
 
     React.useEffect(() => {
@@ -34,12 +40,17 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
             ? "1" : getQueryString('page')
         if (Number(_query) > totalPages) {
             setCurrentPage(totalPages.toString())
+            // document.dispatchEvent(urlChangeEvent);
+            document.dispatchEvent(urlChangeEvent({page : _query}));
         } else {
             setCurrentPage(_query)
+            // document.dispatchEvent(urlChangeEvent);
+            document.dispatchEvent(urlChangeEvent({page : _query}));
         }
     }, [totalPages])
 
     React.useEffect(() => {
+
         setMounted(true)
     }, [])
 

@@ -2,14 +2,10 @@
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { createYearHistories } from '@utils/astroUtil'
 import { formatDate } from '@utils/dateUtil'
+import type { navType } from '@type/common'
 
 import '@styles/global.min.css'
 
-type navType = {
-	url: string
-	title: string
-	date: Date
-}
 
 const fillterMd = createYearHistories()
 ---
