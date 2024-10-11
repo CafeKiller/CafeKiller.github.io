@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
-import BlogCard from '@components/BlogCard.astro'
 import { allMdArr } from '@utils/astroUtil'
 import BlogCardList from "@components/BlogCardList"
 import '@styles/global.min.css'
@@ -23,7 +22,7 @@ const fillterTags = getUniqueTags(allMdArr)
         </nav>
 
         <main class="all-cont">
-            <BlogCardList client:only="react"/>
+            <BlogCardList posts={ allMdArr } client:only="react"/>
         </main>
     </section>
 

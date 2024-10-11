@@ -24,7 +24,7 @@ const createAllMd = async () => {
 				 .filter(postFilter)
 }
 
-const allMdArr = await createAllMd()
+const allMdArr: CollectionEntry<'blog'>[] = await createAllMd()
 
 // 整合文章中的所有年份
 const years: Array<number> = [...new Set(allMdArr.map((md) => parseInt(formatDate(md.data.pubDate).slice(0,4))).flat())]
