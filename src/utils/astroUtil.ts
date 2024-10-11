@@ -2,21 +2,7 @@ import { getCollection } from 'astro:content'
 import { formatDate } from './dateUtil'
 import { postFilter } from './filterUtil'
 import type { CollectionEntry } from "astro:content"
-
-type navType = {
-	url: string
-	title: string
-	date: Date
-}
-
-type yearType = {
-	[key: string]: Array<navType>
-}
-
-type tagType = {
-	tag: string,
-	count: number
-}
+import type { navType, tagType, yearType } from '@type/common'
  
 const createAllMd = async () => {
 	let _array: CollectionEntry<'blog'>[] = []

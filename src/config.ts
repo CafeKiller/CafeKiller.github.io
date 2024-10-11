@@ -1,4 +1,4 @@
-import type { Site } from "./types";
+import type { Site } from "@type/index";
 
 export const SITE: Site = {
     website: 'https://CafeKiller.github.io',
