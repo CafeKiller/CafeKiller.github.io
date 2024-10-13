@@ -8,12 +8,13 @@ import { formatDate } from '@utils/dateUtil'
 import '@styles/global.min.css'
 
 const { frontmatter , headings} = Astro.props
-
 ---
 
 
 
-<BaseLayout title={frontmatter.title}>
+<BaseLayout 
+    title={frontmatter.title} 
+    description={ frontmatter.description }>
 
     <div class="progress-content" id="md-progress">
         <div class="progress-bar" id="md-progress-bar" style="width: 0%;"></div>

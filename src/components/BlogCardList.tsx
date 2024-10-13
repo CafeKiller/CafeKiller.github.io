@@ -7,11 +7,14 @@ import { getQueryString, changeURLArg } from "@utils/urlUtil"
 import { getPagination } from "@utils/postsUtil"
 
 import '@styles/global.min.css'
+import { EventType } from '@type/event'
 
 function getPosts(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
     return posts.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 }
+
+
 
 // 评论组件
 const id = 'blogs-list'
@@ -24,10 +27,13 @@ const BlogCardList = ({ posts } : {posts: CollectionEntry<"blog">[]}) => {
     const [totalPages, setTotalPages] = React.useState(1)
     
     React.useEffect(() => {
+
         setMounted(true)
+        
         const _query = (getQueryString('page') === '' || Number(getQueryString('page')) <= 0) 
                         ? "1" : getQueryString('page')
         setPage(_query)
+
         if (page === "1") {
             const { totalPages, paginatedPosts } = getPagination({
                 posts: getPosts(posts), page: 1, isIndex: false
@@ -38,9 +44,17 @@ const BlogCardList = ({ posts } : {posts: CollectionEntry<"blog">[]}) => {
         if (Number(page) > totalPages) {
             setPage(totalPages.toString())
         } 
+
+        document.addEventListener(EventType.URL_QUERY_CHANGE, function(event) {
+            const detail = (event as CustomEvent).detail;
+            if(detail && detail.page) {
+                setPage(detail.page)
+            }
+        });
     }, [])
 
     React.useEffect(() => {
+        console.log("BlogCardList.setPage ====>>  ");
         if (page !== "1") {
             if (Number(page) > totalPages) {
                 setPage(totalPages.toString())
@@ -54,6 +68,12 @@ const BlogCardList = ({ posts } : {posts: CollectionEntry<"blog">[]}) => {
             window.history.pushState({}, '', _url)
         }
     }, [page])
+
+    React.useEffect(() => {
+        console.log("BlogCardList.setCollection ====>>  ");
+    },[collection])
+
+
 
     return (
         <div id={id} className='blogs-list'>
