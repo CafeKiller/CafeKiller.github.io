@@ -1,12 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
-import Comments from '@components/Comment'
 
 import { formatDate } from '@utils/dateUtil'
 
 import '@styles/global.min.css'
 
-const { frontmatter , headings} = Astro.props
+const { frontmatter } = Astro.props
 ---
 
 
@@ -14,29 +13,19 @@ const { frontmatter , headings} = Astro.props
 <BaseLayout 
     title={frontmatter.title} 
     description={ frontmatter.description }>
-    
-
     <div class="md-wrapper">
         <section class="md-header">
             <h1 class="md-title"> {frontmatter.title}</h1>
-            <p class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10)}</p>
-    
+            <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
             { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
         </section>
-    
         
         <section class="md-content">
-            <p><em>{frontmatter.description}</em></p>
             <slot />
-            <!-- <p>Written by: {frontmatter.author}</p> -->
-    
-            <!-- <Catalogs  headings={ headings }/> -->
-            
         </section>
     
         <section class="md-footer">
             <div class="md-footer-cont">
-                <div>Written by: {frontmatter.author}</div>
                 <div>
                     归类于
                     {
@@ -48,63 +37,52 @@ const { frontmatter , headings} = Astro.props
                 </div>
             </div>
         </section>
-
-        <div class="md-comment">
-            <Comments client:only="react" />
-        </div>
-
-        <div class="bottom-contr">
-            <a href="javascript:toTop();" class="to-top">
-                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4257" width="200" height="200">
-                    <path d="M512.454303 298.931677l422.502218 424.319432-180.812777 0 0 300.748891-484.287489 0-0.908607-300.748891-178.086957 0zM994.924579 0l0 120.84472-965.849157 0 0-120.84472 965.849157 0z" p-id="4258" fill="#000000"></path>
-                </svg>
-            </a>
-        </div>
-
-
     </div>
 
 </BaseLayout>
 
 <style lang="scss">
-    .progress-content {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        z-index: 1000;
-        .progress-bar {
-            height: 5px;
-            background-color: var(--main-color);
-        }
-    }
-
     // markdown 布局样式
     .md-wrapper {
         position: relative;
         padding: 0 0 40px;
+        min-height: calc(100vh - 400px);
         // markdown 文档首部
         .md-header { 
+            text-align: center;
             .md-time {
+                display: inline-block;
+                margin-top: 20px;
                 position: relative;
-                padding-left: 12px;
-                font-size: 14px;
+                font-size: 16px;
+                font-weight: 600;
                 line-height: 24px;
                 letter-spacing: 1px;
+                text-align: center;
                 color: var(--fontcolor3);
                 &::before {
                     content: '';
                     position: absolute;
-                    left: 0;
-                    top: 2px;
-                    height: 20px;
-                    width: 3px;
-                    background-color:var(--fontcolor3);
+                    left: -220px;
+                    top: 50%;
+                    height: 1px;
+                    width: 200px;
+                    background-color:var(--fontcolor4);
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: -220px;
+                    top: 50%;
+                    height: 1px;
+                    width: 200px;
+                    background-color:var(--fontcolor4);
                 }
             }
             .md-title {
+                margin-top: 40px;
                 font-size: 38px;
+                text-align: center;
                 color: var(--fontcolor1);
                 text-shadow: 2px 2px 0 rgba(0, 0, 0, .15);
             }
@@ -115,6 +93,11 @@ const { frontmatter , headings} = Astro.props
             }
         }
 
+        .md-content {
+            p {
+                text-indent: 32px;
+            }
+        }
         // markdown 文档底部
         .md-footer {
             padding: 0 0 0;
@@ -154,58 +137,6 @@ const { frontmatter , headings} = Astro.props
             }
 
         }
-
-        .bottom-contr {
-            position: fixed;
-            right: 10px;
-            bottom: 10px;
-            display: flex;
-            z-index: 100;
-            .to-top {
-                order: 2;
-                margin-right: 10px;
-                align-self: flex-end;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 30px;
-                height: 30px;
-                border-radius: 3px;
-                background-color: var(--blackf);
-                box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
-                opacity: 0;
-                transition: all .1s ease;
-                pointer-events: none;
-                .icon {
-                    width: 16px;
-                    height: 16px;
-                    filter: invert(0%) sepia(0%) saturate(7471%) hue-rotate(258deg) brightness(90%) contrast(108%);
-                    transition: all .2s ease;
-                    &:hover {
-                        filter: invert(77%) sepia(39%) saturate(6102%) hue-rotate(334deg) brightness(98%) contrast(106%);;
-                    }
-                }
-                &.show {
-                    opacity: 1;
-                    pointer-events: all;
-                }
-            }
-            .bottom-catalogs {
-                order: 3;
-                transition: all .25s ease;
-                opacity: 0;
-                pointer-events: none;
-                &.show {
-                    opacity: 1;
-                    pointer-events: all;
-                }
-            }
-        }
-        
-    }
-
-    .md-comment {
-        padding: 0 0 48px;
     }
     
     html.dark {

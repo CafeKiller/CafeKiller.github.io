@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import PostsLayout from '@layouts/PostsLayout.astro'
+import NotesLayout from '@layouts/NotesLayout.astro'
 
 export async function getStaticPaths() {
     const noteEntries = await getCollection('notes')
@@ -10,9 +10,9 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { Content, headings } = await entry.render()
+const { Content} = await entry.render()
 ---
 
-<PostsLayout frontmatter={entry.data} headings={ headings }>
+<NotesLayout frontmatter={entry.data}>
     <Content />
-</PostsLayout>
+</NotesLayout>
