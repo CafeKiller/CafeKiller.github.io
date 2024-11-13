@@ -21,10 +21,26 @@ const baseCollection = defineCollection({
     })
 })
 
+// 短篇笔记
+const noteCollection = defineCollection({
+    type: "content",
+    schema: z.object({
+        title: z.string(), 
+        pubDate: z.date(),
+        draft: z.boolean().default(false), // 是否为草稿
+        image: z.object({
+            url: z.string(),
+            alt: z.string(),
+        }).optional(), // 封面图片
+        tags: z.array(z.string()), // 相关标签
+    })
+})
+
 // 导出一个单独的 `collections` 对象来注册你的集合
 export const collections = {
     blog: baseCollection,
     posts: baseCollection,
     games: baseCollection,
     articles: baseCollection,
+    notes: noteCollection,
 }
