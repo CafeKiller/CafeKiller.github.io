@@ -84,10 +84,16 @@ const fillterTags:tagType[] = getUniqueTags(allMdArr)
                     transition: all .15s ease;
                     span {
                         color: var(--fontcolor4);
+                        opacity: 1;
+                        transition: all .15s ease;
                     }
                     &:hover {
                         color: var(--main-color);
                         border: 1px solid var(--main-color);
+                        span {
+                            color: var(--main-color);
+                            opacity: .7;
+                        }
                     }
                 }
             }

@@ -127,7 +127,7 @@ html {
         p {
             padding: 8px 0;
             font-size: 16px;
-            line-height: 26px;
+            line-height: 32px;
             letter-spacing: 1px;
             color: var(--fontcolor1);
             code {
@@ -144,11 +144,16 @@ html {
             font-family: 'IBM Plex Sans';
             .code-language {
                 position: absolute;
-                top: 10px;
-                right: 10px;
+                padding: 8px 10px;
+                top: 0;
+                right: 0;
                 font-size: 14px;
-                color: var(--fontcolor3);
+                text-transform: uppercase;
+                color: var(--main-color);
                 pointer-events: none;
+                background-color: #24292e;
+                cursor: pointer;
+                z-index: 100;
             }
             code {
                 font-family: 'monospace';
@@ -157,13 +162,12 @@ html {
                 letter-spacing: 0.5px;
             }
             &::-webkit-scrollbar {
-                height: 4px;
+                height: 6px;
                 width: 6px;
                 background-color: var(--body-bgcolor);
             }
             &::-webkit-scrollbar-thumb{
                 background-color: var(--main-color);
-                border-radius: 2px;
             }
         }
         ul,ol {
@@ -244,7 +248,7 @@ html {
             }
             th {
                 padding: 12px 0;
-                min-width: 80px;
+                min-width: 120px;
                 font-size: 16px;
                 line-height: 20px;
                 border: 1px solid var(--fontcolor3);
@@ -252,7 +256,7 @@ html {
             td {
                 color: var(--fontcolor2);
                 padding: 12px 4px;
-                min-width: 80px;
+                min-width: 120px;
                 font-size: 14px;
                 line-height: 18px;
                 border: 1px solid var(--fontcolor3);

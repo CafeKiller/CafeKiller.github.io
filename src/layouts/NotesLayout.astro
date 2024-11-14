@@ -50,6 +50,10 @@ const { frontmatter } = Astro.props
         // markdown 文档首部
         .md-header { 
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             .md-time {
                 display: inline-block;
                 margin-top: 20px;
@@ -63,19 +67,19 @@ const { frontmatter } = Astro.props
                 &::before {
                     content: '';
                     position: absolute;
-                    left: -220px;
+                    left: -16.4vw;
                     top: 50%;
                     height: 1px;
-                    width: 200px;
+                    width: 15vw;
                     background-color:var(--fontcolor4);
                 }
                 &::after {
                     content: '';
                     position: absolute;
-                    right: -220px;
+                    right: -16.4vw;
                     top: 50%;
                     height: 1px;
-                    width: 200px;
+                    width: 15vw;
                     background-color:var(--fontcolor4);
                 }
             }
@@ -158,9 +162,19 @@ const { frontmatter } = Astro.props
             padding: 0 4px 90px;
             .md-header {
                 padding: 0 6px;
+                .md-time {
+                    &::before {
+                        left: -22vw;
+                        width: 20vw;
+                    }
+                    &::after {
+                        right: -22vw;
+                        width: 20vw;
+                    }
+                }
             }
             .md-footer {
-                padding: 0 24px 0;
+                padding: 0 6px 0;
                 .md-footer-cont {
                     padding: 10px 16px 10px;
                     flex-direction: column;  

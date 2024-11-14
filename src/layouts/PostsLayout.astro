@@ -234,6 +234,8 @@ const { frontmatter , headings} = Astro.props
             right: 10px;
             bottom: 10px;
             display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 100;
             .to-top {
                 order: 2;
@@ -265,6 +267,7 @@ const { frontmatter , headings} = Astro.props
                 }
             }
             .bottom-catalogs {
+                align-self: flex-end;
                 order: 3;
                 transition: all .25s ease;
                 opacity: 0;
