@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import DevComp  from '@components/DevComp.astro'
 import BlogCardList from "@components/BlogCardList"
 import { allMdArr } from '@utils/astroUtil';
+import SearchBar from '@components/SearchBar';
 ---
 
-<BaseLayout title="不来杯咖啡?">
+<BaseLayout title="查找文章">
 	<main>
-		<BlogCardList posts={ allMdArr } client:only="react"/>
+        <SearchBar client:only="react" />
 	</main>
 </BaseLayout>
 

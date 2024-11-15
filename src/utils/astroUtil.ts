@@ -6,6 +6,8 @@ import type { navType, tagType, yearType } from '@type/common'
  
 const createAllMd = async () => {
 	let _array: CollectionEntry<'blog'>[] = []
+	console.log(_array);
+	
 	return _array.concat(await getCollection('blog'))
 				 .filter(postFilter)
 }

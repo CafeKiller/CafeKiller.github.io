@@ -66,6 +66,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         let inputResult = inputVal.length > 1 ? fuse.search(inputVal) : [];
+        console.log(inputResult);
         setSearchResults(inputResult);
 
         // 同步至 URL 参数
@@ -90,12 +91,12 @@ const SearchBar = () => {
             
             <ul>
             {
-                // searchResults && 
-                //     searchResults.map(() => {
-                //         return (
-                //             <li></li>
-                //         )
-                //     })
+                searchResults && 
+                    searchResults.map((item, index) => {
+                        return (
+                            <li key={index+"_"+item}> {item.item.title} </li>
+                        )
+                    })
             }    
             </ul>       
         </div>

@@ -3,12 +3,12 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import { formatDate } from '@utils/dateUtil'
 import { allMdArr } from '@utils/astroUtil'
 
-import type { CollectionEntry } from "astro:content"
+import { getCollection, type CollectionEntry } from "astro:content"
 
 import '@styles/global.min.css'
 
 export interface Props {
-    posts: CollectionEntry<"blog">[]
+    posts: CollectionEntry<"blog">[] | CollectionEntry<"games">[] | CollectionEntry<"articles">[];
 }
 
 export async function getStaticPaths(): Promise<any[]> {
@@ -32,9 +32,9 @@ let { tag } = Astro.params
 let { posts } = Astro.props 
 let title = `与「 ${ tag } 」相关的文章`
 
-/* switch (tag) {
+switch (tag) {
     case 'posts':
-        posts = await getCollection('posts')
+        posts = await getCollection('blog')
         tag = '技术博客'
         title = `「 技术博客 」类的全部文章`
         break
@@ -48,7 +48,7 @@ let title = `与「 ${ tag } 」相关的文章`
         tag = '各类杂谈'
         title = `「 各类杂谈 」类的全部文章`
         break
-} */
+}
 ---
 <BaseLayout title={ tag }>
     <main class='filter-cont'>
@@ -109,13 +109,14 @@ let title = `与「 ${ tag } 」相关的文章`
                     transition: all .25s ease;
                     span {
                         position: absolute;
-                        left: 0;
+                        left: unset;
+                        right: 0;
                         bottom: 0;
                         width: 0;
                         height: 1px;
                         background-color: var(--fontcolor2);
                         color: var(--fontcolor2);
-                        transition: all .25s ease;
+                        transition: all .45s ease;
                     }
                 }
                 &:hover {
@@ -125,6 +126,8 @@ let title = `与「 ${ tag } 」相关的文章`
                     a {
                         color: var(--main-color);
                         span {
+                            left: 0;
+                            right: unset;
                             width: 100%;
                             color: var(--main-color);
                             background-color: var(--main-color);
