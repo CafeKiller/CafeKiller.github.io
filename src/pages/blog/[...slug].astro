@@ -16,3 +16,11 @@ const { Content, headings } = await entry.render()
 <PostsLayout frontmatter={entry.data} headings={ headings }>
     <Content />
 </PostsLayout>
+
+<script>
+    document.querySelectorAll('img').forEach((img) => {
+        img.addEventListener('click', () => {
+            window.open(img.src, '_blank')
+        })
+    })
+</script>

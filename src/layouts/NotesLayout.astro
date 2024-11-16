@@ -4,6 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import { formatDate } from '@utils/dateUtil'
 
 import '@styles/global.min.css'
+import '@styles/notes.min.css'
 
 const { frontmatter } = Astro.props
 ---
@@ -70,7 +71,7 @@ const { frontmatter } = Astro.props
                     left: -16.4vw;
                     top: 50%;
                     height: 1px;
-                    width: 15vw;
+                    width: 200px;
                     background-color:var(--fontcolor4);
                 }
                 &::after {
@@ -79,7 +80,7 @@ const { frontmatter } = Astro.props
                     right: -16.4vw;
                     top: 50%;
                     height: 1px;
-                    width: 15vw;
+                    width: 200px;
                     background-color:var(--fontcolor4);
                 }
             }
@@ -96,7 +97,6 @@ const { frontmatter } = Astro.props
                 height: 150px;
             }
         }
-
         .md-content {
             p {
                 text-indent: 32px;
