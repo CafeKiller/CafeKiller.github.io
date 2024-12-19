@@ -9,8 +9,9 @@ import { getPagination } from "@utils/postsUtil"
 import '@styles/global.min.css'
 import { EventType } from '@type/event'
 
-function getPosts(posts: CollectionEntry<'posts'>[]): CollectionEntry<'posts'>[] {
-    return posts.filter(md => md.data.class === '技术')
+function getPosts(posts: (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[])
+    : (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[] {
+        return posts.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 }
 
@@ -19,7 +20,7 @@ function getPosts(posts: CollectionEntry<'posts'>[]): CollectionEntry<'posts'>[]
 // 评论组件
 const id = 'blogs-list'
 
-const BlogCardList = ({ posts } : {posts: CollectionEntry<'posts'>[]}) => {
+const BlogCardList = ({ posts } : {posts: (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[]}) => {
     
     const [mounted, setMounted] = React.useState(false)
     const [page, setPage] = React.useState("1")

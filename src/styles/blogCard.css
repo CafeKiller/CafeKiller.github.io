@@ -1,0 +1,70 @@
+.post-card-box {
+  display: block;
+}
+
+.post-card-box .post-card {
+  position: relative;
+  padding: 20px 0 40px;
+  width: 72%;
+  transition: all .3s ease;
+}
+
+.post-card-box .post-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 10%;
+  height: 2px;
+  width: 0%;
+  background: var(--main-color);
+  transform: 0;
+  transition: width .35s ease;
+}
+
+.post-card-box .post-card .time {
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--fontcolor3);
+  border-left: 2px solid var(--black9);
+}
+
+.post-card-box .post-card .title {
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 38px;
+  color: var(--fontcolor1);
+  transition: color .35s ease;
+}
+
+.post-card-box .post-card .description {
+  word-break: break-all;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  color: var(--fontcolor3);
+  transition: color .35s ease;
+}
+
+.post-card-box:hover .post-card .title {
+  color: var(--main-color);
+}
+
+.post-card-box:hover .post-card .description {
+  color: var(--fontcolor2);
+}
+
+.post-card-box:hover .post-card::before {
+  width: var(--border-len);
+}
+
+@media screen and (max-width: 786px) {
+  .post-card-box .post-card {
+    padding: 20px 0 40px;
+    width: 100%;
+  }
+  .post-card-box .post-card::before {
+    display: none;
+  }
+}

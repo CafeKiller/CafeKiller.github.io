@@ -8,7 +8,7 @@ import '@styles/blogCard.min.css'
 const id = 'blog-card'
 
 
-const BlogCard = ({post}: {post: CollectionEntry<'posts'>}) => {
+const BlogCard = ({post}: {post: CollectionEntry<'posts'> | CollectionEntry<'articles'>}) => {
     
     const [mounted, setMounted] = React.useState(false)
     const [desc, setDesc] = React.useState('')
