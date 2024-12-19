@@ -8,19 +8,19 @@ import { getCollection, type CollectionEntry } from "astro:content"
 import '@styles/global.min.css'
 
 export interface Props {
-    posts: CollectionEntry<"blog">[] | CollectionEntry<"games">[] | CollectionEntry<"articles">[];
+    posts: CollectionEntry<'posts'>[] | CollectionEntry<"articles">[];
 }
 
 export async function getStaticPaths(): Promise<any[]> {
 
     // 过滤文章对象中的 tag (不重复) 转换为数组
     const uniqueTags: Array<string> = [...new Set(allMdArr.map((md) => md.data.tags).flat())]
-                                    .concat(['posts', 'games', 'articles'])
+                                    .concat(['posts', 'articles'])
     
     // 通过 tag 过滤出相关 .md 文章集合
     return uniqueTags.map((tag) => {
         
-        const filteredPosts: CollectionEntry<'blog'>[] = allMdArr.filter((md) => md.data.tags.includes(tag));
+        const filteredPosts: (CollectionEntry<'posts'> | CollectionEntry<"articles">)[]  = allMdArr.filter((md) => md.data.tags.includes(tag));
         return {
             params: { tag },
             props: { posts: filteredPosts },
@@ -34,14 +34,9 @@ let title = `与「 ${ tag } 」相关的文章`
 
 switch (tag) {
     case 'posts':
-        posts = await getCollection('blog')
+        posts = await getCollection('posts')
         tag = '技术博客'
         title = `「 技术博客 」类的全部文章`
-        break
-    case 'games':
-        posts = await getCollection('games')
-        tag = '游戏讨论'
-        title = `「 游戏讨论 」类的全部文章`
         break
     case 'articles':
         posts = await getCollection('articles')

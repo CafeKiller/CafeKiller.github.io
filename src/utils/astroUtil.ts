@@ -5,14 +5,15 @@ import type { CollectionEntry } from "astro:content"
 import type { navType, tagType, yearType } from '@type/common'
  
 const createAllMd = async () => {
-	let _array: CollectionEntry<'blog'>[] = []
+	let _array: CollectionEntry<'posts'>[] | CollectionEntry<'articles'>[] = []
 	console.log(_array);
 	
-	return _array.concat(await getCollection('blog'))
+	return _array.concat(await getCollection('posts'))
+				 .concat(await getCollection('articles'))
 				 .filter(postFilter)
 }
 
-const allMdArr: CollectionEntry<'blog'>[] = await createAllMd()
+const allMdArr: (CollectionEntry<'posts'> | CollectionEntry<"articles">)[] = await createAllMd();
 
 // 整合文章中的所有年份
 const years: Array<number> = [...new Set(allMdArr.map((md) => parseInt(formatDate(md.data.pubDate).slice(0,4))).flat())]
@@ -43,7 +44,7 @@ const createYearHistories = () : yearType => {
 }
 
 // 获取所用文章的 Tag, 整合成 Tag名称+Tag文章数量 的数组
-const getUniqueTags = (posts: CollectionEntry<'blog'>[]) : Array<tagType> => {
+const getUniqueTags = (posts: (CollectionEntry<'posts'> | CollectionEntry<"articles">)[]) : Array<tagType> => {
 	
 	// 获取唯一tag数组
 	const tags: Array<string> = [...new Set(posts.map((md) => md.data.tags).flat())]
