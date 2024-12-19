@@ -10,8 +10,7 @@ import '@styles/global.min.css'
 const { frontmatter , headings} = Astro.props
 ---
 
-
-
+<!-- 博客文章 HTML 结构 -->
 <BaseLayout 
     title={frontmatter.title} 
     description={ frontmatter.description }>
@@ -23,6 +22,7 @@ const { frontmatter , headings} = Astro.props
 
     <div class="md-wrapper">
 
+        <!-- 首部文章信息描述 -->
         <section class="md-header">
             <h1 class="md-title"> {frontmatter.title}</h1>
             <p class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10)}</p>
@@ -32,7 +32,7 @@ const { frontmatter , headings} = Astro.props
             <Catalogs headings={ headings }/>
         </section>
     
-        
+        <!-- 主要内容 -->
         <section class="md-content">
             <p><em>{frontmatter.description}</em></p>
             <slot />
@@ -42,6 +42,7 @@ const { frontmatter , headings} = Astro.props
             
         </section>
     
+        <!-- 底部文章信息标注与统计 -->
         <section class="md-footer">
             <div class="md-footer-cont">
                 <div>Written by: {frontmatter.author}</div>
@@ -57,10 +58,11 @@ const { frontmatter , headings} = Astro.props
             </div>
         </section>
 
-        <!-- <div class="md-comment">
+        <div class="md-comment">
             <Comments client:only="react" />
-        </div> -->
+        </div>
 
+        <!-- 文章侧边控制栏 -->
         <div class="bottom-contr">
             <a href="javascript:toTop();" class="to-top">
                 <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4257" width="200" height="200">

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Giscus from '@giscus/react'
+import { SITE } from '@config'
 
 // 评论组件
 const id = 'giscus-comment'
@@ -51,9 +52,9 @@ const Comments = () => {
                 mounted 
                 && <Giscus 
                     id={id}
-                    repo="CafeKiller/MyBlog"
+                    repo={`${SITE.githubAccount}/${SITE.repoName}`}
                     repoId='R_kgDOMKfLMQ'
-                    category='Announcements'
+                    category='General'
                     categoryId='DIC_kwDOMKfLMc4CgsOf'
                     mapping='title'
                     reactionsEnabled='1'
