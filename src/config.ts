@@ -10,7 +10,7 @@ export const SITE: Site = {
     postPerPage: 4,
     webPrefix: '',
     githubAccount: 'CafeKiller',
-    repoName: 'MyBlog',
+    repoName: 'CafeKiller.github.io',
 }
 
 export const LOCALE = {
