@@ -1,26 +1,26 @@
 import * as React from 'react'
 
-import BlogCard from '@components/BlogCard'
-import Paginator from '@components/Paginator'
+import BlogCard from '@components/BlogCard/BlogCard.tsx'
+import Paginator from '@components/Paginator/Paginator.tsx'
 import type { CollectionEntry } from "astro:content"
-import { getQueryString, changeURLArg } from "@utils/urlUtil"
-import { getPagination } from "@utils/postsUtil"
+import { getQueryString, changeURLArg } from "@utils/urlUtil.ts"
+import { getPagination } from "@utils/postsUtil.ts"
 
 import '@styles/global.min.css'
-import { EventType } from '@type/event'
+import { EventType } from '@type/event.ts'
 
-function getPosts(posts: (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[])
+type CompositeColl = CollectionEntry<'posts'> | CollectionEntry<'articles'>
+
+function getPosts(posts: CompositeColl[])
     : (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[] {
         return posts.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 }
 
-
-
-// 评论组件
+// 博客文章集合 组件
 const id = 'blogs-list'
 
-const BlogCardList = ({ posts } : {posts: (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[]}) => {
+const BlogCardList = ({ posts } : {posts: CompositeColl[]}) => {
     
     const [mounted, setMounted] = React.useState(false)
     const [page, setPage] = React.useState("1")
@@ -73,8 +73,6 @@ const BlogCardList = ({ posts } : {posts: (CollectionEntry<'posts'>|CollectionEn
     React.useEffect(() => {
         console.log("BlogCardList.setCollection ====>>  ");
     },[collection])
-
-
 
     return (
         <div id={id} className='blogs-list'>

@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 
 *test.md
+/src/styles/*.css
+/src/styles/*.css.map
+!/src/styles/*.min.css

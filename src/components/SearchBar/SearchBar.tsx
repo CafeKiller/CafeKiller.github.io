@@ -3,11 +3,11 @@ import Fuse from 'fuse.js';
 
 import type { CollectionEntry } from 'astro:content';
 
-import { changeURLArg } from "@utils/urlUtil"
-import { allMdArr } from '@utils/astroUtil';
+import { changeURLArg } from "@utils/urlUtil.ts"
+import { allMdArr } from '@utils/astroUtil.ts';
 
 import '@styles/global.min.css'
-import '@styles/searchBar.min.css'
+import '@components/SearchBar/searchBar.min.css'
 
 export type SearchItem = {
     title: string;

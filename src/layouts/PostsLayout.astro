@@ -187,16 +187,16 @@ const { frontmatter , headings} = Astro.props
             img {
                 margin: 10px 0 0;
                 display: block;
-                height: 150px;
+                min-height: 10px;
+                max-height: 150px;
             }
         }
 
         // markdown 文档底部
         .md-footer {
-            padding: 0 0 0;
-            position: absolute;
+            padding: 0 0 40px;
+            position: relative;
             left: 50%;
-            bottom: 28px;
             width: 100%;
             transform: translateX(-50%);
             box-sizing: border-box;
@@ -313,7 +313,22 @@ const { frontmatter , headings} = Astro.props
                     padding: 10px 16px 10px;
                     flex-direction: column;  
                     div {
+                        position: relative;
+                        justify-content: flex-start;
+                        align-self: flex-start;
                         line-height: 28px;
+                        &:first-child {
+                            padding-bottom: 10px;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                bottom: 5px;
+                                left: 0;
+                                width: 50px;
+                                height: 1px;
+                                background-color: var(--fontcolor3);
+                            }
+                        }
                     }
                 }
             }

@@ -49,7 +49,8 @@ const Comments = () => {
     return (
         <div id={id} className='comment-cont'>
             { 
-                mounted 
+                mounted
+                // 注册 giscus 信息
                 && <Giscus 
                     id={id}
                     repo={`${SITE.githubAccount}/${SITE.repoName}`}

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import QDialog from '@utils/msgUtil'
-import { getQueryString, changeURLArg } from "@utils/urlUtil"
-import { urlChangeEvent } from '@utils/eventUtil'
+import QDialog from '@utils/msgUtil.ts'
+import { getQueryString, changeURLArg } from "@utils/urlUtil.ts"
+import { urlChangeEvent } from '@utils/eventUtil.ts'
 
 import '@styles/global.min.css'
-import '@styles/Paginator.min.css'
+import './paginator.min.css'
 
 
 

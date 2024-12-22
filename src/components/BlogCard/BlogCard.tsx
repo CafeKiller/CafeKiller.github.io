@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import type { CollectionEntry } from "astro:content"
-import { formatDate } from '@utils/dateUtil'
+import { formatDate } from '@utils/dateUtil.ts'
 
-import '@styles/blogCard.min.css'
+import './blogCard.min.css'
 
 const id = 'blog-card'
 
@@ -17,9 +17,9 @@ const BlogCard = ({post}: {post: CollectionEntry<'posts'> | CollectionEntry<'art
     React.useEffect(() => {
         setMounted(true)
         
-        const _desc = post.body.replace(/\s*/g,"") // 过滤空格
-                    .replace(/(\*\*|__|\$\$|\$\)|`|~~|==|{|}|##+|#+|==+|>+|-+|\\(|\\)|\\[|\\]|\\{|\\})/g,"") // 过滤markdown格式化字符
-                    .slice(0,151)
+        const _desc = post.body.replace(/\s*/g,"")
+                    .replace(/(\*\*|__|\$\$|\$\)|`|~~|==|{|}|##+|#+|==+|>+|-+|\\(|\\)|\\[|\\]|\\{|\\})/g,"")
+                    .slice(0,101)
         setDesc(_desc)
 
         const borderLen = (Math.random() * (77-33)+33).toFixed(2)

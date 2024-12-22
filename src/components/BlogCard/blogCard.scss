@@ -14,15 +14,16 @@
             height: 2px;
             width: 0%;
             background: var(--main-color);
-            transform: 0;
+            transform: none;
             transition: width .35s ease;
         }
         .time {
             padding-left: 10px;
             font-size: 16px;
             line-height: 26px;
-            color: var(--fontcolor3);
-            border-left: 2px solid var(--black9);
+            color: var(--black9);
+            border-left: 2px solid var(--black6);
+            transition: all .35s ease;
         }
         .title {
             padding: 8px 0;
@@ -48,6 +49,10 @@
             }
             .description {
                 color:  var(--fontcolor2);
+            }
+            .time {
+                color: var(--black6);
+                border-left: 2px solid var(--black3);
             }
         }
         .post-card::before {
