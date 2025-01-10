@@ -150,7 +150,6 @@ html {
                 font-size: 14px;
                 text-transform: uppercase;
                 color: var(--main-color);
-                pointer-events: none;
                 background-color: #24292e;
                 cursor: pointer;
                 z-index: 100;
@@ -322,3 +321,5 @@ html {
         }
     }
 }
+
+.qmsg.qmsg-wrapper{position:fixed;top:20px;left:0;z-index:1010;width:100%;pointer-events:none;color:rgba(0,0,0,0.55);font-size:13px;font-variant:tabular-nums;font-feature-settings:"tnum"}

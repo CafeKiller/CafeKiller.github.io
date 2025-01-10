@@ -82,6 +82,24 @@ const { frontmatter , headings} = Astro.props
 
 
 <script is:inline>
+
+    // import { QDialog } from "@utils/msgUtil"
+
+    // 复制代码块中的代码
+    const copyCodeText = (event) => {
+        const codeElement = event.target.closest('.astro-code').querySelector('code');
+        if (codeElement) {
+            const codeText = codeElement.innerText;
+            navigator.clipboard.writeText(codeText)
+                .then(() => {
+                    console.log('代码已复制到剪贴板');
+                })
+                .catch(err => {
+                    console.error('无法复制代码: ', err);
+                });
+        }
+    }
+
     const updateScrollProgress = () => {
         if (document) {
             const mdBar = document.getElementById("md-progress-bar")
@@ -103,6 +121,8 @@ const { frontmatter , headings} = Astro.props
                 const _span = document.createElement('span')
                 _span.classList.add('code-language')
                 _span.innerText = codeLanguage
+                _span.addEventListener('click', copyCodeText);
+                _span.setAttribute('title', '点击复制代码');
                 codeDom.prepend(_span)
             }
         })
@@ -138,7 +158,7 @@ const { frontmatter , headings} = Astro.props
             behavior: 'smooth'
         })
     }
-
+    
 </script>
 </script>
 
