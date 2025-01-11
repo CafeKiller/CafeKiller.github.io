@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import QDialog from '@utils/msgUtil.ts'
-import { getQueryString, changeURLArg } from "@utils/urlUtil.ts"
+import { QDialog } from '@utils/msgUtil.ts'
+import { getQueryString, changeURLArg } from "@utils/commonUtil"
 import { urlChangeEvent } from '@utils/eventUtil.ts'
 
 import '@styles/global.min.css'

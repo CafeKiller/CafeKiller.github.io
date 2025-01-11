@@ -1,24 +1,24 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { createYearHistories } from '@utils/astroUtil'
-import { formatDate } from '@utils/dateUtil'
+import { createYearHistories } from '@utils/astroUtils'
+import { formatDate } from '@utils/commonUtil'
 import type { navType } from '@type/common'
 
 import '@styles/global.min.css'
 
 
-const fillterMd = createYearHistories()
+const fillterPosts = createYearHistories()
 ---
 
 <BaseLayout title="CafeBlogs Blogs">
 	<main>
 		{
-			Object.keys(fillterMd).reverse().map((year: string) => {
+			Object.keys(fillterPosts).reverse().map((year: string) => {
 				return (
 					<section class="year-cont">
 						<h1 class="title">{ year }</h1>
 						<nav class="nav-cont">
-							{fillterMd[year].map((item: navType) => {
+							{fillterPosts[year].map((item: navType) => {
 								return (
 									<div class="nav-item">
 										<span>{formatDate(item.date).slice(5, 10)}</span>

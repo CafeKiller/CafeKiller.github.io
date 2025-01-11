@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCardList from "../components/BlogCardList"
-import { allMdArr } from '@utils/astroUtil';
+import { allPostArr } from '@utils/astroUtils';
 ---
 
 <BaseLayout title="不来杯咖啡?">
 	<main>
-		<BlogCardList posts={ allMdArr } client:only="react"/>
+		<BlogCardList posts={ allPostArr } client:only="react"/>
 	</main>
 </BaseLayout>
 

@@ -1,3 +1,7 @@
+import type { CollectionEntry } from "astro:content";
+
+export type compCollection = CollectionEntry<'posts'> | CollectionEntry<'articles'>
+
 export type tagType = {
     tag: string
     count: number
@@ -11,4 +15,10 @@ export type navType = {
 
 export type yearType = {
 	[key: string]: Array<navType>
+}
+
+export interface GetPaginationProps<T> {
+    posts: T 
+    page: number | string 
+    isIndex?: boolean 
 }

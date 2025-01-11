@@ -20,6 +20,4 @@ type QMessageType = {
     config(config?: QMessageConfigType): QMessageType;
 }
 
-const QDialog = QMessage as unknown as QMessageType
-
-export default QDialog
+export const QDialog = QMessage as unknown as QMessageType

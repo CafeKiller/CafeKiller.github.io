@@ -79,3 +79,70 @@ export function debounce(func: Func, delay: number, immediate?: boolean, resultC
     };
     return _debounce;
 }
+
+/**
+ * @description 查询当前页面 URL 中的 query 参数
+ * */
+export function getQueryString(name: string) : string {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+    var reg_rewrite = new RegExp('(^|/)' + name + '/([^/]*)(/|$)', 'i')
+    var r = window.location.search.substring(1).match(reg)
+    var q = window.location.pathname.substring(1).match(reg_rewrite)
+    if (r != null) {
+        return decodeURIComponent(r[2])
+    } else if (q != null) {
+        return decodeURIComponent(q[2])
+    } else {
+        return ''
+    }
+}
+
+/**
+ * @description 修改 URL 中的 query 参数
+ * */ 
+export function changeURLArg(url:string, arg: any, arg_val:any) : string {
+    var pattern = arg + '=([^&]*)';
+    var replaceText = arg + '=' + arg_val;
+    if (url.match(pattern)) {
+        var tmp = '/(' + arg + '=)([^&]*)/gi';
+        tmp = url.replace(eval(tmp), replaceText);
+        return tmp;
+    } else {
+        if (url.match('[\?]')) {
+            return url + '&' + replaceText;
+        } else {
+            return url + '?' + replaceText;
+        }
+    }
+}
+
+
+function timestampToFormattedString(timestamp: number, format: 'yyyy-MM-dd HH:mm:ss' = 'yyyy-MM-dd HH:mm:ss'): string {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+    const seconds = ('0' + date.getSeconds()).slice(-2);
+
+    return format
+        .replace('yyyy', year.toString())
+        .replace('MM', month)
+        .replace('dd', day)
+        .replace('HH', hours)
+        .replace('mm', minutes)
+        .replace('ss', seconds);
+}
+
+export function formatDate(date: Date) : string {
+    
+    const year = date.getFullYear()
+    const month = ('0' + (date.getMonth() + 1)).slice(-2)
+    const day = ('0' + date.getDate()).slice(-2)
+    const hours = ('0' + date.getHours()).slice(-2)
+    const minutes = ('0' + date.getMinutes()).slice(-2)
+    const seconds = ('0' + date.getSeconds()).slice(-2)
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}

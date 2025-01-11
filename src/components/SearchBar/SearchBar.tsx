@@ -3,8 +3,8 @@ import Fuse from 'fuse.js';
 
 import type { CollectionEntry } from 'astro:content';
 
-import { changeURLArg } from "@utils/urlUtil.ts"
-import { allMdArr } from '@utils/astroUtil.ts';
+import { changeURLArg } from "@utils/commonUtil"
+import { allPostArr } from '@utils/astroUtils';
 
 import '@styles/global.min.css'
 import '@components/SearchBar/searchBar.min.css'
@@ -21,7 +21,7 @@ interface SearchResult {
     refIndex: number;
 }
 
-const searchList = allMdArr.map(({ data, slug, body }): SearchItem => ({
+const searchList = allPostArr.map(({ data, slug, body }): SearchItem => ({
     title: data.title,
     description: data.description ? data.description : "",
     body: body,
@@ -88,7 +88,6 @@ const SearchBar = () => {
                 value = {inputVal}
                 onChange={handleInputChange} 
                 placeholder="请输入你需要搜索文章的关键字" />
-            
             <ul>
             {
                 searchResults && 

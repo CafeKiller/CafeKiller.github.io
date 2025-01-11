@@ -1,14 +1,11 @@
 ---
-import { allMdArr, getUniqueTags } from '@utils/astroUtil'
 
 import '@styles/global.min.css'
 
-type tagType = {
-    tag: string
-    count: number
-}
+import { allPostArr, getUniqueTags } from '@utils/astroUtils'
+import type { tagType } from '@utils/type';
 
-const fillterTags:tagType[] = getUniqueTags(allMdArr)
+const fillterTags: tagType[] = getUniqueTags(allPostArr)
 
 const isDev = import.meta.env.DEV;
 ---

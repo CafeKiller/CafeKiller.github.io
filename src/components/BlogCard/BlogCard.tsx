@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import type { CollectionEntry } from "astro:content"
-import { formatDate } from '@utils/dateUtil.ts'
+import { formatDate } from '@utils/commonUtil'
 
 import './blogCard.min.css'
 

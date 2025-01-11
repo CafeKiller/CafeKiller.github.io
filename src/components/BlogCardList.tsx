@@ -3,15 +3,14 @@ import * as React from 'react'
 import BlogCard from '@components/BlogCard/BlogCard.tsx'
 import Paginator from '@components/Paginator/Paginator.tsx'
 import type { CollectionEntry } from "astro:content"
-import { getQueryString, changeURLArg } from "@utils/urlUtil.ts"
+import { getQueryString, changeURLArg } from "@utils/commonUtil.ts"
 import { getPagination } from "@utils/postsUtil.ts"
 
 import '@styles/global.min.css'
 import { EventType } from '@type/event.ts'
+import type { compCollection } from '@type/common'
 
-type CompositeColl = CollectionEntry<'posts'> | CollectionEntry<'articles'>
-
-function getPosts(posts: CompositeColl[])
+function getPosts(posts: compCollection[])
     : (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[] {
         return posts.filter(md => md.data.class === '技术')
 				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
@@ -20,7 +19,7 @@ function getPosts(posts: CompositeColl[])
 // 博客文章集合 组件
 const id = 'blogs-list'
 
-const BlogCardList = ({ posts } : {posts: CompositeColl[]}) => {
+const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
     
     const [mounted, setMounted] = React.useState(false)
     const [page, setPage] = React.useState("1")

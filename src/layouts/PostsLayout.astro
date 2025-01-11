@@ -3,7 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import Catalogs from "@components/Catalogs.astro"
 import Comments from '@components/Comment'
 
-import { formatDate } from '@utils/dateUtil'
+import { formatDate } from '@utils/commonUtil'
 
 import '@styles/global.min.css'
 
@@ -78,7 +78,6 @@ const { frontmatter , headings} = Astro.props
     </div>
 
 </BaseLayout>
-
 
 
 <script is:inline>
@@ -158,8 +157,6 @@ const { frontmatter , headings} = Astro.props
             behavior: 'smooth'
         })
     }
-    
-</script>
 </script>
 
 <style lang="scss">
