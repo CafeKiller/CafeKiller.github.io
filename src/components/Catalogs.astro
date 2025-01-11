@@ -13,7 +13,11 @@ const  headings: headType  = Astro.props.headings as headType
 <nav class="catalogs-box" style={ headings.length ? '' : 'display: none'}>
     {
         headings.map((item) => {
-            return (<a href={ '#' + item.slug } >- {item.text}</a> <br/>)
+            if (item.depth > 2) return;  
+            if (item.depth === 2) {
+                return (<a class="level2" href={ '#' + item.slug } > ## {item.text}</a> <br/>)
+            }
+            return (<a class="level1" href={ '#' + item.slug } > # {item.text}</a> <br/>)
         })
     }
 </nav>
@@ -43,6 +47,10 @@ const  headings: headType  = Astro.props.headings as headType
             &a:hover {
                 font-weight: 800;
                 color: var(--main-color);
+            }
+            &.level2 {
+                padding-left: 14px;
+                opacity: .8;
             }
         }
     }

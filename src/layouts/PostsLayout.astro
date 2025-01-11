@@ -34,7 +34,7 @@ const { frontmatter , headings} = Astro.props
     
         <!-- 主要内容 -->
         <section class="md-content">
-            <p><em>{frontmatter.description}</em></p>
+            <p class="befDesc"><em>{frontmatter.description}</em></p>
             <slot />
             <!-- <p>Written by: {frontmatter.author}</p> -->
     
@@ -206,6 +206,21 @@ const { frontmatter , headings} = Astro.props
                 display: block;
                 min-height: 10px;
                 max-height: 150px;
+            }
+        }
+
+        .befDesc {
+            position: relative;
+            line-height: 1.5;
+            opacity: .7;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 4px;
+                left: 0;
+                width: 100px;
+                height: 2px;
+                background-color: var(--main-color);
             }
         }
 

@@ -108,7 +108,7 @@ html {
         font-family: 'PingFang SC';
         h1, h2, h3 {
             position: relative;
-            padding-left: 20px;
+            padding-left: 24px;
             margin-top: 40px;
             font-weight: 400;
             font-size: 32px;
@@ -121,13 +121,33 @@ html {
                 top: 2px;
                 color: var(--fontcolor4);
             }
+            &:nth-of-type(1) {
+                margin-top: 20px;
+            }
         }
-        h2 { font-size: 26px; line-height: 46px; margin-top: 30px; }
-        h3 { font-size: 20px; line-height: 38px; margin-top: 20px; }
+        h2 { 
+            padding-left: 40px;
+            font-size: 26px; 
+            line-height: 46px; 
+            margin-top: 30px; 
+            &::before {
+                content: '##';
+                font-size: 26px;
+            }
+        }
+        h3 { 
+            font-size: 20px; 
+            line-height: 38px; 
+            margin-top: 20px; 
+            &::before {
+                content: '###';
+                font-size: 20px;
+            }
+        }
         p {
             padding: 8px 0;
             font-size: 16px;
-            line-height: 32px;
+            line-height: 28px;
             letter-spacing: 1px;
             color: var(--fontcolor1);
             code {
@@ -322,4 +342,6 @@ html {
     }
 }
 
+// FIX STYLE
+.gsc-reactions { display: none !important; }
 .qmsg.qmsg-wrapper{position:fixed;top:20px;left:0;z-index:1010;width:100%;pointer-events:none;color:rgba(0,0,0,0.55);font-size:13px;font-variant:tabular-nums;font-feature-settings:"tnum"}
