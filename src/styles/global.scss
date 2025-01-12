@@ -167,6 +167,14 @@ html {
                 color: var(--main-color);
             }
         }
+        small-text {
+            font-style: italic;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            color: var(--fontcolor1);
+            opacity: .65;
+        }
         .astro-code {
             position: relative;
             font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
