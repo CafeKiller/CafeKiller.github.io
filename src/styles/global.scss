@@ -7,6 +7,11 @@ button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
 td,th,ul,ol{padding:0}
 
+@font-face {
+    font-family: "FiraCodeR";
+    src: url("//fastly.jsdelivr.net/gh/cafekiller/cafe.cdn/lib/fonts/FiraCode-Regular.ttf");
+}
+
 a {
     text-decoration:none;
     &:hover {
@@ -113,6 +118,7 @@ html {
             font-weight: 400;
             font-size: 32px;
             line-height: 54px;
+            letter-spacing: 1px;
             color: var(--fontcolor1);
             &::before {
                 position: absolute;
@@ -148,49 +154,62 @@ html {
             padding: 8px 0;
             font-size: 16px;
             line-height: 28px;
-            letter-spacing: 1px;
+            // letter-spacing: .5px;
             color: var(--fontcolor1);
             code {
                 padding: 2px 8px;
                 background-color: var(--fontcolor4);
                 border-radius: 3px;
                 color: var(--fontcolor1);
-                font-family: "PingFang SC";
+                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
+            }
+            strong {
+                color: var(--main-color);
             }
         }
         .astro-code {
             position: relative;
-            padding: 20px;
-            font-family: 'IBM Plex Sans';
+            font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
+            overflow: hidden !important;
+            .code-wrapper {
+                padding: 40px 20px 20px;
+                position: relative;
+                width: 100%;
+                overflow-x: scroll;
+                box-sizing: border-box;
+                &::-webkit-scrollbar {
+                    height: 6px;
+                    width: 6px;
+                    background-color: var(--body-bgcolor);
+                }
+                &::-webkit-scrollbar-thumb{
+                    background-color: var(--main-color);
+                }
+            }
             .code-language {
                 position: absolute;
                 padding: 8px 10px;
                 top: 0;
                 right: 0;
+                font-weight: 800;
                 font-size: 14px;
                 text-transform: uppercase;
                 color: var(--main-color);
                 background-color: #24292e;
                 cursor: pointer;
                 z-index: 100;
+                &:hover {
+                    filter: brightness(1.2);
+                }
             }
             code {
-                font-family: 'monospace';
-                font-size: 14px;
-                line-height: 28px;
-                letter-spacing: 0.5px;
-            }
-            &::-webkit-scrollbar {
-                height: 6px;
-                width: 6px;
-                background-color: var(--body-bgcolor);
-            }
-            &::-webkit-scrollbar-thumb{
-                background-color: var(--main-color);
+                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
+                font-size: 16px;
+                line-height: 26px;
             }
         }
         ul,ol {
-            margin: 8px auto 8px;
+            margin: 0 auto 8px;
             padding-left: 40px;
             li {
                 margin-bottom: 4px;
@@ -207,6 +226,13 @@ html {
                     border-radius: 3px;
                     color: var(--fontcolor1);
                 }
+                &::marker {
+                    color: var(--main-color);
+                    background-color: var(--main-color);
+                }
+            }
+            code {
+                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
             }
         }
         ol {

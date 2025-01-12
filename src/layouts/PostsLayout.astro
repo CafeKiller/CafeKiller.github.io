@@ -113,16 +113,23 @@ const { frontmatter , headings} = Astro.props
     document.addEventListener('scroll', updateScrollProgress)
 
     const createCodeLanguageTag = () => {
-        const allCodeDom = document.querySelectorAll('.astro-code')
-        allCodeDom.forEach( (codeDom) => {
-            const codeLanguage = codeDom.getAttribute('data-language')
+        const allAstroCodeDom = document.querySelectorAll('.astro-code')
+        allAstroCodeDom.forEach( (astroCodeDom) => {
+
+            const codeDom = astroCodeDom.querySelector('code')
+            const newParent = document.createElement('div');
+            newParent.classList.add('code-wrapper');
+            newParent.appendChild(codeDom);
+            astroCodeDom.appendChild(newParent)
+            
+            const codeLanguage = astroCodeDom.getAttribute('data-language')
             if (codeLanguage) {
                 const _span = document.createElement('span')
                 _span.classList.add('code-language')
                 _span.innerText = codeLanguage
                 _span.addEventListener('click', copyCodeText);
                 _span.setAttribute('title', '点击复制代码');
-                codeDom.prepend(_span)
+                astroCodeDom.prepend(_span)
             }
         })
     }
