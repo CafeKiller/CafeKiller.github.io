@@ -20,25 +20,35 @@ const getBlogTheme = () => {
     return document.body.getAttribute('data-theme') || 'light'
 }
 
+
+function sendMessage(message: Object) {
+    const iframe = document.querySelector("giscus-widget")?.shadowRoot?.querySelector("iframe");
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+}
+
 const Comments = () => {
     const [mounted, setMounted] = React.useState(false)
     const [theme, setTheme] = React.useState('light')
 
     React.useEffect(() => {
-        const _theme =  getBlogTheme() || getPreferTheme() || getSystemTheme()
+        let _theme: string = getBlogTheme() || getPreferTheme() || getSystemTheme()
         setTheme(_theme)
         // 监听主题变化
         const observer = new MutationObserver(() => {
+            _theme = getBlogTheme() || getPreferTheme() || getSystemTheme()
             setTheme(_theme)
+            sendMessage({
+                setConfig: { theme: _theme },
+            });
         })
         observer.observe(document.body, { 
             attributes: true, 
             attributeFilter: ['data-theme']
         })
-
         // 取消监听
         return () => {
-            observer.disconnect()
+            // observer.disconnect()
         }
     }, [])
 
@@ -58,7 +68,7 @@ const Comments = () => {
                     category='General'
                     categoryId='DIC_kwDOMKfLMc4CgsOf'
                     mapping='title'
-                    reactionsEnabled='1'
+                    reactionsEnabled='0'
                     emitMetadata='0'
                     inputPosition='bottom'
                     lang={'zh-CN'}
