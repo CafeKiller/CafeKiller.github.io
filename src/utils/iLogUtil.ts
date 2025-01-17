@@ -6,7 +6,6 @@ type iLogOptType = {
 }
 
 type iLogObj = {
-    
     [property: string] : Function 
 }
 

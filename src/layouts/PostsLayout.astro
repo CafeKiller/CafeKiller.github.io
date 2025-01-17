@@ -82,7 +82,9 @@ const { frontmatter , headings} = Astro.props
 
 <script is:inline>
 
-    // import { QDialog } from "@utils/msgUtil"
+    // import QMessage from "@utils/msgUtil"
+    // console.log(QMessage);
+    
 
     // 复制代码块中的代码
     const copyCodeText = (event) => {
@@ -92,6 +94,7 @@ const { frontmatter , headings} = Astro.props
             navigator.clipboard.writeText(codeText)
                 .then(() => {
                     console.log('代码已复制到剪贴板');
+                    QDialog.info('代码已复制到剪贴板');
                 })
                 .catch(err => {
                     console.error('无法复制代码: ', err);
@@ -379,7 +382,7 @@ const { frontmatter , headings} = Astro.props
                 .bottom-catalogs {
                     order: 1;
                     opacity: 0 !important;
-                    pointer-events: none;
+                    pointer-events: none !important;
                 }
             }
         }

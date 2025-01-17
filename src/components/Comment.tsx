@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Giscus from '@giscus/react'
-import { SITE } from '@config'
+import { GISCUS_CONF } from '@config'
 
 // 评论组件
 const id = 'giscus-comment'
@@ -63,15 +63,15 @@ const Comments = () => {
                 // 注册 giscus 信息
                 && <Giscus 
                     id={id}
-                    repo={`${SITE.githubAccount}/${SITE.repoName}`}
-                    repoId='R_kgDOMKfLMQ'
+                    repo= { GISCUS_CONF.repo }
+                    repoId= { GISCUS_CONF.repoId }
                     category='General'
-                    categoryId='DIC_kwDOMKfLMc4CgsOf'
+                    categoryId= { GISCUS_CONF.categoryId }
                     mapping='title'
-                    reactionsEnabled='0'
+                    reactionsEnabled= { GISCUS_CONF.showTopReactions }
                     emitMetadata='0'
                     inputPosition='bottom'
-                    lang={'zh-CN'}
+                    lang={ GISCUS_CONF.lang }
                     theme={ theme }
                     loading='lazy'
                 /> 

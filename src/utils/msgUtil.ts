@@ -1,5 +1,4 @@
 import QMessage from "@assets/lib/message.min"
-import { iLog } from "./iLogUtil"
 
 type QMessageConfigType = {
     showClose?: boolean;
@@ -20,4 +19,4 @@ type QMessageType = {
     config(config?: QMessageConfigType): QMessageType;
 }
 
-export const QDialog = QMessage as unknown as QMessageType
+export default QMessage

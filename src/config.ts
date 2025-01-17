@@ -1,4 +1,13 @@
+import type { BooleanString, Repo } from "@giscus/react";
 import type { Site } from "@type/index";
+
+type Giscus_Type = {
+    repo: Repo,
+    repoId: string,
+    categoryId: string,
+    showTopReactions: BooleanString,
+    lang: string,
+}
 
 export const SITE: Site = {
     website: 'https://CafeKiller.github.io',
@@ -18,3 +27,10 @@ export const LOCALE = {
     langTag: ["zh-CN"],
 } as const
   
+export const GISCUS_CONF : Giscus_Type = {
+    repo: `${SITE.githubAccount}/${SITE.repoName}`,
+    repoId: "R_kgDOMKfLMQ",
+    categoryId: "DIC_kwDOMKfLMc4CgsOf",
+    showTopReactions: "0",
+    lang: "zh-CN",
+}

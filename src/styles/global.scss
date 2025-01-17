@@ -25,6 +25,7 @@ a {
 
 html, body {
     font-family: 'Songti SC, Helvetica, Arial, sans-serif';
+    scroll-behavior: smooth;
 }
 body { 
     background-color: var(--body-bgcolor);
@@ -201,6 +202,7 @@ html {
                 right: 0;
                 font-weight: 800;
                 font-size: 14px;
+                letter-spacing: 2px;
                 text-transform: uppercase;
                 color: var(--main-color);
                 background-color: #24292e;

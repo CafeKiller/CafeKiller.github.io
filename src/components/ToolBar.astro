@@ -13,17 +13,24 @@ const capitalizeFirstLetter = (str:string) => {
   }
   return str
 }
-
 const breadcrumbListToUrl = (current: string) => {
     const _idx = breadcrumbList.indexOf(current)
     let _url = `${SITE.webPrefix}`
-    breadcrumbList.map((breadcrumb,index) => {
+    const currentPageURL = Astro.url.href.substring(Astro.url.href.lastIndexOf("/")+1);
+
+    breadcrumbList.map((breadcrumb,index) => {        
         if(index <= _idx) {
             _url += `/${breadcrumb}`
         }
-    }) 
+    })
+
+    if(_url.substring(_url.lastIndexOf("/")+1) === currentPageURL) {
+        return 'javascript:void(0);'
+    }
     return decodeURIComponent(_url)
 }
+
+let windowObj;
 ---
 
 <div class="toolbar" aria-label="toolbar">
@@ -39,7 +46,7 @@ const breadcrumbListToUrl = (current: string) => {
                 return index+1 === breadcrumbList.length 
                     ? (
                         <li>
-                            <a href={breadcrumbListToUrl(breadcrumb)}>{ 
+                            <a href={ breadcrumbListToUrl(breadcrumb)}>{ 
                                 capitalizeFirstLetter(decodeURIComponent(breadcrumb))
                             }</a>
                             <span aria-hidden="true"></span>
@@ -71,7 +78,6 @@ const breadcrumbListToUrl = (current: string) => {
                     <path d="M408.32 143.872c6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667C196.266667 151.552 85.333333 305.152 85.333333 484.352c0 235.946667 191.146667 426.666667 426.666667 426.666667 179.2 0 332.8-110.933333 395.946667-267.946667 6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667c-39.253333 15.786667-82.346667 24.746667-127.146667 24.746667-188.586667 0-341.333333-152.746667-341.333333-341.333333 0-44.8 8.533333-87.893333 24.32-127.146667zM170.666667 484.352a340.48 340.48 0 0 1 131.84-269.226667c-2.56 18.346667-3.84 37.12-3.84 55.893334 0 235.52 191.146667 426.666667 426.666666 426.666666 18.773333 0 37.546667-1.28 55.893334-3.84A341.248 341.248 0 0 1 170.666667 484.352z" p-id="3046" fill="#000000"></path>
                 </g>
             </svg>
-            
         </div>
     </div>
 
@@ -81,16 +87,11 @@ const breadcrumbListToUrl = (current: string) => {
     import SVGMorpheus from "@assets/lib/svg-morpheus.min";
 
     const primaryColorScheme = "" // 预设主题色
-
-    // 获取本地存储的 主题色
-    const currentTheme = localStorage.getItem("__cafe-blog_theme")
+    const currentTheme = localStorage?.getItem("__cafe-blog_theme") // 获取本地存储的 主题色
 
     function getPreferTheme() {
-    
         if (currentTheme) return currentTheme
-
         if (primaryColorScheme) return primaryColorScheme
-
         return window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "dark"
             : "light"
@@ -117,10 +118,6 @@ const breadcrumbListToUrl = (current: string) => {
     }
 
     document.querySelector('#theme-btn')?.addEventListener('click', toggleThemeSvg)
-
-    const addBodyZoom = () => {
-        
-    }
 </script>
 
 <style lang="scss">
@@ -183,7 +180,7 @@ const breadcrumbListToUrl = (current: string) => {
                 transform: scaleX(-1);
             }
             &:hover {
-                opacity: 1;
+                opacity: 1 !important;
             }
         }
         .right {
