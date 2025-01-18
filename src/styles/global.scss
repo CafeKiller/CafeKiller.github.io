@@ -158,8 +158,10 @@ html {
             // letter-spacing: .5px;
             color: var(--fontcolor1);
             code {
-                padding: 2px 8px;
+                display: inline-block;
+                padding: 2px 6px;
                 background-color: var(--fontcolor4);
+                line-height: 22px;
                 border-radius: 3px;
                 color: var(--fontcolor1);
                 font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';

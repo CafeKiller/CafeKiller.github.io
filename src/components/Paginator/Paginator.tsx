@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { QDialog } from '@utils/msgUtil.ts'
+import QMessage from '@utils/msgUtil.ts'
 import { getQueryString, changeURLArg } from "@utils/commonUtil"
 import { urlChangeEvent } from '@utils/eventUtil.ts'
 
@@ -19,11 +19,11 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
         let _url = ''
         if (page <= 0) {
             // _url = changeURLArg(window.location.href, 'page', "1")
-            QDialog.warning('已经是第一页了')
+            QMessage.warning('已经是第一页了')
             return
         } else if (page > totalPages) {
             // _url = changeURLArg(window.location.href, 'page', totalPages)
-            QDialog.warning('已经是最后一页了')
+            QMessage.warning('已经是最后一页了')
             return
         } else {
             _url = changeURLArg(window.location.href, 'page', page)
