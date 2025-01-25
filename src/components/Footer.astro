@@ -18,7 +18,6 @@ const isDev = import.meta.env.DEV;
             {
                 fillterTags
                 .sort((t1, t2) => t2.count - t1.count)
-                .slice(0, 10)
                 .map((item) => {
                     return ( 
                         <a href={"/tags/" + item.tag} class="item"> 
@@ -28,7 +27,8 @@ const isDev = import.meta.env.DEV;
             }
         </nav>
 
-        <nav class="categos" style=`${ isDev ? 'display: flex' : 'display: none'}`>
+        <!-- <nav class="categos" style=`${ isDev ? 'display: flex' : 'display: none'}`> -->
+        <nav class="categos">    
             <h1 class="title">分类</h1 >
             <a href="/tags" class="item" style="--color:#2a52be">全部</a>
             <a href="/tags/posts" class="item" style="--color:#3cb371">技术</a>

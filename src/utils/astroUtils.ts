@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-import type { compCollection, navType, tagType, yearType } from "@type/common";
+import { PostEnum, type compCollection, type navType, type tagType, type yearType } from "@type/common";
 import { formatDate } from "./commonUtil";
 
 
@@ -64,7 +64,14 @@ export const createYearHistories = () : yearType => {
 export const getUniqueTags = (posts: compCollection[]) : Array<tagType> => {
     
     // 获取唯一tag数组
-    const tags: Array<string> = [...new Set(posts.map((post) => post.data.tags).flat())]
+    const tags: Array<string> = [...new Set(posts.map((post) => {
+        // if(post.data.class == PostEnum.POSTS && !post.data?.draft){
+        //     return post.data.tags
+        // }
+        // return []
+        return post.data.tags
+    }).flat())]
+    // console.log("getUniqueTags.tags", tags)
     const uniqueTags: Array<tagType> =  tags.map((tag) => {    
                 const filteredPosts = posts.filter((post) => post.data.tags.includes(tag))
                 return {
