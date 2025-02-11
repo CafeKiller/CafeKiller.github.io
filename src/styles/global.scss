@@ -183,7 +183,7 @@ html {
             font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
             overflow: hidden !important;
             .code-wrapper {
-                padding: 40px 20px 20px;
+                padding: 30px 20px 20px;
                 position: relative;
                 width: 100%;
                 overflow-x: scroll;
@@ -199,19 +199,21 @@ html {
             }
             .code-language {
                 position: absolute;
-                padding: 8px 10px;
+                padding: 4px 6px;
                 top: 0;
                 right: 0;
-                font-weight: 800;
+                font-weight: 600;
                 font-size: 14px;
-                letter-spacing: 2px;
-                text-transform: uppercase;
+                // text-transform: uppercase;
                 color: var(--main-color);
                 background-color: #24292e;
                 cursor: pointer;
                 z-index: 100;
+                transition: all .3s ease;
                 &:hover {
-                    filter: brightness(1.2);
+                    color: var(--fontcolor1);
+                    background-color:  var(--main-color);
+                    // filter: brightness(1.2);
                 }
             }
             code {

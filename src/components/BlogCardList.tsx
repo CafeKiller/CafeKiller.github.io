@@ -54,7 +54,7 @@ const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
     }, [])
 
     React.useEffect(() => {
-        console.log("BlogCardList.setPage ====>>  ");
+        // console.log("BlogCardList.setPage ====>>  ");
         if (page !== "1") {
             if (Number(page) > totalPages) {
                 setPage(totalPages.toString())
@@ -70,7 +70,7 @@ const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
     }, [page])
 
     React.useEffect(() => {
-        console.log("BlogCardList.setCollection ====>>  ");
+        // console.log("BlogCardList.setCollection ====>>  ");
     },[collection])
 
     return (

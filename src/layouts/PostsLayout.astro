@@ -30,6 +30,8 @@ const { frontmatter , headings} = Astro.props
             { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
     
             <Catalogs headings={ headings }/>
+
+            { frontmatter.draft ? <div class="draft-tips"> <span>!</span> 当前文章正在编辑中...</div> : '' }
         </section>
     
         <!-- 主要内容 -->
@@ -45,7 +47,9 @@ const { frontmatter , headings} = Astro.props
         <!-- 底部文章信息标注与统计 -->
         <section class="md-footer">
             <div class="md-footer-cont">
-                <div>Written by: {frontmatter.author}</div>
+                <div>
+                    <!-- Written by: {frontmatter.author} -->
+                </div>
                 <div>
                     归类于
                     {
@@ -94,7 +98,7 @@ const { frontmatter , headings} = Astro.props
             navigator.clipboard.writeText(codeText)
                 .then(() => {
                     console.log('代码已复制到剪贴板');
-                    QDialog.info('代码已复制到剪贴板');
+                    // QDialog.info('代码已复制到剪贴板');
                 })
                 .catch(err => {
                     console.error('无法复制代码: ', err);
@@ -217,6 +221,30 @@ const { frontmatter , headings} = Astro.props
                 min-height: 10px;
                 max-height: 150px;
             }
+            .draft-tips {
+                margin: 10px auto 0;
+                padding: 30px 50px;
+                font-size: 28px;
+                color: var(--fontcolor1);
+                background-color:var(--body-bgcolor);
+                border-left: 6px solid #b22222;
+                box-shadow: 6px 8px 4px rgba(0, 0, 0, .12);
+                span {
+                    position: relative;
+                    left: -16px;
+                    color: #b22222;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%) rotateZ(45deg);
+                        width: 24px;
+                        height: 24px;
+                        border: 3px solid #b22222;
+                    }
+                }
+            }
         }
 
         .befDesc {
@@ -326,7 +354,7 @@ const { frontmatter , headings} = Astro.props
     }
 
     .md-comment {
-        padding: 0 0 48px;
+        padding: 40px 0 0;
     }
     
     html.dark {
@@ -345,7 +373,7 @@ const { frontmatter , headings} = Astro.props
     // 移动端or小屏适配
     @media screen and (max-width: 786px) {
         .md-wrapper {
-            padding: 0 4px 90px;
+            padding: 0 0 70px;
             .md-header {
                 padding: 0 6px;
             }
