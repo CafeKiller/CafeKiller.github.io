@@ -29,7 +29,6 @@ const fillterPosts = createYearHistories()
 								)
 							})}
 						</nav>
-
 					</section>
 				)
 			})
@@ -58,9 +57,9 @@ const fillterPosts = createYearHistories()
 			transition: all .3s ease;
 		}
 		.title {
-			position: absolute;
+			position: sticky;
 			left: 0;
-			top: 6px;
+			top: 0;
 			display: flex;
 			align-items: center;
 			font-size: 32px;
@@ -74,8 +73,19 @@ const fillterPosts = createYearHistories()
 					color: var(--main-color);
 				}
 			}
+			&::before {
+				content: '';
+				position: absolute;
+				left: 98px;
+				top: 50%;
+				transform: translateY(-50%) rotateZ(45deg);
+				width: 6px;
+				height: 6px;
+				background-color: var(--blackc);
+			}
 		}
 		.nav-cont {
+			margin-top: -42px;
 			padding-left: 120px;
 			.nav-item {
 				display: flex;
@@ -139,14 +149,22 @@ const fillterPosts = createYearHistories()
 			flex-direction: column;
 			&::before {
 				left: 0;
-				width: 1px;
+				width: 2px;
 			}
 			.title {
-				position: relative;
-				margin-bottom: 20px;
+				position: sticky;
+				padding-bottom: 10px;
 				top: 0;
+				background-color: var(--blackf);
+				z-index: 100;
+				&::before {
+					left: -12px;
+					width: 6px;
+					height: 6px;
+				}
 			}
 			.nav-cont {
+				margin-top: 0;
 				padding-left: 24px;
 				.nav-item {
 					position: relative;

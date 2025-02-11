@@ -65,7 +65,10 @@ const isDev = import.meta.env.DEV;
                     margin-bottom: 10px;
                     font-weight: 400;
                     font-size: 24px;
+                    font-family: 'FanZ_LTYuanJian';
                     line-height: 42px;
+                    letter-spacing: 4px;
+                    text-indent: 4px;
                     width: 100%;
                     text-align: center;
                     color: var(--fontcolor1);
@@ -81,6 +84,7 @@ const isDev = import.meta.env.DEV;
                     color: var(--fontcolor2);
                     border: 1px solid var(--blackc);
                     transition: all .15s ease;
+                    box-sizing: border-box;
                     span {
                         color: var(--fontcolor4);
                         opacity: 1;
@@ -140,6 +144,11 @@ const isDev = import.meta.env.DEV;
     @media screen and (max-width: 786px) {
         .footer-wrapper {
             margin-top: 52px;
+            .footer-cont {
+                .tags {
+                    padding: 0 40px;
+                }
+            }
         }
     }
 
