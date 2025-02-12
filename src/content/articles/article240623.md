@@ -6,7 +6,7 @@ author: 'Cafe_Killer'
 image:
     url: ''
     alt: ''
-tags: ["杂谈", "动漫"]
+tags: ["动漫"]
 class: '杂谈'
 draft: true
 ---
