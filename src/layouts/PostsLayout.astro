@@ -36,7 +36,7 @@ const { frontmatter , headings} = Astro.props
     
         <!-- 主要内容 -->
         <section class="md-content">
-            <p class="befDesc"><em>{frontmatter.description}</em></p>
+            { frontmatter.description ? <p class="befDesc"><em>{frontmatter.description}</em></p> : ''}
             <slot />
             <!-- <p>Written by: {frontmatter.author}</p> -->
     

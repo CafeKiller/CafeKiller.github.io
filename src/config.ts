@@ -16,7 +16,7 @@ export const SITE: Site = {
     title: ' - CafeBlogs',
     ogImage: 'https://s21.ax1x.com/2024/07/01/pkcx1nx.png',
     lightAndDarkMode: true,
-    postPerPage: 5,
+    postPerPage: import.meta.env ? 4 : 5,
     webPrefix: '',
     githubAccount: 'CafeKiller',
     repoName: 'CafeKiller.github.io',

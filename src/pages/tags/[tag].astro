@@ -56,7 +56,8 @@ switch (tag) {
                 .map((post) => {
                     return (
                         <li>
-                            <a href={`/${post.collection}/${post.slug}`} >
+                            { post.data.draft ? <span class="tips">Draft</span> : '' }
+                            <a href={`/${post.collection}/${post.slug}`} title={post.data.draft ? '编辑中 - ' + post.data.title : post.data.title}>
                                 {post.data.title}
                                 <span></span>
                             </a>
@@ -133,6 +134,13 @@ switch (tag) {
                     margin-left: 4px;
                     font-size: 12px;
                     color: var(--fontcolor3);
+                }
+                .tips {
+                    padding: 0 6px;
+                    font-size: 14px;
+                    background-color: #af1724;
+                    border-radius: 2px;
+                    color: #eeeeee;
                 }
             }
         }
