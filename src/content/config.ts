@@ -8,6 +8,7 @@ const baseCollection = defineCollection({
     schema: z.object({
         title: z.string(), // 文章标题
         pubDate: z.date(), // 发布时间
+        updatedDate: z.date().optional(), // 最后更新时间
         description: z.string().optional(), // 文章描述
         author: z.string().default(SITE.author), // 文章作者
         featured: z.boolean().optional(), // 是否为推荐文章
