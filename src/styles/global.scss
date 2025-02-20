@@ -186,7 +186,7 @@ html {
                 padding: 30px 20px 20px;
                 position: relative;
                 width: 100%;
-                overflow-x: scroll;
+                overflow-x: auto;
                 box-sizing: border-box;
                 &::-webkit-scrollbar {
                     height: 6px;
@@ -322,7 +322,10 @@ html {
             }
         }
         .scroll-x {
-            overflow-x: scroll;
+            overflow-x: auto;
+            table {
+                margin: 10px auto 0;
+            }
             &::-webkit-scrollbar {
                 height: 4px;
                 width: 6px;
