@@ -21,7 +21,7 @@ const fillterTags = getUniqueTags(allPostArr)
         </nav>
 
         <main class="all-cont">
-            <BlogCardList posts={ allPostArr } client:only="react"/>
+            <BlogCardList posts={ allPostArr } postPerPage={ 7 } client:only="react"/>
         </main>
     </section>
 
@@ -30,7 +30,7 @@ const fillterTags = getUniqueTags(allPostArr)
 <style lang="scss">
     // Tags 页面样式
     .tags-cont {
-        padding: 0 20px 100px;
+        padding: 0 20px 60px;
         transition: all .3s ease;
         .title {
             font-size: 32px;

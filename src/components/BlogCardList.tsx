@@ -19,7 +19,7 @@ function getPosts(posts: compCollection[])
 // 博客文章集合 组件
 const id = 'blogs-list'
 
-const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
+const BlogCardList = ({ posts, postPerPage } : {posts: compCollection[], postPerPage: number}) => {
     
     const [mounted, setMounted] = React.useState(false)
     const [page, setPage] = React.useState("1")
@@ -37,7 +37,7 @@ const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
         if (page === "1") {
             const { totalPages, paginatedPosts } = getPagination({
                 posts: getPosts(posts), page: 1, isIndex: false
-            })
+            }, postPerPage)
             setCollection(paginatedPosts)
             setTotalPages(totalPages)
         }
@@ -54,7 +54,7 @@ const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
     }, [])
 
     React.useEffect(() => {
-        // console.log("BlogCardList.setPage ====>>  ");
+        // console.log("BlogCardList.setPage ====>>  " );
         if (page !== "1") {
             if (Number(page) > totalPages) {
                 setPage(totalPages.toString())
@@ -62,7 +62,7 @@ const BlogCardList = ({ posts } : {posts: compCollection[]}) => {
             }
             const { paginatedPosts } = getPagination({
                 posts: getPosts(posts), page: page, isIndex: false
-            })
+            }, postPerPage)
             setCollection(paginatedPosts)
             const _url = changeURLArg(window.location.href, 'page', page)
             window.history.pushState({}, '', _url)

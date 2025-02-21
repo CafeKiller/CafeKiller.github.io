@@ -27,3 +27,7 @@ pnpm-debug.log*
 /src/styles/*.css
 /src/styles/*.css.map
 !/src/styles/*.min.css
+
+/src/components/**/*.css
+/src/components/**/*.css.map
+!/src/components/**/*.min.css

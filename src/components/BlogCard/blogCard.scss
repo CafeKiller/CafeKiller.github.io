@@ -3,7 +3,7 @@
     display: block;
     .post-card {
         position: relative;
-        padding: 20px 0 40px;
+        padding: 20px 0 32px;
         width: 72%;
         transition: all .3s ease;
         &::before {
@@ -17,23 +17,28 @@
             transform: none;
             transition: width .35s ease;
         }
-        .time {
-            padding-left: 10px;
-            font-size: 16px;
-            line-height: 26px;
-            color: var(--black9);
-            border-left: 2px solid var(--black6);
-            transition: all .35s ease;
-        }
         .title {
-            padding: 8px 0;
+            position: relative;
+            padding: 4px 0;
+            padding-left: 0;
             font-weight: 600;
             font-size: 28px;
-            line-height: 38px;
+            line-height: 32px;
             color: var(--fontcolor1);
-            transition: color .35s ease;
+            transition: all .35s ease;
+            &::before {
+                content: '»';
+                position: absolute;
+                top: 50%;
+                left: -20px;
+                color: var(--fontcolor1);
+                transform: translateY(-50%);
+                opacity: 0;
+                transition: all .35s ease;
+            }
         }
         .description {
+            margin-bottom: 6px;
             word-break: break-all;
             font-size: 14px;
             line-height: 22px;
@@ -41,18 +46,83 @@
             color: var(--fontcolor3);
             transition: color .35s ease;
         }
+        .time {
+            padding-left: 10px;
+            font-size: 16px;
+            line-height: 26px;
+            color: var(--black9);
+            border-left: 2px solid var(--black9);
+            transition: all .35s ease;
+        }
+        .tags {
+            position: absolute;
+            bottom: 8px;
+            display: flex;
+            li {
+                margin-right: 16px;
+                font-size: 14px;
+                height: 20px;
+                line-height: 20px;
+                list-style: none;
+                color: var(--black9);
+                opacity: .9;
+                transition: all.35s ease;
+                span {
+                    margin-right: 2px;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: -4px;
+                width: 100%;
+                height: 1px;
+                background-color: #000000;
+                opacity: .08;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: -4px;
+                width: 0;
+                height: 1px;
+                background-color: var(--main-color);
+                opacity: .38;
+                z-index: 10;
+                transition: all.35s ease;
+            }
+        }
     }
     &:hover {
         .post-card {
             .title {
+                padding-left: 24px;
                 color: var(--main-color);
+                &::before {
+                    left: 0;
+                    opacity: 1;
+                    color: var(--main-color);
+                }
             }
             .description {
-                color:  var(--fontcolor2);
+                color:  var(--fontcolor1);
             }
             .time {
                 color: var(--black6);
-                border-left: 2px solid var(--black3);
+                border-left: 2px solid var(--black6);
+            }
+            .tags {
+                li {
+                    color: var(--main-color);
+                }
+                &::after {
+                    width: 100%;
+                }
             }
         }
         .post-card::before {

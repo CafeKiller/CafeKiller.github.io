@@ -6,13 +6,13 @@ import { allPostArr } from '@utils/astroUtils';
 
 <BaseLayout title="不来杯咖啡?">
 	<main>
-		<BlogCardList posts={ allPostArr } client:only="react"/>
+		<BlogCardList posts={ allPostArr } postPerPage={5} client:only="react"/>
 	</main>
 </BaseLayout>
 
 <style>
 	main {
-		padding: 0 0 100px;
+		padding: 0 0 60px;
 		min-height: calc(100vh - 420px);
 	}
 	@media screen and (max-width: 786px) {
