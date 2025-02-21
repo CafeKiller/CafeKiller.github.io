@@ -264,6 +264,9 @@ html {
             color: deepskyblue;
             margin: 0 6px;
             text-decoration: underline;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
         }
         blockquote {
             padding: 4px 10px;
