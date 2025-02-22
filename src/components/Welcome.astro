@@ -1,7 +1,7 @@
 ---
 import '@styles/global.min.css'
 ---
-
+<script src="/assets/js/iconfont.min.js" is:inline></script>
 <div class="welcome-cont">
     <h2 class="title">Oh! Welcome~</h2>
     <p class="desc">
@@ -10,12 +10,28 @@ import '@styles/global.min.css'
         正在努力成为一个有趣的人，同时妄想着成为一位合格的全栈开发者
     </p>
     <div class="me-links">
-
+        <span>联系我：</span>
+        <a href="mailto:zaiqiao2481@163.com" >
+            <svg class="icon icon-email" aria-hidden="true">
+                <use xlink:href="#icon-youjian"></use>
+            </svg>
+        </a>
+        <a href="//space.bilibili.com/248826433" target="_blank">
+            <svg class="icon icon-bilibili" aria-hidden="true">
+                <use xlink:href="#icon-bilibili"></use>
+            </svg>
+        </a>
+        <a href="//github.com/CafeKiller" target="_blank">
+            <svg class="icon icon-github" aria-hidden="true">
+                <use xlink:href="#icon-github"></use>
+            </svg>
+        </a>
     </div>
     <hr>
 </div>
 
 <style lang="scss">
+
     .welcome-cont {
         position: relative;
         .title {
@@ -35,14 +51,30 @@ import '@styles/global.min.css'
             transition: all .35s ease;
         }
         .me-links {
+            display: flex;
+            align-items: center;
             margin-top: 18px;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.6;
             letter-spacing: 1px;
-            color: var(--fontcolor2)
+            color: var(--fontcolor2);
+            .icon {
+                margin-right: 12px;
+                font-size: 20px;    
+                color: var(--fontcolor1);
+                transform: rotateZ(0deg);
+                transition: all .15s ease;
+                filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(324deg) brightness(96%) contrast(104%);
+                opacity: 1;
+                &:hover {
+                    transform: rotateZ(18deg);
+                    filter: invert(27%) sepia(48%) saturate(1436%) hue-rotate(353deg) brightness(94%) contrast(90%);
+                    opacity: .88;
+                }    
+            }
         }
         hr {
-            margin: 32px auto 64px;
+            margin: 32px auto 0;
             width: 100%;
             opacity: .15;
         }

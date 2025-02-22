@@ -148,10 +148,14 @@
 @media screen and (max-width: 786px) {
     .post-card-box {
         .post-card {
+            margin-bottom: 26px;
             padding: 20px 0 40px;
             width: 100%;
             &::before {
                 display: none;
+            }
+            &::after {
+                width: 110%;
             }
             .tags {
                 bottom: 12px;

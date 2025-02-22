@@ -7,6 +7,13 @@ button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
 td,th,ul,ol{padding:0}
 
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
 @font-face {
     font-family: "FiraCodeR";
     src: url("//fastly.jsdelivr.net/gh/cafekiller/cafe.cdn/lib/fonts/FiraCode-Regular.ttf");
@@ -351,7 +358,7 @@ html {
 
 .base-main {
     .blogs-list {
-        min-height: calc(100vh - 680px) !important;
+        min-height: calc(100vh - 780px) !important;
     }
 }
 

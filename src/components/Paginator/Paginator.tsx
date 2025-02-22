@@ -34,13 +34,15 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
         
         // 滚动回页面顶部
         const targetElem = document.querySelector("#blogs-list") as HTMLElement;
-        if (targetElem) {
-            window.scrollTo({
-                top: targetElem.offsetTop - 200,
-                behavior: 'smooth',
-            })
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+        if (window.scrollY > 0) {
+            if (targetElem) {
+                window.scrollTo({
+                    top: targetElem.offsetTop - 200,
+                    behavior: 'smooth',
+                })
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
         }
     }
 

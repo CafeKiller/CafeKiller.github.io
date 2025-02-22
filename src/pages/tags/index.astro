@@ -23,7 +23,7 @@ const fillterTags = getUniqueTags(allPostArr)
         <main class="all-cont">
             <BlogCardList 
                 posts={ allPostArr.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime()) } 
-                postPerPage={ 7 } 
+                postPerPage={ 10 } 
                 client:only="react"/>
         </main>
     </section>
@@ -33,7 +33,7 @@ const fillterTags = getUniqueTags(allPostArr)
 <style lang="scss">
     // Tags 页面样式
     .tags-cont {
-        padding: 0 20px 60px;
+        padding: 0 6px 60px;
         transition: all .3s ease;
         .title {
             font-size: 32px;

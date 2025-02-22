@@ -15,8 +15,7 @@ export const getPageNumbers = (numberOfPosts: number, postPerPage: number) => {
 
 
 export const getPagination = <T>({ posts, page, isIndex=false}: GetPaginationProps<T[]>, postPerPage: number = SITE.postPerPage) => {
-    console.log(postPerPage);
-    
+    // console.log(postPerPage);
     const totalPagesArray = getPageNumbers( posts.length, postPerPage)
     const totalPages = totalPagesArray.length
     const currentPage = isIndex 
