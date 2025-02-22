@@ -28,6 +28,7 @@ html, body {
     scroll-behavior: smooth;
 }
 body { 
+    min-width: 360px;
     background-color: var(--body-bgcolor);
     scroll-behavior: smooth;
     padding-top: 60px; 
@@ -345,9 +346,14 @@ html {
     padding-bottom: 40px;
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 420px);
+    // min-height: calc(100vh - 420px);
 }
 
+.base-main {
+    .blogs-list {
+        min-height: calc(100vh - 680px) !important;
+    }
+}
 
 // 移动端or小屏适配
 @media screen and (max-width: 786px) {

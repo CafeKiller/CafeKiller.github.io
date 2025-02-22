@@ -12,8 +12,7 @@ import type { compCollection } from '@type/common'
 
 function getPosts(posts: compCollection[])
     : (CollectionEntry<'posts'>|CollectionEntry<'articles'>)[] {
-        return posts.filter(md => md.data.class === '技术')
-				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
+        return posts.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime())
 }
 
 // 博客文章集合 组件
@@ -23,7 +22,7 @@ const BlogCardList = ({ posts, postPerPage } : {posts: compCollection[], postPer
     
     const [mounted, setMounted] = React.useState(false)
     const [page, setPage] = React.useState("1")
-    const [collection, setCollection] = React.useState(getPosts(posts))
+    const [collection, setCollection] = React.useState(posts)
     const [totalPages, setTotalPages] = React.useState(1)
     
     React.useEffect(() => {
@@ -36,7 +35,7 @@ const BlogCardList = ({ posts, postPerPage } : {posts: compCollection[], postPer
 
         if (page === "1") {
             const { totalPages, paginatedPosts } = getPagination({
-                posts: getPosts(posts), page: 1, isIndex: false
+                posts: posts, page: 1, isIndex: false
             }, postPerPage)
             setCollection(paginatedPosts)
             setTotalPages(totalPages)
@@ -61,7 +60,7 @@ const BlogCardList = ({ posts, postPerPage } : {posts: compCollection[], postPer
                 return 
             }
             const { paginatedPosts } = getPagination({
-                posts: getPosts(posts), page: page, isIndex: false
+                posts: posts, page: page, isIndex: false
             }, postPerPage)
             setCollection(paginatedPosts)
             const _url = changeURLArg(window.location.href, 'page', page)

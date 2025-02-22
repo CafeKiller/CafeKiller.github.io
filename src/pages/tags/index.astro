@@ -21,7 +21,10 @@ const fillterTags = getUniqueTags(allPostArr)
         </nav>
 
         <main class="all-cont">
-            <BlogCardList posts={ allPostArr } postPerPage={ 7 } client:only="react"/>
+            <BlogCardList 
+                posts={ allPostArr.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime()) } 
+                postPerPage={ 7 } 
+                client:only="react"/>
         </main>
     </section>
 

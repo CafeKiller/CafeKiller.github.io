@@ -19,7 +19,7 @@ const BlogCard = ({post}: {post: CollectionEntry<'posts'> | CollectionEntry<'art
         
         const _desc = post.body.replace(/\s*/g,"")
                     .replace(/(\*\*|__|\$\$|\$\)|`|~~|==|{|}|##+|#+|==+|>+|-+|\\(|\\)|\\[|\\]|\\{|\\})/g,"")
-                    .slice(0,71)
+                    .slice(0,121)
         setDesc(_desc)
 
         // const borderLen = (Math.random() * (77-33)+33).toFixed(2)
@@ -32,17 +32,17 @@ const BlogCard = ({post}: {post: CollectionEntry<'posts'> | CollectionEntry<'art
             href={`/${post.collection}/${post.slug}`} >
             <div className="post-card">
                 <span className="time">{ formatDate( post.data.pubDate ).slice(0,10) }</span>
-                <h1 className="title">{ post.data.title }</h1>
+                <h2 className="title">{ post.data.title }</h2>
                 <p className="description">
                     { desc + '......'}
                 </p>
-                {/* <ul className="tags">
+                <ul className="tags">
                     {
                         post.data.tags.map((tag, index) => {
                             return <li key={index}><span>#</span>{tag}</li>
                         })
                     }
-                </ul> */}
+                </ul>
             </div>
         </a>
     )

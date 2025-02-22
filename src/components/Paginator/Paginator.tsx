@@ -30,9 +30,18 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
             setCurrentPage(page.toString())
             document.dispatchEvent(urlChangeEvent({page : page}));
         }
-
-        window.history.pushState({}, '', _url)
+        window.history.pushState({}, '', _url);
         
+        // 滚动回页面顶部
+        const targetElem = document.querySelector("#blogs-list") as HTMLElement;
+        if (targetElem) {
+            window.scrollTo({
+                top: targetElem.offsetTop - 200,
+                behavior: 'smooth',
+            })
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
     }
 
     React.useEffect(() => {

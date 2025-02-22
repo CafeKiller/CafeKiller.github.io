@@ -1,12 +1,22 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCardList from "../components/BlogCardList"
+import Welcome from "../components/Welcome.astro"
 import { allPostArr } from '@utils/astroUtils';
 ---
 
 <BaseLayout title="不来杯咖啡?">
-	<main>
-		<BlogCardList posts={ allPostArr } postPerPage={5} client:only="react"/>
+	<main class="base-main">
+		<Welcome />
+		<h2 class="sub-title">推荐文章</h2>
+		<BlogCardList 
+			posts={ 
+				allPostArr
+				.filter(p => p.data.class === '技术')
+				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime()) 
+			} 
+			postPerPage={ 2 } 
+			client:only="react"/>
 	</main>
 </BaseLayout>
 
@@ -15,9 +25,18 @@ import { allPostArr } from '@utils/astroUtils';
 		padding: 0 0 60px;
 		min-height: calc(100vh - 420px);
 	}
+	.sub-title {
+		margin-bottom: 8px;
+		font-size: 32px;
+		color: var(--fontcolor1);
+	}
 	@media screen and (max-width: 786px) {
 		main {
-			padding: 0 10px 60px;
+			padding: 0 4px 60px;
+		}
+		.sub-title {
+			font-size: 28px;
+			color: var(--fontcolor1);
 		}
 	}
 </style>

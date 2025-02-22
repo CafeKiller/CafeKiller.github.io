@@ -2,6 +2,65 @@
 import '@styles/global.min.css'
 ---
 
-<style lang="scss">
+<div class="welcome-cont">
+    <h2 class="title">Oh! Welcome~</h2>
+    <p class="desc">
+        白日梦想家「Cafe Killer」的博客小站<br>
+        没事喜欢写点代码、玩玩游戏、还有就是看一些有趣的故事<br>
+        正在努力成为一个有趣的人，同时妄想着成为一位合格的全栈开发者
+    </p>
+    <div class="me-links">
 
+    </div>
+    <hr>
+</div>
+
+<style lang="scss">
+    .welcome-cont {
+        position: relative;
+        .title {
+            font-family: "FiraCodeR";
+            font-size: 38px;
+            line-height: 1;
+            letter-spacing: 4px;
+            color: var(--fontcolor1);
+            transition: all .35s ease;
+        }
+        .desc {
+            margin-top: 18px;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            color: var(--fontcolor2);
+            transition: all .35s ease;
+        }
+        .me-links {
+            margin-top: 18px;
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            color: var(--fontcolor2)
+        }
+        hr {
+            margin: 32px auto 64px;
+            width: 100%;
+            opacity: .15;
+        }
+    }
+
+    @media screen and (max-width: 786px) {
+		.welcome-cont {
+            .title {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+            .desc {
+                margin-top: 18px;
+                font-size: 14px;
+                line-height: 1.6;
+                letter-spacing: 1px;
+                color: var(--fontcolor2)
+            }
+        }
+	}
 </style>
