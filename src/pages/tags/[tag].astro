@@ -6,6 +6,7 @@ import { allPostArr } from '@utils/astroUtils'
 import { getCollection, type CollectionEntry } from "astro:content"
 
 import '@styles/global.min.css'
+import BlogCardList from '@components/BlogCardList'
 
 export interface Props {
     posts: CollectionEntry<'posts'>[] | CollectionEntry<"articles">[];
@@ -32,25 +33,13 @@ let { tag } = Astro.params
 let { posts } = Astro.props 
 let title = `与「 ${ tag } 」相关的文章`
 
-switch (tag) {
-    case 'posts':
-        posts = await getCollection('posts')
-        tag = '技术博客'
-        title = `「 技术博客 」类的全部文章`
-        break
-    case 'articles':
-        posts = await getCollection('articles')
-        tag = '各类杂谈'
-        title = `「 各类杂谈 」类的全部文章`
-        break
-}
 ---
 <BaseLayout title={ tag }>
     <main class='filter-cont'>
-        <h1 class='title'>{ title }</h1>
+        <h2 class='title'>{ title }</h2>
         <ul class='filter-list'>
             <!-- 渲染 过滤后的文章集合 信息 -->
-            { 
+            <!-- { 
                 posts
                 .sort((p1, p2) => Number(p2.data.pubDate.getTime()) - Number(p1.data.pubDate.getTime()))
                 .map((post) => {
@@ -65,14 +54,18 @@ switch (tag) {
                         </li>
                     )
                 })
-            }
+            } -->
+            <BlogCardList 
+                posts={ posts.sort((p1, p2) => Number(p2.data.pubDate.getTime()) - Number(p1.data.pubDate.getTime())) } 
+                postPerPage={ 8 } 
+                client:only/>    
         </ul>
     </main>
 </BaseLayout>
 
 <style lang="scss">
     .filter-cont {
-        padding: 20px 30px 40px;
+        padding: 20px 0 40px;
         .title {
             font-weight: 400;
             font-size: 28px;
@@ -84,13 +77,13 @@ switch (tag) {
             li {
                 position: relative;
                 list-style: none;
-                padding-left: 48px;
+                padding-left: 28px;
                 margin-bottom: 10px;
                 &::before {
                     content: "";
                     position: absolute;
                     top: 15px;
-                    left: 24px;
+                    left: 4px;
                     width: 8px;
                     height: 8px;
                     background-color: var(--fontcolor2);

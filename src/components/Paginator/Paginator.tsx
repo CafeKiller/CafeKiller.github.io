@@ -37,7 +37,7 @@ const Paginator = ({totalPages } : { totalPages: number }) => {
         if (window.scrollY > 0) {
             if (targetElem) {
                 window.scrollTo({
-                    top: targetElem.offsetTop - 200,
+                    top: targetElem.offsetTop - 100,
                     behavior: 'smooth',
                 })
             } else {
