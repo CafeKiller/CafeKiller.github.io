@@ -28,3 +28,9 @@ export interface GetPaginationProps<T> {
     page: number | string 
     isIndex?: boolean 
 }
+
+export type imageType = {
+    src: string,
+    title: string,
+    desc: string, 
+}

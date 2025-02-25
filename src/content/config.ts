@@ -34,6 +34,11 @@ const noteCollection = defineCollection({
             alt: z.string(),
         }).optional(), // 封面图片
         tags: z.array(z.string()), // 相关标签
+        images: z.array(z.object({
+            src: z.string().optional(),
+            title: z.string().optional(),
+            desc: z.string().optional(),
+        })).optional(), // 相关图片
     })
 })
 
