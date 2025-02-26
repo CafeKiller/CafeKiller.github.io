@@ -1,22 +1,63 @@
 // BlogCard TSX 组件
 .swiper-cont {
+    margin: 0 auto 0;
     position: relative;
-    width: 80%;
+    width: 94%;
     .swiper-imgbox {
         width: 100%;
+        font-size: 0;
         img {
             width: 100%;
+            height: 800px;
             object-fit: cover;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            filter: blur(0.3px);
+            transition: all .25s ease;
         }
     }
     .image-title {
         position: relative;
         width: 100%;
-        font-size: 20px;
-        height: 40px;
-        line-height: 40px;
+        font-size: 16px;
+        height: 60px;
+        line-height: 60px;
         text-align: center;
-        background-color: var(--body-bgcolor);
+        background-color: var(--fontcolor4);
+    }
+    .swiper-btn {
+        padding: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+        background-color: var(--main-color);
+        color: #ffffff;
+        border: none;
+        transition: all .25s ease;
+        &.prve {
+            left: 0;
+        }
+        &.next {
+            right: 0;
+        }
+    }
+    .tips {
+        position: absolute;
+        left: -26px;
+        top: 0;
+        font-size: 18px;
+        color: var(--fontcolor1);
+        letter-spacing: 2px;
+        writing-mode: vertical-rl;
+        -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+        transition: all .25s ease;
     }
 }
 
@@ -25,5 +66,25 @@
     .swiper-cont {
         position: relative;
         width: 95%;
+        .swiper-imgbox {
+            width: 100%;
+            font-size: 0;
+            img {
+                height: 480px;
+            }
+        }
+        .image-title {
+            height: 40px;
+            line-height: 40px;
+        }
+        .swiper-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+        .tips {
+            left: -24px;
+            font-size: 14px;
+        }
     }
 }

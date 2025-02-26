@@ -26,48 +26,11 @@ const imageList: imageType[] = Astro.props.frontmatter.images || [];
             <slot />
         </section>
 
-        <ImageSwiper images={imageList} />
+        <ImageSwiper images={imageList} client:only/>
     
-        <!-- <section class="md-footer">
-            <div class="md-footer-cont">
-                <div>
-                    归类于
-                    {
-                        frontmatter.tags.map((tag:string) => {
-                            return (<a href={'/tags/' + tag} target="_blank">{ tag }</a>)
-                        })
-                    }
-                    相关
-                </div>
-            </div>
-        </section> -->
     </div>
 
 </BaseLayout>
-
-<script>
-    type ImgItem = {
-        src: string,
-        title: string,
-        desc: string, 
-    }
-    const allImg = document.querySelectorAll('img-item')
-    const imageList:ImgItem[] = [];
-    allImg.forEach((item) => {
-        const imgItem: ImgItem  = {} as ImgItem;
-        imgItem.src = item.getAttribute('data-src') || "";
-        imgItem.title = item.getAttribute('data-title') || "";
-        imgItem.desc = item.getAttribute('data-desc') || "";
-        imageList.push(imgItem);
-    })
-    const newEl = document.createElement('ImageSwiper');
-    newEl.setAttribute('imageList', JSON.stringify(imageList));
-    newEl.setAttribute('client:only', 'react');
-    console.log(newEl);
-    
-    document.querySelector('.md-wrapper')?.appendChild(newEl);
-
-</script>
 
 <style lang="scss">
     // markdown 布局样式
