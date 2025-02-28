@@ -1,13 +1,13 @@
 import { getCollection } from "astro:content";
 
-import { PostEnum, type compCollection, type navType, type tagType, type yearType } from "@type/common";
+import { PostEnum, type allCollection, type compCollection, type navType, type tagType, type yearType } from "@type/common";
 import { formatDate } from "./commonUtil";
 
 
 /**
  * @description 文章过滤器, 过滤掉草稿和未发布的文章
  * */
-export const postFilter = ( {data}: compCollection) => {
+export const postFilter = ( {data}: allCollection) => {
     const isPublishTimePassed = Date.now() > new Date(data.pubDate).getTime()
     return !data.draft && (import.meta.env.DEV || isPublishTimePassed)
 }
@@ -23,15 +23,30 @@ export const queryAllPost = async () => {
                  .filter(postFilter)
 }
 
+export const queryAllMarkdown = async () => {
+	let _array: allCollection[] = []
+	
+	return _array.concat(await getCollection('posts'))
+				 .concat(await getCollection('articles'))
+                 .concat(await getCollection('notes'))
+                 .filter(postFilter)
+}
+
 /**
  * @description 文章数组
  * */ 
 export const allPostArr: compCollection[] = await queryAllPost();
 
+
+/**
+ * @description 全部 Markdown 文档数组
+ * */ 
+export const allMarkdownArr: allCollection[] = await queryAllMarkdown();
+
 /**
  * @description 文章年份数组
  * */ 
-const years: Array<number> = [...new Set(allPostArr.map((post) => parseInt(formatDate(post.data.pubDate).slice(0,4))).flat())]
+const years: Array<number> = [...new Set(allMarkdownArr.map((post) => parseInt(formatDate(post.data.pubDate).slice(0,4))).flat())]
                             .sort((yearBefore, yearAfter) => yearAfter - yearBefore)
 
 /**
@@ -42,7 +57,7 @@ export const createYearHistories = () : yearType => {
     const _obj: yearType = {}
     years.forEach((year) => {        
         const _arr: Array<navType> = []
-        allPostArr.forEach((post) => {
+        allMarkdownArr.forEach((post) => {
             if (formatDate(post.data.pubDate).slice(0,4) === year.toString()) {
                 _arr.push({
                     url: `/${post.collection}/${post.slug}`,

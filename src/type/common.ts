@@ -2,6 +2,8 @@ import type { CollectionEntry } from "astro:content";
 
 export type compCollection = CollectionEntry<'posts'> | CollectionEntry<'articles'>
 
+export type allCollection = compCollection | CollectionEntry<'notes'>
+
 export enum PostEnum {
     POSTS = '技术',
     ARTICLES = '杂谈',
