@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import NotesCard from '@components/NotesCard.astro';
+
+import { getCollection } from 'astro:content';
+
+const notes = await getCollection('notes');
+
+const noteContens = await Promise.all(
+    notes
+    .sort((n1, n2) => n2.data.pubDate.valueOf() - n1.data.pubDate.valueOf())
+    .map(async (note) => {
+        const { Content } = await note.render();
+        return {
+            Content,
+            frontmatter: note.data,
+        };
+    })
+);
+---
+<BaseLayout title='随手记'>
+    <div class="note-card-list" style="padding-bottom: 40px;">
+        {noteContens.map(({ Content, frontmatter }, idx) => (
+            <NotesCard frontmatter={frontmatter}>
+                <Content key={idx} />
+            </NotesCard>
+        ))}
+    </div>
+</BaseLayout>

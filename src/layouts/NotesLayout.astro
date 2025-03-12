@@ -8,6 +8,7 @@ import type { imageType } from "@type/common"
 
 import '@styles/global.min.css'
 import '@styles/notes.min.css'
+import Comments from "@components/Comment"
 
 const { frontmatter } = Astro.props
 const imageList: imageType[] = Astro.props.frontmatter.images || [];
@@ -27,6 +28,10 @@ const imageList: imageType[] = Astro.props.frontmatter.images || [];
         </section>
 
         <ImageSwiper images={imageList} client:only/>
+
+        <div class="md-comment">
+            <Comments client:only="react" />
+        </div>
     
     </div>
 
@@ -131,6 +136,10 @@ const imageList: imageType[] = Astro.props.frontmatter.images || [];
             }
 
         }
+    }
+
+    .md-comment {
+        padding: 40px 0 0;
     }
     
     html.dark {

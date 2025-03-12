@@ -34,3 +34,8 @@ export const GISCUS_CONF : Giscus_Type = {
     showTopReactions: "0",
     lang: "zh-CN",
 }
+
+export enum IMAGE_CDN_PREFIX {
+    JSD = '//testingcf.jsdelivr.net/gh/cafekiller/cafe.cdn',
+    QNiu = '',
+}

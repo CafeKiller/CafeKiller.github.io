@@ -1,0 +1,128 @@
+---
+import { formatDate } from '@utils/commonUtil'
+
+import type { imageType } from "@type/common"
+
+import '@styles/global.min.css'
+import '@styles/notes.min.css'
+
+const { frontmatter } = Astro.props
+const imageList: imageType[] = Astro.props.frontmatter.images || [];
+---
+<div class="md-wrapper">
+    <section class="md-header">
+        <h1 class="md-title"> {frontmatter.title}</h1>
+        <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
+        { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
+    </section>
+    
+    <section class="md-content">
+        <slot />
+    </section>
+</div>
+
+<style lang="scss">
+    // markdown 布局样式
+    .md-wrapper {
+        position: relative;
+        padding: 30px 0 30px;
+        .md-header {
+            .md-title {
+                font-weight: 400;
+                font-size: 32px;
+                color: var(--fontcolor1);
+                text-shadow: 2px 2px 0 rgba(0, 0, 0, .15);
+            }
+            .md-time {
+                margin-top: 20px;
+                position: relative;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                letter-spacing: 1px;
+                color: var(--fontcolor3);
+            }
+        }
+        .md-content {
+            padding: 0;
+            p {
+                text-indent: 32px;
+            }
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: var(--main-color);
+            z-index: 0;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all .35s ease-in;
+            pointer-events: none;
+        }
+        &:hover {
+            &::before {
+                width: 108%;
+                height: 100%;
+                opacity: 0.1;
+            }
+        }
+    }
+    
+    html.dark {
+        .md-wrapper {
+            .bottom-contr {
+                .to-top {
+                    .icon {
+                        filter: invert(100%) sepia(7%) saturate(571%) hue-rotate(1deg) brightness(116%) contrast(87%);
+                    }
+                }
+            }
+        }
+    }
+
+
+    // 移动端or小屏适配
+    @media screen and (max-width: 786px) {
+        .md-wrapper {
+            padding: 0 4px 90px;
+            .md-header {
+                padding: 0 6px;
+                .md-time {
+                    &::before {
+                        left: -22vw;
+                        width: 20vw;
+                    }
+                    &::after {
+                        right: -22vw;
+                        width: 20vw;
+                    }
+                }
+            }
+            .md-footer {
+                padding: 0 6px 0;
+                .md-footer-cont {
+                    padding: 10px 16px 10px;
+                    flex-direction: column;  
+                    div {
+                        line-height: 28px;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        .md-wrapper {
+            .bottom-contr {
+                .bottom-catalogs {
+                    order: 1;
+                    opacity: 0 !important;
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+</style>
