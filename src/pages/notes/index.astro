@@ -21,7 +21,7 @@ const noteContens = await Promise.all(
 <BaseLayout title='随手记'>
     <div class="note-card-list" style="padding-bottom: 40px;">
         {noteContens.map(({ Content, frontmatter }, idx) => (
-            <NotesCard frontmatter={frontmatter}>
+            <NotesCard frontmatter={frontmatter} url={notes[idx].slug}>
                 <Content key={idx} />
             </NotesCard>
         ))}
