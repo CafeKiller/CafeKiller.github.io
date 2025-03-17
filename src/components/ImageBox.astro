@@ -14,33 +14,17 @@ const {images, options } = Astro.props
         `gap: ${options.gap}px;`
     }>
     {
-        images.length === 1 ? (
-            images.map((image, idx) => (
+        images.map((image, idx) => {
+            const divisor = (images.length === 1) ? 1.4 : 
+                          (images.length === 2) ? 2 : 3;
+            return (
                 <div class="image-item"
-                    style={ `width: ${options.width / 1.4}px; height: ${options.height / 1.4}px;` }
-                    onclick={`window.open(${image.src}, '_blank')`}>
+                    style={`width: ${options.width / divisor}px; height: ${options.height / divisor}px;`}
+                    onclick={`window.open('${image.src}', '_blank')`}>
                     <img src={image.src} alt={image.title} />
                 </div>
-            ))
-        ) : (
-            images.length === 2 ? (
-                images.map((image, idx) => (
-                    <div class="image-item"
-                        style={`width: ${options.width / 2}px; height: ${options.height / 2}px;`}
-                        onclick={`window.open(${image.src}, '_blank')`}>
-                        <img src={image.src} alt={image.title} />
-                    </div>
-                ))
-            ) : (
-                images.map((image, idx) => (
-                    <div class="image-item"
-                        style={`width: ${options.width / 3}px; height: ${options.height / 3}px;`}
-                        onclick={`window.open(${image.src}, '_blank')`}>
-                        <img src={image.src} alt={image.title} />
-                    </div>
-                ))
             )
-        ) 
+        })
     }
 </section>
 
