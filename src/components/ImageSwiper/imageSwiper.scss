@@ -18,7 +18,7 @@
             transition: all .25s ease;
         }
         .image-desc {
-            padding: 8px 4px;
+            padding: 4px 8px;
             position: absolute;
             width: 100%;
             left: 0;
@@ -28,6 +28,7 @@
             background-color: rgba(0, 0, 0, 0.3);
             box-sizing: border-box;
             vertical-align: middle;
+            transition: all .3s ease;
             span:first-child {
                 margin-right: 5px;
                 color: var(--main-color);
@@ -44,6 +45,10 @@
         text-align: center;
         color: var(--fontcolor1);
         background-color: var(--body-bgcolor);
+        span {
+            font-size: 12px;
+            opacity: .5;
+        }
     }
     .swiper-btn {
         padding: 0;

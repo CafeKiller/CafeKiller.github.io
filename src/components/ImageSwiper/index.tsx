@@ -31,10 +31,16 @@ const ImageSwiper = ({images} : { images: imageType[] }) => {
                     <p className="image-desc">{ images[currentIdx]?.desc }</p> 
                 </div>
                 <div className="image-title">
-                    { images[currentIdx]?.title }
+                    { images[currentIdx]?.title } { <span className='pageNum'>( {currentIdx+1} / {images.length} )</span> }  
                 </div>
-                <button className='swiper-btn prve' onClick={ () => { prveImage() } }> ← </button>
-                <button className='swiper-btn next' onClick={ () => { nextImage() } }> → </button>
+                <button 
+                    className='swiper-btn prve' 
+                    style={{display: images.length == 1? 'none' : 'block'}}
+                    onClick={ () => { prveImage() } }> ← </button>
+                <button 
+                    className='swiper-btn next' 
+                    style={{display: images.length == 1? 'none' : 'block'}}
+                    onClick={ () => { nextImage() } }> → </button>
             </div>
         )
         
