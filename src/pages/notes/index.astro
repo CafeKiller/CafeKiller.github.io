@@ -3,12 +3,14 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import NotesCard from '@components/NotesCard.astro';
 
 import { getCollection } from 'astro:content';
+import { postFilter } from '@utils/astroUtils';
 
 const notes = await getCollection('notes');
 
 const noteContens = await Promise.all(
     notes
     .sort((n1, n2) => n2.data.pubDate.valueOf() - n1.data.pubDate.valueOf())
+    .filter(postFilter)
     .map(async (note) => {
         const { Content } = await note.render();
         return {

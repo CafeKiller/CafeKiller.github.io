@@ -36,3 +36,9 @@ export type imageType = {
     title: string,
     desc: string, 
 }
+
+export type ImageBoxOpt = {
+    width: number,
+    height: number,
+    gap: number,
+}

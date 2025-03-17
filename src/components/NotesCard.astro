@@ -1,26 +1,32 @@
 ---
 import { formatDate } from '@utils/commonUtil'
 
-import type { imageType } from "@type/common"
+import type { imageType, ImageBoxOpt } from "@type/common"
 
 import '@styles/global.min.css'
 import '@styles/notes.min.css'
+import ImageBox from './ImageBox.astro'
 
 const { frontmatter, url } = Astro.props
 const imageList: imageType[] = Astro.props.frontmatter.images || [];
-console.log(url);
-
+const options: ImageBoxOpt = {
+   width: 360,
+   height: 360,
+   gap: 5,
+}
 ---
 <div class="md-wrapper">
     <section class="md-header">
-        <h1 class="md-title"> {frontmatter.title}</h1>
+        <h1 class="md-title" id={frontmatter.title}> {frontmatter.title}</h1>
         <br>
         <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
-        { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
     </section>
     
     <section class="md-content">
         <slot />
+        {
+            imageList.length? ( <ImageBox images={ imageList } options={ options } /> ) : ''
+        }
     </section>
 
     <section class="md-footer">
@@ -28,10 +34,11 @@ console.log(url);
             frontmatter.tags.map((tag: string) => (
                 <span># { tag }</span>
             ))
-            
         }
         {
-            <a href={`/notes/${url}`} class="go-note" target="_blank">前往话题 » </a>
+            frontmatter?.openComm ? (
+                <a href={`/notes/${url}`} class="go-note" target="_blank">前往话题 » </a>
+            ) : ''
         }
     </section>
 </div>
@@ -39,6 +46,7 @@ console.log(url);
 <style lang="scss">
     // markdown 布局样式
     .md-wrapper {
+        margin-bottom: 26px;
         position: relative;
         padding: 30px 0 30px;
         .md-header {
@@ -113,7 +121,7 @@ console.log(url);
             z-index: 0;
             opacity: 0;
             transform: translate(-50%, -50%);
-            transition: all .5s ease;
+            transition: all .25s ease;
             pointer-events: none;
         }
         &:hover {

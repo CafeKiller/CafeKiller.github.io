@@ -1,0 +1,70 @@
+---
+import type { ImageBoxOpt, imageType } from "@type/common"
+
+export interface Props {
+    images: imageType[];
+    options: ImageBoxOpt;
+}
+
+const {images, options } = Astro.props
+---
+<section class="image-box" 
+    style={
+        `max-width: ${options.width + (options.gap*3)}px;` + 
+        `gap: ${options.gap}px;`
+    }>
+    {
+        images.length === 1 ? (
+            images.map((image, idx) => (
+                <div class="image-item"
+                    style={ `width: ${options.width / 1.4}px; height: ${options.height / 1.4}px;` }
+                    onclick={`window.open(${image.src}, '_blank')`}>
+                    <img src={image.src} alt={image.title} />
+                </div>
+            ))
+        ) : (
+            images.length === 2 ? (
+                images.map((image, idx) => (
+                    <div class="image-item"
+                        style={`width: ${options.width / 2}px; height: ${options.height / 2}px;`}
+                        onclick={`window.open(${image.src}, '_blank')`}>
+                        <img src={image.src} alt={image.title} />
+                    </div>
+                ))
+            ) : (
+                images.map((image, idx) => (
+                    <div class="image-item"
+                        style={`width: ${options.width / 3}px; height: ${options.height / 3}px;`}
+                        onclick={`window.open(${image.src}, '_blank')`}>
+                        <img src={image.src} alt={image.title} />
+                    </div>
+                ))
+            )
+        ) 
+    }
+</section>
+
+<style lang="scss">
+    .image-box {
+        margin: 8px 0 20px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            img {
+                margin: 0 !important;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    @media screen and (max-width: 786px) {
+        .image-box {
+            zoom: 0.75;
+        }
+    }
+</style>

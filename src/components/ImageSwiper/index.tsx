@@ -27,9 +27,12 @@ const ImageSwiper = ({images} : { images: imageType[] }) => {
                     <img 
                         src={images[currentIdx]?.src} 
                         alt={images[currentIdx]?.title} 
-                        onClick={ () => { window.open(images[currentIdx]?.src, "_blank")} }/>
+                        onClick={ () => { window.open(images[currentIdx]?.src, "_blank")} }/>   
+                    <p className="image-desc">{ images[currentIdx]?.desc }</p> 
                 </div>
-                <div className="image-title">{ images[currentIdx]?.title }</div>
+                <div className="image-title">
+                    { images[currentIdx]?.title }
+                </div>
                 <button className='swiper-btn prve' onClick={ () => { prveImage() } }> ← </button>
                 <button className='swiper-btn next' onClick={ () => { nextImage() } }> → </button>
             </div>

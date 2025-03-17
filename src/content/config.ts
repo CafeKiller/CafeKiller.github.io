@@ -39,6 +39,7 @@ const noteCollection = defineCollection({
             title: z.string().optional(),
             desc: z.string().optional(),
         })).optional(), // 相关图片
+        openComm: z.boolean().default(true), // 是否开启评论
     })
 })
 
