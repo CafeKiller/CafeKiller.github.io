@@ -20,7 +20,7 @@ const imageList: imageType[] = Astro.props.frontmatter.images || [];
         <section class="md-header">
             <h1 class="md-title"> {frontmatter.title}</h1>
             <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
-            { frontmatter.image.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
+            { frontmatter.image?.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
         </section>
         
         <section class="md-content">
