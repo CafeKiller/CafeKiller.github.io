@@ -20,6 +20,11 @@ const breadcrumbListToUrl = (current: string) => {
 
     breadcrumbList.map((breadcrumb,index) => {        
         if(index <= _idx) {
+            // bugfix: 针对不同的 url 进行处理
+            if(breadcrumb === 'posts' || breadcrumb === 'articles') {
+                breadcrumb = 'blogs'
+            }
+            // bugfix
             _url += `/${breadcrumb}`
         }
     })

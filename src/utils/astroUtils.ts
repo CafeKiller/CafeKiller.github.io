@@ -46,7 +46,7 @@ export const allMarkdownArr: allCollection[] = await queryAllMarkdown();
 /**
  * @description 文章年份数组
  * */ 
-const years: Array<number> = [...new Set(allMarkdownArr.map((post) => parseInt(formatDate(post.data.pubDate).slice(0,4))).flat())]
+const years: Array<number> = [...new Set(allPostArr.map((post) => parseInt(formatDate(post.data.pubDate).slice(0,4))).flat())]
                             .sort((yearBefore, yearAfter) => yearAfter - yearBefore)
 
 /**
@@ -57,7 +57,7 @@ export const createYearHistories = () : yearType => {
     const _obj: yearType = {}
     years.forEach((year) => {        
         const _arr: Array<navType> = []
-        allMarkdownArr.forEach((post) => {
+        allPostArr.forEach((post) => {
             if (formatDate(post.data.pubDate).slice(0,4) === year.toString()) {
                 _arr.push({
                     url: `/${post.collection}/${post.slug}`,
