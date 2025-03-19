@@ -1,0 +1,51 @@
+---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+
+import NotesCard from '@components/NotesCard.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import { getCollection } from 'astro:content';
+
+import { postFilter } from '@utils/astroUtils';
+
+export async function getStaticPaths({ paginate } : { paginate: Function }) {
+    const notes = await getCollection('notes');
+
+    const noteContens = await Promise.all(
+        notes
+        .sort((n1, n2) => n2.data.pubDate.valueOf() - n1.data.pubDate.valueOf())
+        .filter(postFilter)
+        .map(async (note) => {
+            const { Content } = await note.render();
+            return {
+                Content,
+                frontmatter: note.data,
+                slug: note.slug,
+            };
+        })
+    );
+    const allNoteCont = noteContens;
+    // 返回所有条目的分页路径集合
+    return paginate(allNoteCont, { pageSize: 3 });
+}
+export interface Props {
+    page: {
+        data: Array<{
+            Content: AstroComponentFactory;
+            frontmatter: any;
+            slug: string;
+        }>
+    };
+}
+const { page } = Astro.props;
+console.log(page);
+---
+<BaseLayout title='随手记'>
+    <div class="note-card-list" style="padding-bottom: 40px;">
+        {page.data.map(({ Content, frontmatter, slug }, idx) => (
+            <NotesCard frontmatter={frontmatter} url={slug}>
+                <Content key={idx} />
+            </NotesCard>
+        ))}
+    </div>
+</BaseLayout>
