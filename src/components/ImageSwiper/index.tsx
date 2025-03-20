@@ -28,7 +28,11 @@ const ImageSwiper = ({images} : { images: imageType[] }) => {
                         src={images[currentIdx]?.src} 
                         alt={images[currentIdx]?.title} 
                         onClick={ () => { window.open(images[currentIdx]?.src, "_blank")} }/>   
-                    <p className="image-desc">{ images[currentIdx]?.desc }</p> 
+                    {
+                        images[currentIdx]?.desc 
+                        ? <p className="image-desc">{ images[currentIdx]?.desc }</p> 
+                        : ''
+                    }
                 </div>
                 <div className="image-title">
                     { images[currentIdx]?.title } { <span className='pageNum'>( {currentIdx+1} / {images.length} )</span> }  

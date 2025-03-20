@@ -15,7 +15,7 @@ const {images, options } = Astro.props
     }>
     {
         images.map((image, idx) => {
-            const divisor = (images.length === 1) ? 1.4 : 
+            const divisor = (images.length === 1) ? 1.6 : 
                           (images.length === 2) ? 2 : 3;
             return (
                 <div class="image-item"

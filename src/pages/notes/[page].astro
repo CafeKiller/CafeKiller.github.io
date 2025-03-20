@@ -7,6 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 import { postFilter } from '@utils/astroUtils';
+import NotePaginator from '@components/NotePaginator.astro';
 
 export async function getStaticPaths({ paginate } : { paginate: Function }) {
     const notes = await getCollection('notes');
@@ -26,26 +27,31 @@ export async function getStaticPaths({ paginate } : { paginate: Function }) {
     );
     const allNoteCont = noteContens;
     // 返回所有条目的分页路径集合
-    return paginate(allNoteCont, { pageSize: 3 });
+    return paginate(allNoteCont, { pageSize: 8 });
 }
+
 export interface Props {
     page: {
         data: Array<{
             Content: AstroComponentFactory;
             frontmatter: any;
             slug: string;
-        }>
+        }>,
+        currentPage: number,
+        lastPage: number,
     };
 }
+
 const { page } = Astro.props;
-console.log(page);
 ---
 <BaseLayout title='随手记'>
-    <div class="note-card-list" style="padding-bottom: 40px;">
+    <div class="note-card-list">
         {page.data.map(({ Content, frontmatter, slug }, idx) => (
             <NotesCard frontmatter={frontmatter} url={slug}>
                 <Content key={idx} />
             </NotesCard>
         ))}
     </div>
+    <NotePaginator currentPage={page.currentPage} lastPage={page.lastPage} />
 </BaseLayout>
+
