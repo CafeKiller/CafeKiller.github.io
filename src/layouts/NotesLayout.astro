@@ -4,14 +4,22 @@ import ImageSwiper from "@components/ImageSwiper"
 
 import { formatDate } from '@utils/commonUtil'
 
-import type { imageType } from "@type/common"
+import type { ImageBoxOpt, imageType } from "@type/common"
 
 import '@styles/global.min.css'
 import '@styles/notes.min.css'
 import Comments from "@components/Comment"
+import ImageBox from "@components/ImageBox.astro"
+import { GISCUS_CONF } from "@config"
 
 const { frontmatter } = Astro.props
 const imageList: imageType[] = Astro.props.frontmatter.images || [];
+
+const options: ImageBoxOpt = {
+   width: 360,
+   height: 360,
+   gap: 5,
+}
 ---
 <BaseLayout 
     title={frontmatter.title} 
@@ -27,10 +35,18 @@ const imageList: imageType[] = Astro.props.frontmatter.images || [];
             <slot />
         </section>
 
-        <ImageSwiper images={imageList} client:only/>
+        {
+            frontmatter.imgWrapper == 'SWIPER' 
+            ? (<ImageSwiper images={imageList} client:only/>)
+            : (<ImageBox images={imageList} options={ options } /> )
+        }
 
         <div class="md-comment">
-            <Comments client:only="react" />
+            {
+                frontmatter.openComm 
+                ? <Comments options={{ ...GISCUS_CONF, showTopReactions:"1" }} client:only="react" /> 
+                : ""
+            }
         </div>
     
     </div>

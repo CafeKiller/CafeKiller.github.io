@@ -40,6 +40,7 @@ const noteCollection = defineCollection({
             desc: z.string().optional(),
         })).optional(), // 相关图片
         openComm: z.boolean().default(true), // 是否开启评论
+        imgWrapper: z.enum(['BOX','SWIPER']).default('BOX'), // 图片展示方式
     })
 })
 

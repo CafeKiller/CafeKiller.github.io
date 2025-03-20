@@ -1,7 +1,7 @@
 import type { BooleanString, Repo } from "@giscus/react";
 import type { Site } from "@type/index";
 
-type Giscus_Type = {
+export type GiscusType = {
     repo: Repo,
     repoId: string,
     categoryId: string,
@@ -27,7 +27,7 @@ export const LOCALE = {
     langTag: ["zh-CN"],
 } as const
   
-export const GISCUS_CONF : Giscus_Type = {
+export const GISCUS_CONF : GiscusType = {
     repo: `${SITE.githubAccount}/${SITE.repoName}`,
     repoId: "R_kgDOMKfLMQ",
     categoryId: "DIC_kwDOMKfLMc4CgsOf",

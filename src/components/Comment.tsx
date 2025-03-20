@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Giscus from '@giscus/react'
-import { GISCUS_CONF } from '@config'
+import { GISCUS_CONF, type GiscusType } from '@config'
 
 // 评论组件
 const id = 'giscus-comment'
@@ -27,7 +27,7 @@ function sendMessage(message: Object) {
     iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
 }
 
-const Comments = () => {
+const Comments = ({ options } : { options?: GiscusType}) => {
     const [mounted, setMounted] = React.useState(false)
     const [theme, setTheme] = React.useState('light')
 
