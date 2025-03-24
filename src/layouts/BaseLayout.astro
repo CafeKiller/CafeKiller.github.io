@@ -89,6 +89,8 @@ const {
 <script>
 	import { themeValue } from '@utils/themeUtil'
 	import { iLog } from '@utils/iLogUtil'
+	import Qmsg from '@utils/messageUtil'
+	
 	
 	iLog.info("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
 	iLog.info("Copyright", "Coffee_Killer")	
@@ -104,9 +106,11 @@ const {
                 .then(() => {
                     // console.log('代码已复制到剪贴板');
                     iLog.success("SUCCESS", '代码已复制到剪贴板');
+					Qmsg.success("成功，代码已复制到剪贴板");
                 })
                 .catch(err => {
                     // console.error('无法复制代码: ', err);
+					Qmsg.error("无法正常复制代码，请手动复制");
 					iLog.error("ERROR", '无法复制代码', err);
                 });
         }
@@ -134,4 +138,12 @@ const {
         })
     }
     createCodeLanguageTag()
+
+	// 回到顶部
+	const toTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
 </script>

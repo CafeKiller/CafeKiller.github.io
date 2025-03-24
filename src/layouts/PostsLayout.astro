@@ -121,13 +121,6 @@ const { frontmatter , headings} = Astro.props
         }
     }
     document.addEventListener('scroll', updateToTopBtn)
-
-    const toTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
-    }
 </script>
 
 <style lang="scss">

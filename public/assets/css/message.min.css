@@ -38,3 +38,7 @@
     25%,75%{transform:translateX(-4px);opacity:.75}
     50%{transform:translateX(4px);opacity:.25}
 }
+
+/* ========= 2025_03_24 18:33:39 by CafeKiller ========= */
+.dark .qmsg .qmsg-item .qmsg-content { background-color: #24292e !important; }
+/* ========= 2025_03_24 18:33:39 by CafeKiller ========= */
