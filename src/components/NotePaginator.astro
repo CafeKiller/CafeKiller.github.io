@@ -8,8 +8,6 @@ export interface Props {
 
 const { currentPage, lastPage } = Astro.props;
 const pageArr = Array.from({length: lastPage}, (_, i) => i+1);
-console.log(pageArr);
-
 ---
 <div class="note-paginator" data-currentIdx={`${currentPage}`}>
     <p class="tips">页码:</p>

@@ -17,15 +17,21 @@ const options: ImageBoxOpt = {
 ---
 <div class="md-wrapper">
     <section class="md-header">
-        <h1 class="md-title" id={frontmatter.title}> {frontmatter.title}</h1>
+        { 
+            frontmatter.title != '' 
+            ? <h1 class="md-title" id={frontmatter.title}> {frontmatter.title}</h1> 
+            : '' 
+        }
         <br>
         <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
     </section>
     
     <section class="md-content">
         <slot />
-        {
-            imageList.length? ( <ImageBox images={ imageList } options={ options } /> ) : ''
+        { 
+            imageList.length 
+            ? ( <ImageBox images={ imageList } options={ options } /> ) 
+            : '' 
         }
     </section>
 
@@ -36,9 +42,9 @@ const options: ImageBoxOpt = {
             ))
         }
         {
-            frontmatter?.openComm ? (
-                <a href={`/notes/${url}`} class="go-note" target="_blank">前往话题 » </a>
-            ) : ''
+            frontmatter?.openComm 
+            ? (<a href={`/notes/${url}`} class="go-note" target="_blank">前往话题 » </a>) 
+            : ''
         }
     </section>
 </div>

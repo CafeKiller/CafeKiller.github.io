@@ -26,8 +26,8 @@ const options: ImageBoxOpt = {
     description={ frontmatter.description }>
     <div class="md-wrapper">
         <section class="md-header">
-            <h1 class="md-title"> {frontmatter.title}</h1>
-            <span class="md-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
+            { frontmatter.title != '' ? <h1 class="md-title">{frontmatter.title}</h1> : '' }
+            <span class="md-time">{ formatDate(frontmatter.pubDate) }</span>
             { frontmatter.image?.url ? <img src={frontmatter.image.url} height="150" alt={frontmatter.image.alt} /> : '' }
         </section>
         
@@ -67,7 +67,6 @@ const options: ImageBoxOpt = {
             justify-content: center;
             align-items: center;
             .md-time {
-                display: inline-block;
                 margin-top: 20px;
                 position: relative;
                 font-size: 16px;
@@ -76,24 +75,6 @@ const options: ImageBoxOpt = {
                 letter-spacing: 1px;
                 text-align: center;
                 color: var(--fontcolor3);
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: -16.4vw;
-                    top: 50%;
-                    height: 1px;
-                    width: 200px;
-                    background-color:var(--fontcolor4);
-                }
-                &::after {
-                    content: '';
-                    position: absolute;
-                    right: -16.4vw;
-                    top: 50%;
-                    height: 1px;
-                    width: 200px;
-                    background-color:var(--fontcolor4);
-                }
             }
             .md-title {
                 margin-top: 40px;

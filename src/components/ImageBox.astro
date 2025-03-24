@@ -49,12 +49,12 @@ const {images, options } = Astro.props
                 width: 100%;
                 height: 100%;
                 background: var(--bg);
-                background-size: 100% 100%;
-                -webkit-filter: blur(15px)  hue-rotate(360deg);
-                -moz-filter: blur(15px)  hue-rotate(360deg);
-                -o-filter: blur(15px)  hue-rotate(360deg);
-                -ms-filter: blur(15px)  hue-rotate(360deg);
-                filter: blur(15px)  hue-rotate(360deg);
+                background-size: contain;
+                -webkit-filter: blur(15px);
+                -moz-filter: blur(15px);
+                -o-filter: blur(15px);
+                -ms-filter: blur(15px);
+                filter: blur(15px);
                 z-index: 9;
             }
             img {
