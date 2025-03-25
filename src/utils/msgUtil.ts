@@ -10,7 +10,7 @@ type QMessageConfigType = {
     maxNums?: number;
 }
 
-type QMessageType = {
+export type QMessageType = {
     info(msg: string, config?: QMessageConfigType): void;
     warning(msg: string, config?: QMessageConfigType): void;
     error(msg: string, config?: QMessageConfigType): void;

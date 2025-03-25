@@ -68,7 +68,7 @@ const { frontmatter , headings} = Astro.props
 
         <!-- 文章侧边控制栏 -->
         <div class="bottom-contr">
-            <a href="javascript:toTop();" class="to-top">
+            <a href="javascript:void(0);" class="to-top">
                 <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4257" width="200" height="200">
                     <path d="M512.454303 298.931677l422.502218 424.319432-180.812777 0 0 300.748891-484.287489 0-0.908607-300.748891-178.086957 0zM994.924579 0l0 120.84472-965.849157 0 0-120.84472 965.849157 0z" p-id="4258" fill="#000000"></path>
                 </svg>
@@ -84,8 +84,7 @@ const { frontmatter , headings} = Astro.props
 </BaseLayout>
 
 
-<script is:inline>
-
+<script>
     const updateScrollProgress = () => {
         if (document) {
             const mdBar = document.getElementById("md-progress-bar")
@@ -101,8 +100,8 @@ const { frontmatter , headings} = Astro.props
 
     const createATagJump = () => {
         const cont = document.querySelector('.md-content')
-        const allATag = cont.querySelectorAll('a')
-        allATag.forEach( (aTag) => {
+        const allATag = cont?.querySelectorAll('a')
+        allATag?.forEach( (aTag) => {
             aTag.setAttribute('target', '_blank')
         })
     }
@@ -112,15 +111,24 @@ const { frontmatter , headings} = Astro.props
         const toTopBtn = document.querySelector('.to-top')
         if (toTopBtn) {
             if (document.documentElement.scrollTop > 500) {
-                document.querySelector('.to-top').classList.add('show')
-                document.querySelector('.bottom-catalogs').classList.add('show')
+                toTopBtn.classList.add('show')
+                document.querySelector('.bottom-catalogs')?.classList.add('show')
             } else {
-                document.querySelector('.to-top').classList.remove('show')
-                document.querySelector('.bottom-catalogs').classList.remove('show')
+                toTopBtn.classList.remove('show')
+                document.querySelector('.bottom-catalogs')?.classList.remove('show')
             }
         }
     }
     document.addEventListener('scroll', updateToTopBtn)
+
+    // 回到顶部
+	const toTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+    document.querySelector(".to-top")?.addEventListener("click", toTop);
 </script>
 
 <style lang="scss">
