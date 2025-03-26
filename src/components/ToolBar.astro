@@ -2,6 +2,7 @@
 import { SITE } from "@config";
 
 import "@styles/global.min.css"
+import { isPureInteger } from "@utils/commonUtil";
 
 const currentUrlPath = Astro.url.pathname.replace(/\/$/, "").replace(SITE.webPrefix, '')
 
@@ -13,6 +14,7 @@ const capitalizeFirstLetter = (str:string) => {
   }
   return str
 }
+
 const breadcrumbListToUrl = (current: string) => {
     const _idx = breadcrumbList.indexOf(current)
     let _url = `${SITE.webPrefix}`
@@ -24,6 +26,9 @@ const breadcrumbListToUrl = (current: string) => {
             if(breadcrumb === 'posts' || breadcrumb === 'articles') {
                 breadcrumb = 'blogs'
             }
+            // else if(isPureInteger(breadcrumb)) {
+            //     return;
+            // }
             // bugfix
             _url += `/${breadcrumb}`
         }

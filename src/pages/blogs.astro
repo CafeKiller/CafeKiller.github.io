@@ -16,7 +16,7 @@ const fillterPosts = createYearHistories()
 			Object.keys(fillterPosts).reverse().map((year: string) => {
 				return (
 					<section class="year-cont">
-						<h2 class="title">
+						<h2 class="title" id={`${ year }`}>
 							{ year.split("").map((item:string) => ( <span>{item}</span> )) }
 						</h2>
 						<nav class="nav-cont">
