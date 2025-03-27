@@ -41,14 +41,22 @@ const { frontmatter , headings} = Astro.props
             <!-- <p>Written by: {frontmatter.author}</p> -->
     
             <!-- <Catalogs  headings={ headings }/> -->
-            
+            { 
+                frontmatter.originals 
+                ? <em>原文链接: <a href={frontmatter.originals} target="_blank">{frontmatter.originals}</a></em> 
+                : '' 
+            }
         </section>
     
         <!-- 底部文章信息标注与统计 -->
         <section class="md-footer">
             <div class="md-footer-cont">
                 <div>
-                    <!-- Written by: {frontmatter.author} -->
+                    {
+                        frontmatter.originals 
+                        ? (`Collator by : ${frontmatter.author}`)
+                        : (`Written by : ${frontmatter.author}`) 
+                    }
                 </div>
                 <div>
                     归类于
@@ -260,7 +268,6 @@ const { frontmatter , headings} = Astro.props
                     }
                 }
             }
-
         }
 
         .bottom-contr {
