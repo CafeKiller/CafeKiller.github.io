@@ -148,5 +148,5 @@ export function formatDate(date: Date) : string {
 }
 
 export function isPureInteger(str: string): boolean {
-    return /^\d+$/.test(str);
+    return /^[-+]?\d+$/.test(str);
 }

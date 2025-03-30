@@ -102,20 +102,48 @@ const {
         const codeElement = event.target.closest('.astro-code').querySelector('code');
         if (codeElement) {
             const codeText = codeElement.innerText;
-            navigator.clipboard.writeText(codeText)
-                .then(() => {
-                    // console.log('代码已复制到剪贴板');
-					QMessage.success("成功，代码已复制到剪贴板", {
-						onClose: () => {
-							iLog.success("SUCCESS", `${new Date().toLocaleString("zh-CN", { hour12: false })} - 代码已复制到剪贴板`);
-						}
-					});
-                })
-                .catch(err => {
-                    // console.error('无法复制代码: ', err);
-					QMessage.error("无法正常复制代码，请手动复制");
-					iLog.error("ERROR", '无法复制代码', err);
-                });
+
+			const textarea = document.createElement('textarea');
+			textarea.value = codeText;
+			textarea.style.position = 'fixed';
+			textarea.style.left = '-9999px';
+			
+			// 添加到DOM
+			document.body.appendChild(textarea);
+
+			try {
+				// 选中并复制
+				textarea.select();
+				const success = document.execCommand('copy');
+				if (!success) {
+					if(!navigator.clipboard) {
+						QMessage.error("无法正常复制代码，请手动复制");
+						iLog.error("[WriteText] ERROR", "服务可能未部署在安全域名, navigator.clipboard 将为 undefined");
+					}
+					navigator.clipboard?.writeText(codeText)
+						.then(() => {
+							// console.log('代码已复制到剪贴板');
+							QMessage.success("成功，代码已复制到剪贴板");
+							iLog.success("[WriteText] SUCCESS", `代码已复制到剪贴板`);
+						})
+						.catch(err => {
+							QMessage.error("无法正常复制代码，请手动复制");
+							iLog.error("[WriteText] ERROR", err);
+						});
+				};
+
+				QMessage.success("成功，代码已复制到剪贴板");
+				iLog.success("[ExecCommand] SUCCESS", `代码已复制到剪贴板`);
+
+			} catch (err) {
+
+				QMessage.error("无法正常复制代码，请手动复制");
+				iLog.error("[ExecCommand] ERROR", err);
+				
+			} finally {
+				// 移除临时元素
+				document.body.removeChild(textarea);
+			}
         }
     }
 

@@ -1,12 +1,16 @@
 ---
 import { SITE } from "@config";
 
-import "@styles/global.min.css"
 import { isPureInteger } from "@utils/commonUtil";
+
+import "@styles/global.min.css"
 
 const currentUrlPath = Astro.url.pathname.replace(/\/$/, "").replace(SITE.webPrefix, '')
 
 const breadcrumbList = currentUrlPath.split('/').slice(1)
+
+console.log(currentUrlPath);
+
 
 const capitalizeFirstLetter = (str:string) => {
   if (str.length > 1) {
@@ -53,20 +57,21 @@ let windowObj;
         </li>
         {
             breadcrumbList.map((breadcrumb, index) => {
+                // if(isPureInteger(breadcrumb)) return
                 return index+1 === breadcrumbList.length 
                     ? (
                         <li>
-                            <a href={ breadcrumbListToUrl(breadcrumb)}>{ 
-                                capitalizeFirstLetter(decodeURIComponent(breadcrumb))
-                            }</a>
+                            <a href={ breadcrumbListToUrl(breadcrumb) }>
+                                { capitalizeFirstLetter(decodeURIComponent(breadcrumb)) }
+                                </a>
                             <span aria-hidden="true"></span>
                         </li>
                     ) 
                     : (
                         <li>
-                            <a href={breadcrumbListToUrl(breadcrumb)}>{ 
-                                 capitalizeFirstLetter(decodeURIComponent(breadcrumb))
-                            }</a>
+                            <a href={ isPureInteger(breadcrumb) ? "javascript:void(0);" : breadcrumbListToUrl(breadcrumb) }>
+                                { capitalizeFirstLetter(decodeURIComponent(breadcrumb)) }
+                            </a>
                             <span aria-hidden="true">&raquo;</span>
                         </li>
                     ) 
@@ -126,7 +131,6 @@ let windowObj;
             
         }
     }
-
     document.querySelector('#theme-btn')?.addEventListener('click', toggleThemeSvg)
 </script>
 
