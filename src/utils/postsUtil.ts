@@ -19,10 +19,10 @@ export const getPagination = <T>({ posts, page, isIndex=false}: GetPaginationPro
     const totalPagesArray = getPageNumbers( posts.length, postPerPage)
     const totalPages = totalPagesArray.length
     const currentPage = isIndex 
-                        ? 1 : 
+                        ? 1 : // 如果是索引页直接返回第1页
                         (page && !isNaN(Number(page)) && totalPagesArray.includes(Number(page))) 
-                            ? Number(page) 
-                            : 0
+                            ? Number(page)  // 当page参数有效时返回数字化的页码
+                            : 0 // 无效参数时返回0表示错误
 
     const lastPost = isIndex ? postPerPage : currentPage * postPerPage
     const startPost = isIndex ? 0 : lastPost - postPerPage

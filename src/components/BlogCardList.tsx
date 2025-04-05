@@ -83,7 +83,9 @@ const BlogCardList = ({ posts, postPerPage } : {posts: compCollection[], postPer
                     })
                 
             }
-            <Paginator totalPages={totalPages} />
+            {
+                totalPages != 1 &&  <Paginator totalPages={totalPages} />
+            }
         </div>
     )
 }
