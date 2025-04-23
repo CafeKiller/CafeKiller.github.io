@@ -1,4 +1,5 @@
 ---
+import { SITE } from '@config'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import '@styles/global.min.css'
 ---
@@ -19,7 +20,7 @@ import '@styles/global.min.css'
 			</div>
 
 			<div class="right">
-				<img src="//s21.ax1x.com/2024/07/01/pkcxQj1.jpg" alt="头像_熊猫">
+				<img src={`${ SITE.ogImage }`} alt="头像_熊猫">
 				<br>
 				<p>熊猫头像，来自广告 <br> —— <br>《never say no to panda》</p>
 			</div>
