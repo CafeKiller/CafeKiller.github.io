@@ -2,6 +2,7 @@
 import ToolBar from "@components/ToolBar.astro"
 
 import '@styles/global.min.css'
+import '@styles/tailwind.css'
 ---
 <section class="head-wrapper">
     <header class="header">
@@ -23,22 +24,14 @@ import '@styles/global.min.css'
 <style lang="scss">
     // Header 通用头部 组件样式
     .head-wrapper {
-        position: relative;
-        margin-bottom: 20px;
+        @apply relative mb-8 ;
         .header {
-            padding: 20px 0 44px;
-            margin: 0 auto 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
+            @apply w-full h-[60px] flex justify-between mx-auto mb-4;
             transition: all .3s ease;
             nav {
-                order: 2;
-                display: flex;
-                align-self: flex-end;
+                @apply flex order-2;
                 a {
-                    padding: 12px 30px;
+                    @apply flex w-24 justify-center items-center;
                     font-weight: 400;
                     font-family: 'PingFang SC', 'IBM Plex Sans', 'monospace';
                     font-size: 18px;
@@ -49,16 +42,13 @@ import '@styles/global.min.css'
                     &:hover {
                         color: var(--main-color);
                         text-decoration: none;
-                        background-color: #f2f3f5;
                         border-bottom: 3px solid var(--main-color);
                     }
+                    @apply hover:dark:bg-[#11111344] hover:bg-[#f2f3f5FF] ;
                 }
             }
             .header-title {
-                order: 1;
-                position: relative;
-                align-self: flex-end;
-                padding-right: 20px;
+                @apply relative self-center order-1;
                 .text {
                     font-family: 'FiraCodeR';
                     font-weight: 600;
@@ -90,43 +80,18 @@ import '@styles/global.min.css'
     @media screen and (max-width: 786px) {
         .head-wrapper {
             .header {
-                padding: 20px 0 40px;
-                flex-wrap: wrap;
                 height: auto;
+                @apply flex-wrap pt-8;
                 nav {
-                    margin-top: 52px;
-                    width: 100%;
-                    justify-content: center;
-                    order: 2;
+                    @apply mt-8 w-full justify-center order-2 ;
                     a {
-                        padding: 12px 20px;
-                        font-size: 16px;
+                        @apply text-base h-16 ; 
                     }
                 }
                 .header-title {
-                    padding-right: 0;
-                    width: 100%;
-                    text-align: center;
-                    order: 1;
+                    @apply pr-0 w-full text-center order-1;
                     .description {
-                        width: 100%;
-                        left: 50%;
-                        transform: translateX(-50%);
-                    }
-                }
-            }
-        }
-    }
-
-    // 黑夜模式
-    html.dark {
-        .head-wrapper {
-            .header {
-                nav {
-                    a {
-                        &:hover {
-                            background-color: #11111344;
-                        }
+                        @apply w-full left-1/2 transform -translate-x-1/2;
                     }
                 }
             }

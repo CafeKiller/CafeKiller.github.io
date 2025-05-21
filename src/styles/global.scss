@@ -1,3 +1,5 @@
+@import "tailwind.css";
+
 // COMMON START
 body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{margin:0;}
 body,button,input,select,textarea{font:12px/1.5 tahoma,sans-serif}
@@ -101,39 +103,28 @@ html {
 
 // BaseLayout 外层容器样式
 .wrapper {
-    position: relative;
-    padding: 0 60px;
-    margin: 0 auto 0;
-    max-width: 786px;
+    // max-width: 786px;
     min-height: calc(100vh - 120px);
     background-color: var(--blackf);
     border-radius: 3px;
     box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
     transition: all .3s ease;
     font-family: "PingFang SC";
+    @apply relative px-12 py-8 mx-auto max-w-[786px] ;
 }
 
 // markdown 布局样式
 .md-wrapper {
     // markdown 文档主体内容
     .md-content { 
-        position: relative;
-        padding: 20px 0 20px;
+        @apply relative py-8;
         font-family: 'PingFang SC';
         h1, h2, h3 {
-            position: relative;
-            padding-left: 24px;
-            margin-top: 40px;
-            font-weight: 400;
-            font-size: 32px;
-            line-height: 54px;
-            letter-spacing: 1px;
+            @apply relative pl-8 mt-8 font-normal tracking-wider text-3xl leading-normal;
             color: var(--fontcolor1);
             &::before {
-                position: absolute;
+                @apply absolute left-0 top-[2px];
                 content: '#';
-                left: 0;
-                top: 2px;
                 color: var(--fontcolor4);
             }
             &:nth-of-type(1) {
@@ -160,19 +151,13 @@ html {
             }
         }
         p {
-            padding: 8px 0;
-            font-size: 16px;
-            line-height: 28px;
-            // letter-spacing: .5px;
             color: var(--fontcolor1);
+            @apply py-2 text-base leading-loose;
             code {
-                display: inline-block;
-                padding: 2px 6px;
                 background-color: var(--fontcolor4);
-                line-height: 22px;
-                border-radius: 3px;
                 color: var(--fontcolor1);
                 font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
+                @apply inline-block px-1 py-1 rounded leading-tight;
             }
             strong {
                 color: var(--main-color);
@@ -187,15 +172,11 @@ html {
             opacity: .65;
         }
         .astro-code {
-            position: relative;
             font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
             overflow: hidden !important;
+            @apply relative;
             .code-wrapper {
-                padding: 30px 20px 20px;
-                position: relative;
-                width: 100%;
-                overflow-x: auto;
-                box-sizing: border-box;
+                @apply relative px-4 pt-6 pb-4 w-full overflow-x-auto box-border;
                 &::-webkit-scrollbar {
                     height: 6px;
                     width: 6px;
@@ -212,7 +193,6 @@ html {
                 right: 0;
                 font-weight: 600;
                 font-size: 14px;
-                // text-transform: uppercase;
                 color: var(--main-color);
                 background-color: #24292e;
                 cursor: pointer;
@@ -221,7 +201,6 @@ html {
                 &:hover {
                     color: var(--fontcolor1);
                     background-color:  var(--main-color);
-                    // filter: brightness(1.2);
                 }
             }
             code {
