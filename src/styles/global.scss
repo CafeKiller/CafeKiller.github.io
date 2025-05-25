@@ -120,15 +120,12 @@ html {
         @apply relative py-8;
         font-family: 'PingFang SC';
         h1, h2, h3 {
-            @apply relative pl-8 mt-8 font-normal tracking-wider text-3xl leading-normal;
+            @apply relative pl-8 mt-6 font-normal tracking-wider text-3xl leading-normal;
             color: var(--fontcolor1);
             &::before {
                 @apply absolute left-0 top-[2px];
                 content: '#';
                 color: var(--fontcolor4);
-            }
-            &:nth-of-type(1) {
-                margin-top: 20px;
             }
         }
         h2 { 
@@ -187,17 +184,12 @@ html {
                 }
             }
             .code-language {
-                position: absolute;
-                padding: 4px 6px;
-                top: 0;
-                right: 0;
                 font-weight: 600;
-                font-size: 14px;
                 color: var(--main-color);
                 background-color: #24292e;
-                cursor: pointer;
                 z-index: 100;
                 transition: all .3s ease;
+                @apply absolute px-2 py-1 top-0 right-0 cursor-pointer text-sm; 
                 &:hover {
                     color: var(--fontcolor1);
                     background-color:  var(--main-color);
@@ -205,13 +197,11 @@ html {
             }
             code {
                 font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
-                font-size: 14px;
-                line-height: 20px;
+                @apply text-sm leading-relaxed;
             }
         }
         ul,ol {
-            margin: 0 auto 8px;
-            padding-left: 40px;
+            @apply mx-auto mb-2 pl-8;
             li {
                 margin-bottom: 4px;
                 line-height: 26px;
