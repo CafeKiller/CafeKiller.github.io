@@ -1,4 +1,4 @@
-@import "tailwind.css";
+@import "tailwind.min.css";
 
 // COMMON START
 body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{margin:0;}
@@ -110,7 +110,7 @@ html {
     box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
     transition: all .3s ease;
     font-family: "PingFang SC";
-    @apply relative px-12 py-8 mx-auto max-w-[786px] ;
+    @apply relative px-12 py-8 mx-auto max-w-[786px] min-w-[360px];
 }
 
 // markdown 布局样式
@@ -129,10 +129,9 @@ html {
             }
         }
         h2 { 
-            padding-left: 40px;
             font-size: 26px; 
-            line-height: 46px; 
             margin-top: 30px; 
+            @apply pl-10;
             &::before {
                 content: '##';
                 font-size: 26px;
@@ -141,7 +140,7 @@ html {
         h3 { 
             font-size: 20px; 
             line-height: 38px; 
-            margin-top: 20px; 
+            margin-top: 20px;
             &::before {
                 content: '###';
                 font-size: 20px;
@@ -149,7 +148,7 @@ html {
         }
         p {
             color: var(--fontcolor1);
-            @apply py-2 text-base leading-loose;
+            @apply py-1 text-base leading-loose;
             code {
                 background-color: var(--fontcolor4);
                 color: var(--fontcolor1);
@@ -161,12 +160,9 @@ html {
             }
         }
         small-text {
-            font-style: italic;
-            font-size: 14px;
-            line-height: 20px;
             letter-spacing: 1px;
             color: var(--fontcolor1);
-            opacity: .65;
+            @apply text-sm italic leading-8 opacity-70;
         }
         .astro-code {
             font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
@@ -175,21 +171,18 @@ html {
             .code-wrapper {
                 @apply relative px-4 pt-6 pb-4 w-full overflow-x-auto box-border;
                 &::-webkit-scrollbar {
-                    height: 6px;
-                    width: 6px;
                     background-color: var(--body-bgcolor);
+                    @apply w-1 h-1;
                 }
                 &::-webkit-scrollbar-thumb{
                     background-color: var(--main-color);
                 }
             }
             .code-language {
-                font-weight: 600;
                 color: var(--main-color);
                 background-color: #24292e;
-                z-index: 100;
                 transition: all .3s ease;
-                @apply absolute px-2 py-1 top-0 right-0 cursor-pointer text-sm; 
+                @apply absolute px-2 py-1 top-0 right-0 cursor-pointer text-sm font-semibold z-50; 
                 &:hover {
                     color: var(--fontcolor1);
                     background-color:  var(--main-color);
@@ -259,7 +252,8 @@ html {
         img {
             display: block;
             margin: 10px auto 10px;
-            height: 220px;
+            max-width: 440px;
+            max-height: 220px;
             text-align: center;
             object-fit: cover;
         }
@@ -319,10 +313,9 @@ html {
 }
 
 .blogs-list {
-    padding-bottom: 40px;
-    position: relative;
-    width: 100%;
+    // padding-bottom: 40px;
     // min-height: calc(100vh - 420px);
+    @apply relative w-full pt-4;
 }
 
 .base-main {
