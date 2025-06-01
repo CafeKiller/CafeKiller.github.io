@@ -239,10 +239,9 @@ html {
             white-space: pre-wrap;
         }
         blockquote {
-            padding: 4px 10px;
-            margin: 8px 0 8px;
             background-color: var(--fontcolor5);
             border-left: 3px solid var(--main-color);
+            @apply py-1 px-3 my-2;
             p {
                 padding: 4px 10px;
                 background-color: var(--fontcolor5) ;
@@ -262,37 +261,29 @@ html {
             width: 80%;
             background: var(--fontcolor2);
         }
-        ima-desc {
+        img-desc {
             margin-top: -12px;
-            display: block;
-            width: 100%;
-            font-size: 12px;
-            line-height: 18px;
             letter-spacing: 0;
             color: var(--fontcolor3);
-            text-align: center;
+            @apply block text-center text-xs w-full;
         }
         table {
             color: var(--fontcolor1);
-            margin: 16px auto 16px;
             border: 2px solid var(--fontcolor2);
+            @apply my-2 mx-auto;
             tr {
                 border-bottom: 1px solid var(--fontcolor3);
             }
             th {
-                padding: 12px 0;
                 min-width: 120px;
-                font-size: 16px;
-                line-height: 20px;
                 border: 1px solid var(--fontcolor3);
+                @apply text-base py-4;
             }
             td {
                 color: var(--fontcolor2);
-                padding: 12px 4px;
                 min-width: 120px;
-                font-size: 14px;
-                line-height: 18px;
                 border: 1px solid var(--fontcolor3);
+                @apply text-sm py-4 px-1;
             }
         }
         .scroll-x {
