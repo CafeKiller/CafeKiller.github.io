@@ -5,6 +5,7 @@ import Footer from '@components/Footer.astro'
 import { SITE, LOCALE } from '@config'
 
 import '@styles/global.min.css'
+import '@styles/tailwind.min.css'
 
 export interface Props {
 	title?: string
@@ -170,3 +171,16 @@ const {
     }
     createCodeLanguageTag()
 </script>
+
+<style lang="scss">
+	.wrapper {
+		@apply relative p-8 mx-auto max-w-[786px] min-w-[360px];
+		min-height: calc(100vh - 120px);
+		font-family: var(--fontCommon);
+		border-radius: 3px;
+		background-color: var(--blackf);
+		box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
+		transition: all .3s ease;
+	}
+
+</style>

@@ -30,10 +30,6 @@ const breadcrumbListToUrl = (current: string) => {
             if(breadcrumb === 'posts' || breadcrumb === 'articles') {
                 breadcrumb = 'blogs'
             }
-            // else if(isPureInteger(breadcrumb)) {
-            //     return;
-            // }
-            // BUGFIX
             _url += `/${breadcrumb}`
         }
     })
@@ -43,8 +39,6 @@ const breadcrumbListToUrl = (current: string) => {
     }
     return decodeURIComponent(_url)
 }
-
-let windowObj;
 ---
 
 <div class="toolbar" aria-label="toolbar">
@@ -52,7 +46,7 @@ let windowObj;
     <ul class="navigation">
         <!-- <li class={ breadcrumbList.length === 0 ? 'hide' : ''}> -->
         <li>
-            <a href={SITE.webPrefix +'/' }>Home</a>
+            <a href={ SITE.webPrefix +'/' }>Home</a>
             <span aria-hidden="true">&raquo;</span>
         </li>
         {

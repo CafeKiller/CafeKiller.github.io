@@ -1,4 +1,4 @@
-@import "tailwind.min.css";
+// @import "tailwind.min.css";
 
 // COMMON START
 body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{margin:0;}
@@ -9,12 +9,23 @@ button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
 td,th,ul,ol{padding:0}
 
+// =========== SCSS MIXIN =========== //
+// 文字隐藏
+@mixin fontHide {
+    font-size: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+// =========== SCSS MIXIN =========== //
+
+
+
 .icon {
     width: 1em; height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
- }
+}
 
 @font-face {
     font-family: "FiraCodeR";
@@ -87,6 +98,8 @@ html {
     --fontsize48: 48px;
 
     --zoom: 1;
+
+    --fontCommon: 'PingFang SC', "OPPOSnac", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 // 深色模式
@@ -102,16 +115,7 @@ html {
 }
 
 // BaseLayout 外层容器样式
-.wrapper {
-    // max-width: 786px;
-    min-height: calc(100vh - 120px);
-    background-color: var(--blackf);
-    border-radius: 3px;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
-    transition: all .3s ease;
-    font-family: "PingFang SC";
-    @apply relative px-12 py-8 mx-auto max-w-[786px] min-w-[360px];
-}
+
 
 // markdown 布局样式
 .md-wrapper {
