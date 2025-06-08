@@ -5,7 +5,6 @@ import Footer from '@components/Footer.astro'
 import { SITE, LOCALE } from '@config'
 
 import '@styles/global.min.css'
-import '@styles/tailwind.min.css'
 
 export interface Props {
 	title?: string
@@ -173,14 +172,28 @@ const {
 </script>
 
 <style lang="scss">
+	body {
+		padding-top: 60px;
+		min-width: 360px;
+    	background-color: var(--body-bgcolor);
+    	scroll-behavior: smooth;
+	}
 	.wrapper {
-		@apply relative p-8 mx-auto max-w-[786px] min-w-[360px];
-		min-height: calc(100vh - 120px);
-		font-family: var(--fontCommon);
+		padding: 40px;
+		margin: 0 auto 0;
+		position: relative;
+		max-width: 786px;
+		min-width: 360px;
+		min-height: calc(100vh - 240px);
+		font-family: var(--fontBase);
 		border-radius: 3px;
 		background-color: var(--blackf);
 		box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
 		transition: all .3s ease;
 	}
 
+	@media screen and (max-width: 786px) {
+		body { padding-top: 0 }
+		.wrapper { padding: 0 22px }
+	}
 </style>

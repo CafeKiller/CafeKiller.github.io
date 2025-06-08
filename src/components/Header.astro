@@ -2,19 +2,22 @@
 import ToolBar from "@components/ToolBar.astro"
 
 import '@styles/global.min.css'
-import '@styles/tailwind.min.css'
 ---
 <section class="head-wrapper">
     <header class="header">
         <nav>
-            <a href="/">首页</a>
-            <a href="/blogs">归档</a>
-            <a href="/notes/1">随笔</a>
-            <a href="/about">关于</a>
+            <a class="nav-link" href="/">首页</a>
+            <a class="nav-link" href="/blogs">归档</a>
+            <a class="nav-link" href="/notes/1">随笔</a>
+            <a class="nav-link" href="/about">关于</a>
         </nav>
         <div class="header-title">
             <h1 class="title">Cafe Blogs</h1>
-            <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
+            <p class="description">
+                <span class="tag">代码</span>，
+                <span class="tag">游戏</span>，
+                以及<span class="tag">有趣的故事</span>
+            </p>
         </div>
     </header>
     <ToolBar />
@@ -24,11 +27,12 @@ import '@styles/tailwind.min.css'
 <style lang="scss">
     // Header 通用头部 组件样式
     .head-wrapper {
-        @apply mb-8;
+        margin-bottom: 20px;
         width: 100%;
         position: relative;
         .header {
-            @apply w-full mx-auto mb-8 ;
+            margin: 0 auto 20px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             height: 60px;
@@ -37,11 +41,12 @@ import '@styles/tailwind.min.css'
             nav {
                 display: flex;
                 order: 2;
-                a {
-                    @apply w-24 text-lg ;
+                .nav-link {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    width: 80px;
+                    font-size: 18px;
                     transition: all .25s ease;
                     border-bottom: 3px solid transparent;
                     &:hover {
@@ -50,23 +55,27 @@ import '@styles/tailwind.min.css'
                 }
             }
             .header-title {
-                @apply relative self-center order-1;
+                position: relative;
+                align-self: center;
+                order: 1;
                 .title {
-                    @apply w-full text-4xl ;
+                    width: 100%;
                     font-weight: 600;
+                    font-size: 32px;
                     letter-spacing: 1px;
                     color: var(--fontcolor1);
                     z-index: 10;
                 }
                 .description {
-                    @apply relative text-base ;
+                    position: relative;
+                    font-size: 16px;
                     left: 0;
                     bottom: 0;
                     vertical-align: middle;
-                    span {
+                    .tag {
                         transition: all .2s ease;
                         &:hover {
-                            // color: var(--main-color);
+                            color: var(--main-color);
                         }
                     }
                 }
@@ -78,21 +87,26 @@ import '@styles/tailwind.min.css'
     @media screen and (max-width: 786px) {
         .head-wrapper .header {
             height: auto;
-            @apply flex-wrap ;
+            flex-wrap: wrap;
             nav {
-                @apply mt-8 w-full justify-center order-2 ;
+                margin-top: 20px;
+                width: 100%;
+                justify-content: center;
+                order: 2;
                 a {
-                    @apply text-base h-16 ; 
+                    font-size: 16px;
+                    height: 60px;
                 }
             }
             .header-title {
-                @apply pr-0 w-full text-center ;
+                width: 100%;
+                padding-right: 0;
+                text-align: center;
                 order: 1;
-                .title {
-                    @apply text-3xl ;
-                }
                 .description {
-                    @apply w-full left-1/2 transform -translate-x-1/2;
+                    width: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
         }
