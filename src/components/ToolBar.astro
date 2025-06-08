@@ -30,10 +30,6 @@ const breadcrumbListToUrl = (current: string) => {
             if(breadcrumb === 'posts' || breadcrumb === 'articles') {
                 breadcrumb = 'blogs'
             }
-            // else if(isPureInteger(breadcrumb)) {
-            //     return;
-            // }
-            // BUGFIX
             _url += `/${breadcrumb}`
         }
     })
@@ -43,45 +39,16 @@ const breadcrumbListToUrl = (current: string) => {
     }
     return decodeURIComponent(_url)
 }
-
-let windowObj;
 ---
 
 <div class="toolbar" aria-label="toolbar">
     
     <ul class="navigation">
-        <!-- <li class={ breadcrumbList.length === 0 ? 'hide' : ''}> -->
-        <li>
-            <a href={SITE.webPrefix +'/' }>Home</a>
-            <span aria-hidden="true">&raquo;</span>
-        </li>
-        {
-            breadcrumbList.map((breadcrumb, index) => {
-                // if(isPureInteger(breadcrumb)) return
-                return index+1 === breadcrumbList.length 
-                    ? (
-                        <li>
-                            <a href={ breadcrumbListToUrl(breadcrumb) }>
-                                { capitalizeFirstLetter(decodeURIComponent(breadcrumb)) }
-                                </a>
-                            <span aria-hidden="true"></span>
-                        </li>
-                    ) 
-                    : (
-                        <li>
-                            <a href={ isPureInteger(breadcrumb) ? "javascript:void(0);" : breadcrumbListToUrl(breadcrumb) }>
-                                { capitalizeFirstLetter(decodeURIComponent(breadcrumb)) }
-                            </a>
-                            <span aria-hidden="true">&raquo;</span>
-                        </li>
-                    ) 
-            }) 
-        }
+        <!-- TODO: 添加路径显示 -->
     </ul>
 
     <div class="right">
-        <!-- <span class="contr-icon">+</span>
-        <span class="contr-icon">-</span> -->
+        <!-- TODO: 添加文字大小变化显示 -->
         <div class="theme-box" id="theme-btn" style="opacity: 0;">
             <svg class="icon" id="theme-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1756" width="200" height="200">
                 <!-- dark 显示: 太阳 -->

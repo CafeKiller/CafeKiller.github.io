@@ -2,19 +2,22 @@
 import ToolBar from "@components/ToolBar.astro"
 
 import '@styles/global.min.css'
-import '@styles/tailwind.min.css'
 ---
 <section class="head-wrapper">
     <header class="header">
         <nav>
-            <a href="/">首页</a>
-            <a href="/blogs">归档</a>
-            <a href="/notes/1">随笔</a>
-            <a href="/about">关于</a>
+            <a class="nav-link" href="/">首页</a>
+            <a class="nav-link" href="/blogs">归档</a>
+            <a class="nav-link" href="/notes/1">随笔</a>
+            <a class="nav-link" href="/about">关于</a>
         </nav>
         <div class="header-title">
-            <h1 class="text">Cafe Blogs</h1>
-            <p class="description"><span>代码</span>，<span>游戏</span>，以及<span>有趣的故事</span></p>
+            <h1 class="title">Cafe Blogs</h1>
+            <p class="description">
+                <span class="tag">代码</span>，
+                <span class="tag">游戏</span>，
+                以及<span class="tag">有趣的故事</span>
+            </p>
         </div>
     </header>
     <ToolBar />
@@ -24,48 +27,52 @@ import '@styles/tailwind.min.css'
 <style lang="scss">
     // Header 通用头部 组件样式
     .head-wrapper {
-        @apply relative mb-8 ;
+        margin-bottom: 20px;
+        width: 100%;
+        position: relative;
         .header {
-            @apply w-full h-[60px] flex justify-between mx-auto mb-4;
+            margin: 0 auto 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            height: 60px;
             transition: all .3s ease;
+            box-sizing: content-box;
             nav {
-                @apply flex order-2;
-                a {
-                    @apply flex w-24 justify-center items-center;
-                    font-weight: 400;
-                    font-family: 'PingFang SC', 'IBM Plex Sans', 'monospace';
+                display: flex;
+                order: 2;
+                .nav-link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80px;
                     font-size: 18px;
-                    text-align: center;
-                    color: var(--fontcolor1);
                     transition: all .25s ease;
                     border-bottom: 3px solid transparent;
                     &:hover {
-                        color: var(--main-color);
-                        text-decoration: none;
-                        border-bottom: 3px solid var(--main-color);
+                        border-bottom: 3px solid #000000;
                     }
-                    @apply hover:dark:bg-[#11111344] hover:bg-[#f2f3f5FF] ;
                 }
             }
             .header-title {
-                @apply relative self-center order-1;
-                .text {
-                    font-family: 'FiraCodeR';
+                position: relative;
+                align-self: center;
+                order: 1;
+                .title {
+                    width: 100%;
                     font-weight: 600;
-                    font-size: 24px;
-                    line-height: 32px;
+                    font-size: 32px;
                     letter-spacing: 1px;
                     color: var(--fontcolor1);
                     z-index: 10;
                 }
                 .description {
                     position: relative;
+                    font-size: 16px;
                     left: 0;
                     bottom: 0;
-                    font-size: 16px;
                     vertical-align: middle;
-                    color: var(--fontcolor3);
-                    span {
+                    .tag {
                         transition: all .2s ease;
                         &:hover {
                             color: var(--main-color);
@@ -78,21 +85,28 @@ import '@styles/tailwind.min.css'
 
     // 移动端or小屏适配
     @media screen and (max-width: 786px) {
-        .head-wrapper {
-            .header {
-                height: auto;
-                @apply flex-wrap pt-8;
-                nav {
-                    @apply mt-8 w-full justify-center order-2 ;
-                    a {
-                        @apply text-base h-16 ; 
-                    }
+        .head-wrapper .header {
+            height: auto;
+            flex-wrap: wrap;
+            nav {
+                margin-top: 20px;
+                width: 100%;
+                justify-content: center;
+                order: 2;
+                a {
+                    font-size: 16px;
+                    height: 60px;
                 }
-                .header-title {
-                    @apply pr-0 w-full text-center order-1;
-                    .description {
-                        @apply w-full left-1/2 transform -translate-x-1/2;
-                    }
+            }
+            .header-title {
+                width: 100%;
+                padding-right: 0;
+                text-align: center;
+                order: 1;
+                .description {
+                    width: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
         }

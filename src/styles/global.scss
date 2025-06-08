@@ -1,5 +1,3 @@
-@import "tailwind.min.css";
-
 // COMMON START
 body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{margin:0;}
 body,button,input,select,textarea{font:12px/1.5 tahoma,sans-serif}
@@ -9,12 +7,23 @@ button,input,select,textarea{font-size:100%;outline:none}
 table{border-collapse:collapse;border-spacing:0}
 td,th,ul,ol{padding:0}
 
+// =========== SCSS MIXIN =========== //
+// 文字隐藏
+@mixin fontHide {
+    font-size: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+// =========== SCSS MIXIN =========== //
+
+
+
 .icon {
     width: 1em; height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
- }
+}
 
 @font-face {
     font-family: "FiraCodeR";
@@ -36,20 +45,6 @@ html, body {
     font-family: 'Songti SC, Helvetica, Arial, sans-serif';
     scroll-behavior: smooth;
 }
-body { 
-    min-width: 360px;
-    background-color: var(--body-bgcolor);
-    scroll-behavior: smooth;
-    padding-top: 60px; 
-    &::-webkit-scrollbar {
-        height: 4px;
-        width: 6px;
-        background-color: var(--body-bgcolor);
-    }
-    &::-webkit-scrollbar-thumb{
-        background-color: var(--fontcolor3);
-    }
-}
 // COMMON NED
 
 $invert: invert(1) hue-rotate(180deg);
@@ -57,6 +52,9 @@ $invert: invert(1) hue-rotate(180deg);
 html {
     --main-color: #8b4513;
     --sub1-color: #a69579;
+
+    --body-bgcolor: #f7f7f7;
+
     --black0: #000000;
     --black3: #333333;
     --black6: #666666;
@@ -68,7 +66,6 @@ html {
     --color2: #b22222;
     --color3: #7b68ee;
     --color4: #2a52be;
-    --body-bgcolor: #f7f7f7;
 
     --fontcolor1: #333333;
     --fontcolor2: #666666;
@@ -76,24 +73,30 @@ html {
     --fontcolor4: #cccccc;
     --fontcolor5: #eeeeee;
 
-    --fontsize14: 14px;
-    --fontsize16: 16px;
-    --fontsize20: 20px;
-    --fontsize22: 22px;
-    --fontsize24: 24px;
-    --fontsize30: 30px;
-    --fontsize36: 36px;
-    --fontsize42: 42px;
-    --fontsize48: 48px;
+    --fonts-mini: 12px;
+    --fonts-sm: 14px;
+    --fonts-base: 16px;
+    --fonts-big: 20px;
+    --fonts-subtit-1: 32px;
+    --fonts-subtit-2: 28px;
+    --fonts-subtit-3: 24px; 
+    --fonts-tit-sm: 42px;
+    --fonts-tit-big: 48px;
 
     --zoom: 1;
+
+    --fontBase: 'PingFang SC', "OPPOSnac", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --fontCode: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace',
 }
 
 // 深色模式
 .dark {
     --main-color: #ff8033;
+
     --body-bgcolor: #161b22; 
+
     --blackf: #212737;
+
     --fontcolor1: #eeeeee;
     --fontcolor2: #aaaaaa;
     --fontcolor3: #777777;
@@ -102,58 +105,61 @@ html {
 }
 
 // BaseLayout 外层容器样式
-.wrapper {
-    // max-width: 786px;
-    min-height: calc(100vh - 120px);
-    background-color: var(--blackf);
-    border-radius: 3px;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
-    transition: all .3s ease;
-    font-family: "PingFang SC";
-    @apply relative px-12 py-8 mx-auto max-w-[786px] min-w-[360px];
-}
+
 
 // markdown 布局样式
 .md-wrapper {
     // markdown 文档主体内容
     .md-content { 
-        @apply relative py-8;
-        font-family: 'PingFang SC';
-        h1, h2, h3 {
-            @apply relative pl-8 mt-6 font-normal tracking-wider text-3xl leading-normal;
+        position: relative;
+        padding: 20px 0;
+        font-family: var(--fontBase);
+        h1 {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
             color: var(--fontcolor1);
+            font-size: var(--fonts-subtit-1);
             &::before {
-                @apply absolute left-0 top-[2px];
+                position: absolute;
+                left: 0;
                 content: '#';
-                color: var(--fontcolor4);
+                font-size: var(--fonts-subtit-1);
             }
         }
         h2 { 
-            font-size: 26px; 
-            margin-top: 30px; 
-            @apply pl-10;
+            @extend h1;
+            padding-left: 40px;
+            margin-top: 14px;
+            font-size: var(--fonts-subtit-2); 
             &::before {
                 content: '##';
-                font-size: 26px;
+                font-size: var(--fonts-subtit-2);
             }
         }
         h3 { 
-            font-size: 20px; 
-            line-height: 38px; 
-            margin-top: 20px;
+            @extend h1;
+            padding-left: 50px;
+            margin-top: 8px;
+            font-size: var(--fonts-subtit-3); 
             &::before {
                 content: '###';
-                font-size: 20px;
+                font-size: var(--fonts-subtit-3);
             }
         }
         p {
             color: var(--fontcolor1);
-            @apply py-1 text-base leading-loose;
+            padding: 4px 0;
+            font-size: var(--fonts-base);
+            line-height: 1.6;
             code {
-                background-color: var(--fontcolor4);
+                display: inline-block;
+                padding: 2px 8px;
+                font-family: var(--fontCode);
+                line-height: 1.4;
                 color: var(--fontcolor1);
-                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
-                @apply inline-block px-1 py-1 rounded leading-tight;
+                background-color: var(--fontcolor4);
+                border-radius: 4px;
             }
             strong {
                 color: var(--main-color);
@@ -162,52 +168,70 @@ html {
         small-text {
             letter-spacing: 1px;
             color: var(--fontcolor1);
-            @apply text-sm italic leading-8 opacity-70;
+            font-size: var(--fonts-sm);
+            font-style: italic;
+            line-height: 1.6;
+            opacity: 0.7;
         }
         .astro-code {
-            font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans';
+            position: relative;
+            font-family: var(--fontCode);
             overflow: hidden !important;
-            @apply relative;
             .code-wrapper {
-                @apply relative px-4 pt-6 pb-4 w-full overflow-x-auto box-border;
+                position: relative;
+                padding: 30px 20px 20px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: auto;
                 &::-webkit-scrollbar {
                     background-color: var(--body-bgcolor);
-                    @apply w-1 h-1;
+                    width: 2px;
+                    height: 2px;
                 }
                 &::-webkit-scrollbar-thumb{
                     background-color: var(--main-color);
                 }
             }
             .code-language {
+                position: absolute;
+                padding: 4px 8px;
+                top: 0;
+                right: 0;
+                font-weight: 600;
+                font-size: var(--fonts-sm);
                 color: var(--main-color);
                 background-color: #24292e;
                 transition: all .3s ease;
-                @apply absolute px-2 py-1 top-0 right-0 cursor-pointer text-sm font-semibold z-50; 
+                cursor: pointer;
+                z-index: 50;
                 &:hover {
                     color: var(--fontcolor1);
                     background-color:  var(--main-color);
                 }
             }
             code {
-                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
-                @apply text-sm leading-relaxed;
+                font-family: var(--fontCode);
+                font-size: var(--fonts-sm);
+                line-height: 1.8;
             }
         }
         ul,ol {
-            @apply mx-auto mb-2 pl-8;
+            margin: 0 auto 0;
+            margin-bottom: 4px;
+            padding-left: 20px;
             li {
                 margin-bottom: 4px;
-                line-height: 26px;
+                line-height: 1.8;
                 position: relative;
-                font-size: 16px;
+                font-size: var(--fonts-base);
                 color: var(--fontcolor1);
-                &::marker { font-size: 12px; }
+                &::marker { font-size: var(--fonts-mini); }
                 blockquote { padding: 0; }
-                ul, ol {  margin-top: 6px; }
+                ul, ol {  margin-top: 8px; }
                 code {
                     padding: 2px 8px;
                     background-color: var(--fontcolor4);
-                    border-radius: 3px;
+                    border-radius: 4px;
                     color: var(--fontcolor1);
                 }
                 &::marker {
@@ -216,7 +240,7 @@ html {
                 }
             }
             code {
-                font-family: 'FiraCodeR', 'PingFang SC', 'IBM Plex Sans', 'monospace';
+                font-family: var(--fontCode);
             }
         }
         ol {
@@ -226,7 +250,9 @@ html {
         }
         .contains-task-list {
             padding-left: 16px;
-            .task-list-item { list-style: none; }
+            .task-list-item { 
+                list-style: none; 
+            }
         }
         a {
             font-size: 16px;
@@ -239,9 +265,10 @@ html {
             white-space: pre-wrap;
         }
         blockquote {
+            margin: 4px auto;
+            padding: 2px 8px;
             background-color: var(--fontcolor5);
             border-left: 3px solid var(--main-color);
-            @apply py-1 px-3 my-2;
             p {
                 padding: 4px 10px;
                 background-color: var(--fontcolor5) ;
@@ -262,28 +289,33 @@ html {
             background: var(--fontcolor2);
         }
         img-desc {
+            display: block;
             margin-top: -12px;
+            width: 100%;
+            font-size: var(--fonts-sm);
+            text-align: center;
             letter-spacing: 0;
             color: var(--fontcolor3);
-            @apply block text-center text-xs w-full;
         }
         table {
+            margin: 8px auto;
             color: var(--fontcolor1);
             border: 2px solid var(--fontcolor2);
-            @apply my-2 mx-auto;
             tr {
                 border-bottom: 1px solid var(--fontcolor3);
             }
             th {
+                padding: 16px 0;
                 min-width: 120px;
+                font-size: var(--fonts-base);
                 border: 1px solid var(--fontcolor3);
-                @apply text-base py-4;
             }
             td {
-                color: var(--fontcolor2);
+                padding: 8px 2px;
                 min-width: 120px;
+                font-size: var(--fonts-base);
                 border: 1px solid var(--fontcolor3);
-                @apply text-sm py-4 px-1;
+                color: var(--fontcolor2);
             }
         }
         .scroll-x {
@@ -304,9 +336,10 @@ html {
 }
 
 .blogs-list {
-    // padding-bottom: 40px;
     // min-height: calc(100vh - 420px);
-    @apply relative w-full pt-4;
+    padding-bottom: 10px;
+    position: relative;
+    width: 100%;
 }
 
 .base-main {
@@ -317,12 +350,6 @@ html {
 
 // 移动端or小屏适配
 @media screen and (max-width: 786px) {
-    body {
-        padding-top: 0;
-    }
-    .wrapper {
-        padding: 0 22px;
-    }
     .md-wrapper {
         .md-content {
             padding: 20px 4px 40px;
