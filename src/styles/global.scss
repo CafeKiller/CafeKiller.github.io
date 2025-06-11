@@ -45,6 +45,12 @@ html, body {
     font-family: 'Songti SC, Helvetica, Arial, sans-serif';
     scroll-behavior: smooth;
 }
+
+body *,
+body *::before,
+body *::after {
+    box-sizing: border-box;
+}
 // COMMON NED
 
 $invert: invert(1) hue-rotate(180deg);
@@ -62,16 +68,14 @@ html {
     --blackc: #cccccc;
     --blacke: #eeeeee;
     --blackf: #ffffff;
-    --color1: #3cb371;
-    --color2: #b22222;
-    --color3: #7b68ee;
-    --color4: #2a52be;
 
-    --fontcolor1: #333333;
-    --fontcolor2: #666666;
-    --fontcolor3: #999999;
-    --fontcolor4: #cccccc;
-    --fontcolor5: #eeeeee;
+    --fontcolor0: #000000;
+    --fontcolor1: #111111;
+    --fontcolor3: #333333;
+    --fontcolor4: #444444;
+    --fontcolor6: #666666;
+    --fontcolorC: #cccccc;
+    --fontcolorE: #eeeeee;
 
     --fonts-mini: 12px;
     --fonts-sm: 14px;

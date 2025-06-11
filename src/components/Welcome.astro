@@ -35,33 +35,33 @@ import '@styles/global.min.css'
     .welcome-cont {
         position: relative;
         .title {
-            font-family: "FiraCodeR";
-            font-size: 38px;
+            font-family: var(--fontCode);
+            font-size: var(--fonts-subtit-1);
             line-height: 1;
             letter-spacing: 4px;
             color: var(--fontcolor1);
             transition: all .35s ease;
         }
         .desc {
-            margin-top: 18px;
-            font-size: 16px;
+            margin-top: 20px;
+            font-size: var(--fonts-base);
             line-height: 1.6;
             letter-spacing: 1px;
-            color: var(--fontcolor2);
+            color: var(--fontcolor3);
             transition: all .35s ease;
         }
         .me-links {
             display: flex;
             align-items: center;
-            margin-top: 18px;
-            font-size: 16px;
+            margin-top: 20px;
+            font-size: var(--fonts-base);
             line-height: 1.6;
-            letter-spacing: 1px;
-            color: var(--fontcolor2);
+            letter-spacing: 2px;
+            color: var(--fontcolor3);
             .icon {
                 margin-right: 12px;
                 font-size: 20px;    
-                color: var(--fontcolor1);
+                color: var(--fontcolor3);
                 transform: rotateZ(0deg);
                 transition: all .15s ease;
                 filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(324deg) brightness(96%) contrast(104%);
@@ -69,26 +69,26 @@ import '@styles/global.min.css'
                 &:hover {
                     transform: rotateZ(18deg);
                     filter: invert(27%) sepia(48%) saturate(1436%) hue-rotate(353deg) brightness(94%) contrast(90%);
-                    opacity: .88;
+                    opacity: .8;
                 }    
             }
         }
         hr {
-            margin: 32px auto 0;
+            margin: 30px auto 0;
             width: 100%;
-            opacity: .15;
+            opacity: 0.2;
         }
     }
 
     @media screen and (max-width: 786px) {
 		.welcome-cont {
             .title {
-                font-size: 28px;
+                font-size: var(--fonts-subtit-2);
                 letter-spacing: 2px;
             }
             .desc {
                 margin-top: 18px;
-                font-size: 14px;
+                font-size: var(--fonts-sm);
                 line-height: 1.6;
                 letter-spacing: 1px;
                 color: var(--fontcolor2)
