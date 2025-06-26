@@ -28,7 +28,7 @@
         "utils/*"
       ],
       "@type/*": [
-        "type/*"
+        "types/*"
       ]
     },
     "jsx": "react-jsx",

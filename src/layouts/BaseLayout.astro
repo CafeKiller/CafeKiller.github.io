@@ -1,10 +1,10 @@
 ---
-import Header from '@components/Header.astro'
-import Footer from '@components/Footer.astro'
-
 import { SITE, LOCALE } from '@config'
 
-import '@styles/global.min.css'
+import "@styles/base.min.css"
+
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
 
 export interface Props {
 	title?: string
@@ -81,119 +81,34 @@ const {
 			<Header></Header>
 			<slot />
 		</div>
-		<Footer/>
+		<Footer></Footer>
 	</body>
 
 </html>
 
-<script>
-	import { themeValue } from '@utils/themeUtil'
-	import { iLog } from '@utils/iLogUtil'
-	import QMessage from '@utils/msgUtil.ts'
-	
-	
-	iLog.info("CurrentTime", new Date().toLocaleString("zh-CN", { hour12: false }))
-	iLog.info("Copyright", "Coffee_Killer")	
-
-	// const themeValue = localStorage.getItem("__cafe-blog_theme")
-	iLog.info("The current user's topic preferences:", themeValue)
-
-	const copyCodeText = (event: any) => {
-        const codeElement = event.target.closest('.astro-code').querySelector('code');
-        if (codeElement) {
-            const codeText = codeElement.innerText;
-
-			const textarea = document.createElement('textarea');
-			textarea.value = codeText;
-			textarea.style.position = 'fixed';
-			textarea.style.left = '-9999px';
-			
-			// 添加到DOM
-			document.body.appendChild(textarea);
-
-			try {
-				// 选中并复制
-				textarea.select();
-				const success = document.execCommand('copy');
-				if (!success) {
-					if(!navigator.clipboard) {
-						QMessage.error("无法正常复制代码，请手动复制");
-						iLog.error("[WriteText] ERROR", "服务可能未部署在安全域名, navigator.clipboard 将为 undefined");
-					}
-					navigator.clipboard?.writeText(codeText)
-						.then(() => {
-							// console.log('代码已复制到剪贴板');
-							QMessage.success("成功，代码已复制到剪贴板");
-							iLog.success("[WriteText] SUCCESS", `代码已复制到剪贴板`);
-						})
-						.catch(err => {
-							QMessage.error("无法正常复制代码，请手动复制");
-							iLog.error("[WriteText] ERROR", err);
-						});
-				};
-
-				QMessage.success("成功，代码已复制到剪贴板");
-				iLog.success("[ExecCommand] SUCCESS", `代码已复制到剪贴板`);
-
-			} catch (err) {
-
-				QMessage.error("无法正常复制代码，请手动复制");
-				iLog.error("[ExecCommand] ERROR", err);
-				
-			} finally {
-				// 移除临时元素
-				document.body.removeChild(textarea);
-			}
-        }
-    }
-
-    const createCodeLanguageTag = () => {
-        const allAstroCodeDom = document.querySelectorAll('.astro-code')
-
-        allAstroCodeDom.forEach( (astroCodeDom) => {
-            const codeDom = astroCodeDom.querySelector('code')
-            const newParent = document.createElement('div');
-            newParent.classList.add('code-wrapper');
-            codeDom && newParent.appendChild(codeDom);
-            astroCodeDom.appendChild(newParent)
-            
-            const codeLanguage = astroCodeDom.getAttribute('data-language')
-            if (codeLanguage) {
-                const _span = document.createElement('span')
-                _span.classList.add('code-language')
-                _span.innerText = codeLanguage
-                _span.addEventListener('click', copyCodeText);
-                _span.setAttribute('title', '点击复制代码');
-                astroCodeDom.prepend(_span)
-            }
-        })
-    }
-    createCodeLanguageTag()
-</script>
-
-<style lang="scss">
+<style lang="scss" scoped>
 	body {
 		padding-top: 60px;
 		min-width: 360px;
-    	background-color: var(--body-bgcolor);
-    	scroll-behavior: smooth;
+    	background-color: var(--pageBGC);
 	}
+
 	.wrapper {
 		padding: 40px;
 		margin: 0 auto 0;
 		position: relative;
 		max-width: 786px;
 		min-width: 360px;
-		min-height: calc(100vh - 240px);
-		font-family: var(--fontBase);
+		min-height: calc(100vh - 120px);
+		font-family: var(--baseFont);
 		border-radius: 3px;
-		background-color: var(--blackf);
-		box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
+		background-color: var(--bodyBGC);
+		box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
 		transition: all .3s ease;
 	}
 
 	@media screen and (max-width: 786px) {
 		body { padding-top: 0 }
-		.wrapper { padding: 20px 20px 0 }
+		.wrapper { padding: 24px }
 	}
 </style>

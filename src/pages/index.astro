@@ -1,33 +1,47 @@
 ---
+import PostCard from '@components/PostCard.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import BlogCardList from "../components/BlogCardList"
-import Welcome from "../components/Welcome.astro"
-import { allPostArr } from '@utils/astroUtils';
+import { selectPostsByFeatured } from '@utils/astroUtil'
+
+// 获取最新推荐技术文章(最新前五个)
+const featuredPosts = (await selectPostsByFeatured())
+						.sort((postBef, postAft) => postAft.data.pubDate.valueOf() - postBef.data.pubDate.valueOf())
+						.slice(0, 5)
 ---
 
 <BaseLayout title="不来杯咖啡?">
-	<main class="base-main">
-		<Welcome />
-		<!-- <h2 class="sub-title">推荐文章</h2> -->
-		<!-- <BlogCardList 
-			posts={ 
-				allPostArr
-				.filter(p => p.data.class === '技术' && p.data.featured)
-				.sort((p1, p2) => p2.data.pubDate.getTime() - p1.data.pubDate.getTime()) 
-			} 
-			postPerPage={ 2 } 
-			client:only="react"/> -->
-	</main>
+
+	<!-- <Dialog visible={ "show" }/> -->
+	<div class="base-main">
+		<h2 class="post-featur-title">近期推荐</h2>
+		<div class="post-featur-list">
+			{
+				featuredPosts.map(post => (
+					<PostCard 
+						title={ post.data.title }
+						time={ post.data.pubDate }
+						tags={ post.data.tags }
+						url={ post.slug }
+						desc={ post.body }>
+					</PostCard>
+				))
+			}
+		</div>
+	</div>
+
 </BaseLayout>
 
-<style>
-	main {
-		padding: 0 0 60px;
-		min-height: calc(100vh - 420px);
+<style lang="scss">
+	.base-main {
+		padding-top: 40px;
+		.post-featur-title {
+			font-weight: 400;
+			font-size: var(--fontsSubtit);
+			line-height: 1.8;
+			color: var(--textColor2);
+		}
 	}
 	@media screen and (max-width: 786px) {
-		.sub-title {
-			font-size: 28px;
-		}
+
 	}
 </style>

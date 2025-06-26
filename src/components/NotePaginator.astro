@@ -1,18 +1,16 @@
 ---
-import '@styles/global.min.css'
-
 export interface Props {
     currentPage: number,
     lastPage: number,
 }
 
 const { currentPage, lastPage } = Astro.props;
-const pageArr = Array.from({length: lastPage}, (_, i) => i+1);
+const pages = Array.from({length: lastPage}, (_, i) => i+1);
 ---
 <div class="note-paginator" data-currentIdx={`${currentPage}`}>
     <p class="tips">页码:</p>
     {
-        pageArr.map((idx) => (
+        pages.map((idx) => (
             <a href={`/notes/${idx}`} 
             class={`note-paginator-item ${ currentPage == idx ? 'active' : '' }`}>
                 {idx}
@@ -23,30 +21,31 @@ const pageArr = Array.from({length: lastPage}, (_, i) => i+1);
 
 <style lang="scss">
     .note-paginator {
+        margin-top: 20px;
         position: relative;
-        top: -10px;
-        padding: 0 0 40px;
+        top: 0;
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         .tips {
             margin-bottom: 8px;
             width: 100%;
-            font-size: 14px;
-            color: var(--fontcolor3);
+            font-size: var(--fontsSM);
+            color: var(--textColor3);
         }
         .note-paginator-item {
             margin-right: 10px;
+            margin-bottom: 10px;
             width: 24px;
             height: 24px;
-            font-size: 14px;
+            font-size: var(--fontsSM);
             line-height: 24px;
             text-align: center;
-            border: 1px solid var(--fontcolor1);
-            color: var(--fontcolor1);
+            border: 1px solid var(--textColor3);
+            color: var(--textColor3);
             &.active {
-                border: 1px solid var(--main-color);
-                color: var(--main-color);
+                border: 1px solid var(--mainColor);
+                color: var(--mainColor);
                 pointer-events: none;
             }
         }

@@ -1,0 +1,135 @@
+---
+import { formatDate, dispatchMarkdownDesc } from "@utils/commonUtil"
+
+export interface props {
+    title: string,
+    desc: string,
+    tags: string[],
+    time: Date,
+    url: string,
+}
+
+const { url, title, time, desc, tags } = Astro.props
+---
+
+<a href={ `/${url}` } class="post-card-wrapper">
+    <div class="post-card">
+        <p class="time">{ formatDate(time).slice(0, 10) }</p>
+        <div class="title">{ title }</div>
+        <div class="desc">{ dispatchMarkdownDesc(desc, 120) + "..." }</div>
+        <ul class="tags">
+            {
+                tags.map((tag: string, index: number) => {
+                            return (
+                                <li data-key={index}>
+                                    <span>#</span>{tag}
+                                </li>
+                            )
+                        })
+            }
+        </ul>
+    </div>
+</a>
+
+<style lang="scss">
+.post-card-wrapper {
+    position: relative;
+    .post-card {
+        padding: 32px 0;
+        width: 90%;
+        .time {
+            margin-bottom: 4px;
+            padding-left: 12px;
+            font-size: var(--fontsSM);
+            line-height: 1.4;
+            color: var(--textColor4);
+            border-left: 2px solid var(--scrapBGC);
+        }
+        .title {
+            position: relative;
+            padding: 4px 0 8px;
+            padding-left: 0;
+            font-weight: 400;
+            font-size: var(--fontsULT);
+            line-height: 1.6;
+            color: var(--textColor1);
+            transition: var(--baseTran);
+            &::before {
+                content: '»';
+                position: absolute;
+                top: calc(50% - 4px);
+                left: -20px;
+                font-weight: 600;
+                color: var(--textColor1);
+                transform: translateY(-50%);
+                opacity: 0;
+                transition: var(--baseTran);
+            }
+        }
+        .desc {
+            margin-bottom: 8px;
+            word-break: break-all;
+            font-size: var(--fontsSM);
+            line-height: 1.6;
+            letter-spacing: 1px;
+            color: var(--textColor2);
+            transition: var(--baseTran);
+            &:hover {
+                color: var(--textColor1);
+            }
+        }
+        .tags {
+            margin-top: 8px;
+            position: relative;
+            display: inline-flex;
+            li {
+                margin-right: 16px;
+                font-size: var(--fontsMini);
+                height: 20px;
+                line-height: 1.8;
+                list-style: none;
+                color: var(--textColor4);
+                opacity: .9;
+                transition: var(--baseTran);
+                span {
+                    margin-right: 2px;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: -4px;
+                width: 0;
+                height: 1px;
+                background-color: var(--mainColor);
+                opacity: .38;
+                z-index: 10;
+                transition: var(--baseTran);
+            }
+        }
+    }
+    &:hover {
+        .post-card {
+            .title {
+                padding-left: 24px;
+                color: var(--mainColor);
+                &::before {
+                    left: 0;
+                    opacity: 1;
+                    color: var(--mainColor);
+                }
+            }
+            .desc { color: var(--textColor1) }
+            .tags {
+                li { color: var(--mainColor) }
+                &::after { width: 100% }
+            }
+        }
+
+    }
+}
+</style>

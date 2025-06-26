@@ -1,0 +1,217 @@
+// ===================================================================================
+// FILENAME: markdown.scss
+// 专门提供 markdown 转 html 页面使用
+// ===================================================================================
+
+.markdown-wrapper {
+    --mdTitle1: 28px;
+    --mdTitle2: 26px;
+    --mdTitle3: 24px;
+
+    h1 {
+        position: relative;
+        font-size: var(--mdTitle1);
+        line-height: 2;
+        color: var(--textColor2);
+        padding-left: calc(var(--mdTitle1));
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "#";
+            transition: var(--baseTran);
+        }
+    }
+
+    h2 {
+        position: relative;
+        font-size: var(--mdTitle2);
+        line-height: 2;
+        color: var(--textColor2);
+        padding-left: calc(var(--mdTitle2) * 1.5);
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "##";
+            transition: var(--baseTran);
+        }
+    }
+
+    h3 {
+        position: relative;
+        font-size: var(--mdTitle3);
+        line-height: 2;
+        color: var(--textColor2);
+        padding-left: calc(var(--mdTitle3) * 2);
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "###";
+            transition: var(--baseTran);
+        }
+    }
+
+    h4, h5, h6 { @extend h3 }
+
+    h1, h2, h3,
+    h4, h5, h6 {
+        transition: var(--baseTran);
+        &:hover { 
+            filter: brightness(1.1);
+            &::before { color: var(--mainColor); }
+        }
+    }
+
+    p {
+        margin: 4px auto 16px;
+        font-size: var(--fontsBase);
+        line-height: 1.6;
+        color: var(--textColor3);
+        code {
+            display: inline-block;
+            padding: 2px 6px;
+            font-family: var(--codeFont);
+            font-size: var(--fontsSM);
+            line-height: 1.4;
+            color: var(--textColor2);
+            background-color: var(--scrapBGC);
+            border-radius: 2px;
+        }
+        strong {
+            color: var(--maiColor);
+        }
+    }
+
+    ul, ol {
+        @extend p;
+        padding-left: calc(var(--fontsBase) * 2);
+        li {
+            @extend p;
+            margin: 8px auto;
+            &::marker {
+                color: var(--mainColor);
+                background-color: var(--mainColor);
+            }
+        }
+    }
+
+    blockquote {
+        margin: 16px auto 20px;
+        padding: 4px 12px;
+        background-color: var(--chunkBGC);
+        border-left: 3px solid var(--mainColor);
+        p {
+            @extend p;
+            code {
+                background-color: var(--scrapBGC);
+            }
+        }
+        ul, ol {
+            @extend p;
+            padding-left: calc(var(--fontsBase) * 2);
+        }
+        blockquote { padding: 0 8px; }
+        a {
+            @extend p;
+            color: var(--linkColor);
+        }
+    }
+
+    .astro-code {
+        position: relative;
+        font-family: var(--fontCode);
+        overflow: hidden !important;
+        .code-wrapper {
+            position: relative;
+            padding: 30px 20px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: auto;
+            &::-webkit-scrollbar {
+                background-color: var(--scrapBGC);
+                width: 4px;
+                height: 4px;
+            }
+            &::-webkit-scrollbar-thumb{
+                background-color: var(--mainColor);
+            }
+        }
+        .code-language {
+            position: absolute;
+            padding: 4px 8px;
+            top: 0;
+            right: 0;
+            font-weight: 600;
+            font-size: var(--fontsSM);
+            color: var(--mainColor);
+            background-color: #24292e;
+            transition: all .3s ease;
+            cursor: pointer;
+            z-index: 50;
+            &:hover {
+                color: #FFFFFF;
+                background-color:  var(--mainColor);
+            }
+        }
+    }
+
+    code {
+        font-family: var(--codeFont);
+        font-size: var(--fontsSM);
+        line-height: 1.8;
+    }
+
+    a {
+        @extend p;
+        color: var(--linkColor);
+    }
+
+    em {
+        font-size: var(--fontsSM);
+        color: var(--textColor4);
+        font-style: italic;
+    }
+
+    small-text {
+        @extend em;
+        font-size: var(--fontsMini);
+    }
+
+    img {
+        margin: 0 auto 0;
+        display: block;
+        max-width: 720px;
+        height: 200px;
+        filter: drop-shadow(2px 2px 4px #00000033);
+    }
+
+    strong {
+        color: var(--mainColor) !important;
+    }
+
+    table {
+        margin: 8px auto;
+        color: var(--textColor2);
+        border: 2px solid var(--scrapBGC);
+        tr {
+            border-bottom: 1px solid var(--scrapBGC);
+        }
+        th {
+            padding: 16px 0;
+            min-width: 120px;
+            font-size: var(--fontsSM);
+            border: 1px solid var(--scrapBGC);
+        }
+        td {
+            padding: 8px 2px;
+            min-width: 120px;
+            font-size: var(--fontsSM);
+            border: 1px solid var(--scrapBGC);
+            color: var(--textColor3);
+        }
+    }
+}
+
+

@@ -1,34 +1,11 @@
 ---
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-import NotesCard from '@components/NotesCard.astro';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import NoteCard from "@components/NoteCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-import { getCollection } from 'astro:content';
-
-import { postFilter } from '@utils/astroUtils';
-import NotePaginator from '@components/NotePaginator.astro';
-
-export async function getStaticPaths({ paginate } : { paginate: Function }) {
-    const notes = await getCollection('notes');
-
-    const noteContens = await Promise.all(
-        notes
-        .sort((n1, n2) => n2.data.pubDate.valueOf() - n1.data.pubDate.valueOf())
-        .filter(postFilter)
-        .map(async (note) => {
-            const { Content } = await note.render();
-            return {
-                Content,
-                frontmatter: note.data,
-                slug: note.slug,
-            };
-        })
-    );
-    const allNoteCont = noteContens;
-    // 返回所有条目的分页路径集合
-    return paginate(allNoteCont, { pageSize: 8 });
-}
+import { getAllNotes, mdTimeFilter } from "@utils/astroUtil";
+import NotePaginator from "@components/NotePaginator.astro";
 
 export interface Props {
     page: {
@@ -42,16 +19,45 @@ export interface Props {
     };
 }
 
+
+export async function getStaticPaths({ paginate } : { paginate: Function }) {
+    const notes = await getAllNotes()
+
+    const noteContens = await Promise.all(
+        notes
+        .sort((noteBef, noteAft) => noteAft.data.pubDate.valueOf() - noteBef.data.pubDate.valueOf())
+        .filter(mdTimeFilter)
+        .map(async (note) => {
+            const { Content } = await note.render();
+            return {
+                Content,
+                frontmatter: note.data,
+                slug: note.slug,
+            };
+        })
+    );
+    // 返回所有条目的分页路径集合
+    return paginate(noteContens, { pageSize: 8 });
+}
+
+
 const { page } = Astro.props;
 ---
-<BaseLayout title='随手记'>
-    <div class="note-card-list">
+
+<BaseLayout title={ `随手一记 第${page.currentPage}页` }>
+    <section class="notes-wrapper">
         {page.data.map(({ Content, frontmatter, slug }, idx) => (
-            <NotesCard frontmatter={frontmatter} url={slug}>
+            <NoteCard frontmatter={frontmatter} slug={slug}>
                 <Content key={idx} />
-            </NotesCard>
+            </NoteCard>
         ))}
-    </div>
-    <NotePaginator currentPage={page.currentPage} lastPage={page.lastPage} />
+        <NotePaginator currentPage={ page.currentPage } lastPage={ page.lastPage } />
+    </section>
 </BaseLayout>
 
+
+<style lang="scss">
+.notes-wrapper {
+    padding-top: 40px;
+}
+</style>

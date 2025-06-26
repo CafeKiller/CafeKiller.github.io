@@ -1,0 +1,95 @@
+---
+import '@styles/base.min.css'
+
+import { dispatchMarkdownTime } from '@utils/commonUtil'
+
+export interface Props {
+    title: string,
+    coverImg?: {
+        url: string,
+        alt: string,
+    },
+    pubTime: Date,
+    draft?: boolean,
+    tags: string[],
+}
+
+const { title, coverImg, pubTime, draft, tags} = Astro.props
+const draftTips = ''
+---
+
+<section class="markdown-header">
+    <h2 class="title">{ title }</h2>
+    <div class="cover-img">
+        { coverImg ? <img src={ coverImg.url } alt={ coverImg.alt } /> : '' }
+    </div>
+    <div class="more-cont">
+        <p class="time"> { dispatchMarkdownTime(pubTime) } </p>
+        {tags?.length 
+            ? <nav class="tag-nav">
+                {tags.map((tag: string) => {
+                    return (<a class="tag-link" href="javascript:void(0)">#{ tag } </a>)
+                })}
+            </nav>
+            : ''
+        }
+    </div>
+    <div class="iLine"></div>
+    { draft ? (<p class="draft-tips"><strong>注意！</strong>非最终版本，文章正在编辑中......</p>) : '' }
+</section>
+
+
+<style lang="scss" scoped>
+.markdown-header {
+    margin: 20px auto 20px;
+    position: relative;
+    width: 100%;
+    .title {
+        font-family: "Microsoft YaHei";
+        font-size: calc(var(--fontsTitle) * 1.2);
+        line-height: 1.8;
+        color: var(--textColor1);
+    }
+    .cover-img {
+        img {
+            margin-bottom: 16px;
+            max-width: 400px;
+            height: 140px;
+            object-fit: cover;
+        }
+    }
+    .more-cont {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .time {
+        padding-left: 12px;
+        font-size: var(--fontsSM);
+        line-height: 1.6;
+        color: var(--textColor4);
+        border-left: 2px solid var(--scrapBGC);
+    }
+    .tag-nav {
+        font-size: var(--fontsSM);
+        .tag-link {
+            position: relative;
+            top: 0;
+            margin-right: 8px;
+            color: var(--textColor3);
+            transition: all .15s ease;
+            &:hover { top: -3px; color: var(--mainColor) }
+        }
+    }
+    .draft-tips {
+        padding-left: 10px;
+        font-size: var(--fontsBase);
+        border-left: 4px solid var(--wranColor);
+        color: var(--textColor1);
+        strong {
+            font-weight: 400;
+            color: var(--wranColor);
+        }
+    }
+}
+</style>

@@ -1,163 +1,126 @@
 ---
+import '@styles/base.min.css'
+import { getUniqueTags } from '@utils/astroUtil'
+import { getCollection } from 'astro:content'
 
-import '@styles/global.min.css'
-
-import { allPostArr, getUniqueTags } from '@utils/astroUtils'
-import type { tagType } from '@type/common';
-
-const fillterTags: tagType[] = getUniqueTags(allPostArr)
-
-const isDev = import.meta.env.DEV;
+const tags = getUniqueTags(await getCollection("posts"))
 ---
 
-<footer class="footer-wrapper">
-    <div class="footer-cont">
-        
-        <nav class="tags">
-            <h1 class="title">标签</h1 >
-            {
-                fillterTags
-                .sort((t1, t2) => t2.count - t1.count)
-                .map((item) => {
-                    return ( 
-                        <a href={"/tags/" + item.tag} class="item"> 
-                            { item.tag } <span>({ item.count })</span> 
-                        </a> )
-                })
-            }
-        </nav>
+<section class="footer-wrapper">
+    <footer class="footer-cont">
 
-        <nav class="categos" style=`${ isDev ? 'display: none' : 'display: none'}`>
-        <!-- <nav class="categos">     -->
-            <h1 class="title">分类</h1 >
-            <a href="/tags" class="item" style="--color:#007fff">全部</a>
-            <a href="/tags/posts" class="item" style="--color:#3cb371">技术</a>
-            <!-- <a href="/tags/games" class="item" style="--color:#7b68ee">游戏</a> -->
-            <a href="/tags/articles" class="item" style="--color:#e32636">杂谈</a>
-        </nav>
+        <!-- 
+        <div class="blog-nav">
+            <div class="nav-title">导航</div>
+            <nav class="link-navs">
+                <a class="link" href="/">首页</a>
+                <a class="link" href="/blogs">归档</a>
+                <a class="link" href="/notes/1">随笔</a>
+                <a class="link" href="/about">关于</a>
+            </nav>
+        </div> 
+        -->
 
-        <section class="bottom-links">
-            <a class="repo-link" target="_blank" href="https://github.com/CafeKiller/MyBlog">Repository</a>
-        </section>
-    </div>
-</footer>
-
-<style lang="scss">
-    // Footer 通用底部 组件样式
-    .footer-wrapper {
-        position: relative;
-        bottom: 0;
-        margin-top: 80px;
-        width: 100%;
-        background-color: var(--blackf);
-        box-shadow: 0 1px 7px rgba(0, 0, 0, .3);
-        .footer-cont {
-            padding: 40px 0 40px;
-            margin: 0 auto 0;
-            max-width: 886px;
-            .categos, .tags {
-                padding: 0 60px;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 8px;
-                .title {
-                    margin-bottom: 10px;
-                    font-weight: 400;
-                    font-size: 24px;
-                    font-family: 'FanZ_LTYuanJian';
-                    line-height: 42px;
-                    letter-spacing: 4px;
-                    text-indent: 4px;
-                    width: 100%;
-                    text-align: center;
-                    color: var(--fontcolor1);
+        <div class="tags-nav">
+            <div class="nav-title">标签</div>
+            <nav class="links flexbox">
+                {
+                    tags.map(tag => {
+                        return (
+                            <a href="javascript:void(0)" class="link flexbox">
+                                { tag.tag } <span class="tag-count">({ tag.count })</span>
+                            </a>
+                        )
+                    })
                 }
-            }
-            .tags {
-                margin: 0 auto 0;
-                max-width: 520px;
-                .item {
-                    /* margin: 0 6px; */
-                    padding: 4px 12px;
-                    font-size: 14px;
-                    text-align: center;
-                    color: var(--fontcolor2);
-                    border: 1px solid var(--blackc);
-                    transition: all .15s ease;
-                    box-sizing: border-box;
-                    span {
-                        color: var(--fontcolor4);
-                        opacity: 1;
-                        transition: all .15s ease;
-                    }
-                    &:hover {
-                        color: var(--main-color);
-                        border: 1px solid var(--main-color);
-                        span {
-                            color: var(--main-color);
-                            opacity: .7;
-                        }
+            </nav>
+        </div>
+
+    </footer>
+</section>
+
+<style lang="scss" scoped>
+.footer-wrapper {
+    padding: 40px 0;
+    margin: 60px auto 0;
+    width: 100%;
+    background-color: var(--bodyBGC);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+    .footer-cont {
+        margin: 0 auto 0;
+        max-width: 686px;
+        min-width: 360px;
+    }
+    .nav-title {
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: var(--fontsBIG);
+        line-height: 1.6;
+        text-align: center;
+        color: var(--textColor1);
+    }
+    .tags-nav {
+        margin: 0 auto 0;
+        width: 80%;
+        .links {
+            flex-wrap: wrap;
+            gap: 8px;
+            .link {
+                padding: 0 8px;
+                min-width: 80px;
+                height: 30px;
+                font-size: var(--fontsSM);
+                color: var(--textColor2);
+                border: 1px solid var(--textColor2);
+                transition: var(--baseTran);
+                &:hover {
+                    color: var(--mainColor);
+                    border-color: var(--mainColor);
+                    .tag-count {
+                        opacity: .8;
                     }
                 }
             }
-            .categos {
-                margin-top: 38px;
-                .item {
-                    padding: 6px 26px;
-                    font-size: 18px;
-                    text-indent: 6px;
-                    letter-spacing: 6px;
-                    color: var(--color);
-                    border: 2px solid var(--color);
-                    transition: all .15s ease;
-                    background-color: transparent;
-                    transition: all .25s ease;
-                    &:hover {
-                        color: var(--blackf);
-                        background-color: var(--color);
-                    }
-                }
+            .tag-count {
+                transition: var(--baseTran);
+                font-size: var(--fontsMini);
+                color: var(--textColor2);
+                opacity: 0.5;
             }
-            .bottom-links {
+        }
+    }
+    .blog-nav {
+        .link-navs {
+            width: 80px;
+            .link {
+                padding-left: 20px;
                 position: relative;
-                margin: 50px auto 0;
-                width: 100%;
-                text-align: center;
+                display: block;
+                font-family: var(--baseFont);
+                font-size: var(--fontsBase);
+                line-height: 1.6;
+                transition: var(--baseTran);
+                color: var(--textColor4);
+                &:hover {
+                    color: var(--mainColor);
+                }
                 &::before {
                     content: '';
                     position: absolute;
-                    left: 50%;
-                    top: -10px;
-                    width: 30px;
-                    height: 1px;
-                    background-color: var(--black9);
-                    transform: translateX(-50%);
-                }
-                .repo-link {
-                    font-size: 14px;
-                    color: var(--fontcolor2);
+                    top: calc(50% - 1px);
+                    left: 4px;
+                    width: 6px;
+                    height: 2px;
+                    background-color: var(--textColor4);
                 }
             }
-        }
+        }     
     }
-    // 移动端or小屏适配
-    @media screen and (max-width: 786px) {
-        .footer-wrapper {
-            margin-top: 52px;
-            .footer-cont {
-                .tags {
-                    padding: 0 40px;
-                }
-            }
-        }
-    }
+}
 
-    // 黑夜模式
-    html.dark {
-        .footer-wrapper {
-            background-color: var(--blackf);
-            box-shadow: none;
-        }
-    }
+@media screen and (max-width: 786px) {
+    .footer-wrapper { 
+        margin: 40px auto 0;
+    } 
+}
 </style>

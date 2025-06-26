@@ -1,0 +1,21 @@
+---
+import '@styles/note.min.css'
+---
+
+<section class="note-md-wrapper">
+    <slot />
+</section>
+
+<script>
+import { 
+    createCodeLanguageTag,
+    createATagJump,
+    iamgeTagInsertEvent,
+} from "@utils/domUtil"
+
+window.addEventListener("load", function(){
+    createCodeLanguageTag()
+    createATagJump()
+    iamgeTagInsertEvent()
+})
+</script>

@@ -1,0 +1,32 @@
+---
+import type { postSchema } from "@type/astro"
+
+import Comments from "@components/Comment";
+import MarkdownHeader from "@components/MarkdownHeader.astro";
+import BaseLayout from "@layouts/BaseLayout.astro"
+
+export interface Props {
+    frontmatter: postSchema
+}
+const { frontmatter } = Astro.props
+---
+
+<BaseLayout 
+    title={ frontmatter.title }
+    description={ frontmatter.description } >
+
+    <MarkdownHeader 
+        title = { frontmatter.title }
+        pubTime = { frontmatter.pubDate }
+        coverImg = { frontmatter.image }
+        draft = { frontmatter.draft }
+        tags = { frontmatter.tags }
+    />
+
+    <slot />
+
+    <section class="mark-comment">
+        <Comments client:only="react" />
+    </section>
+
+</BaseLayout>

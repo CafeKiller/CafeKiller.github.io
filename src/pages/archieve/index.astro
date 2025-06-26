@@ -1,0 +1,159 @@
+---
+import '@styles/base.min.css'
+import BaseLayout from '@layouts/BaseLayout.astro'
+
+import type { yearNavObj } from '@type/astro'
+
+import { createYearHistories } from '@utils/astroUtil'
+import { formatDate } from '@utils/commonUtil'
+
+import { getCollection } from 'astro:content'
+
+const yearsObj = createYearHistories(await getCollection('posts'))
+const yearList = Object.keys(yearsObj).reverse()
+---
+
+<BaseLayout title="归档">
+    <main class="archieve-wrapper">
+        {
+            yearList.map((item: string) => {
+                return (
+                    <section class="year-cont">
+						<h2 class="title" id={`${ item }`}>
+							{ item.split("").map((item:string) => ( <span>{item}</span> )) }
+						</h2>
+						<nav class="nav-cont">
+							{
+                                yearsObj[item].map((_item: yearNavObj) => {
+                                    return (
+                                        <div class="nav-item">
+                                            <span class="post-time">{ formatDate(_item.time).slice(5, 10) }</span>
+                                            <a class="post-link" href={''+_item.url}> { _item.tit } </a> 
+                                            { _item.draft ? (<span class="post-tips draft">DRAFT</span>) : '' }
+                                            { (_item.url.indexOf('test') !== -1) ? (<span class="post-tips test">TEST</span>) : '' }
+                                        </div>
+                                    )
+                                })
+                            }
+						</nav>
+				    </section>
+                )
+            })
+        }
+    </main>
+</BaseLayout>
+
+<style lang="scss">
+    .archieve-wrapper {
+        padding: 30px 0 30px;
+        width: 100%;
+    }
+    .year-cont {
+        padding-bottom: 40px;
+        position: relative;
+        &::before {
+			position: absolute;
+			content: "";
+			left: 80px;
+			width: 2px;
+			height: 100%;
+			background-color: var(--chunkBGC);
+		}
+        .title {
+			position: sticky;
+			left: 0;
+			top: 0;
+			display: flex;
+			align-items: center;
+			font-weight: 400;
+			font-size: var(--fontsSubtit);
+			line-height: 1;
+			color: var(--textColor1);
+			user-select: none;
+			background-color: var(--bodyBGC);
+			span {
+                &:nth-last-of-type(2),
+				&:last-child {
+					color: var(--mainColor);
+				}
+			}
+			&::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 78px;
+				width: 6px;
+				height: 6px;
+				background-color: var(--scrapBGC);
+				transform: translateY(-50%) rotateZ(45deg);
+			}
+		}
+        .nav-cont {
+			margin-top: -30px;
+			padding-left: 100px;
+			.nav-item {
+				display: flex;
+				align-items: center;
+				.post-time {
+					align-self: flex-start;
+                    min-width: 50px;
+					font-size: var(--fontsMini);
+					line-height: calc(var(--fontsBase) * 2);
+					color: var(--textColor4);
+                    opacity: 0.5;
+				}
+				.post-link {
+					display: block;
+					position: relative;
+					max-width: 80%;
+					font-size: var(--fontsBase);
+					line-height: calc(var(--fontsBase) * 2);
+					color: var(--textColor2);
+					text-decoration: none;
+                    transition: var(--baseTran);
+					// 过长省略
+					max-width: 300px;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					&::before {
+                        content: '';
+						position: absolute;
+						bottom: 2px;
+						left: unset;
+						right: 0;
+                        display: inline;
+						width: 0;
+						height: 2px;
+						background-color: var(--mainColor);
+						transition: var(--baseTran);
+					}
+					&:hover {
+						color: var(--mainColor);
+						&::before {
+							left: 0;
+							right: unset;
+							width: 100%;
+						}
+					}
+				}
+                .post-tips {
+                    margin-left: 8px;
+                    display: inline-block;
+                    padding: 2px 4px;
+                    font-size: var(--fontsMini);
+                    line-height: 1;
+                    color: #ffffff;
+                    border-radius: 2px;
+                    zoom: 0.8;
+                    &.test { background-color: red }
+                    &.draft { background-color: var(--mainColor); }
+                }
+			}
+			
+		}
+		&:last-of-type {
+			padding-bottom: 30px;
+		}
+    }
+</style>

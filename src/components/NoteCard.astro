@@ -1,0 +1,108 @@
+---
+import type { noteSchema } from "@type/astro";
+import NoteContainer from "./NoteContainer.astro";
+import { formatDate } from "@utils/commonUtil";
+import Comments from "./Comment";
+
+export interface Props {
+    frontmatter: noteSchema,
+    slug: string,
+}
+
+const { frontmatter, slug } = Astro.props
+---
+
+<div class="note-wrapper">
+    <div class="left-line"></div>
+    <div class="note-header">
+        { 
+            frontmatter.title != '' 
+            ? <h2 class="note-title" id={frontmatter.title}> {frontmatter.title}</h2> 
+            : '' 
+        }
+        <span class="note-time">{ formatDate(frontmatter.pubDate).slice(0,10).replaceAll('-','.')}</span>
+    </div>
+
+    <NoteContainer isDraft={ false }>
+        <slot />
+    </NoteContainer>
+
+    <div class="note-footer">
+        {
+            frontmatter.tags.map((tag: string) => (
+                <span class="note-tag"># { tag }</span>
+            ))
+        }
+        <!-- {
+            frontmatter?.openComm 
+            ? (<a href={`/notes/${slug}`} class="go-note" target="_blank">前往话题 » </a>) 
+            : ''
+        } -->
+    </div>
+</div>
+
+
+<style lang="scss">
+    .note-wrapper {
+        position: relative;
+        padding: 20px 0 30px;
+        padding-left: 28px;
+        .left-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--chunkBGC);
+            pointer-events: none;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 1%;
+                background-color: transparent;
+                transform: translateY(-50%);
+                transition: height .5s ease;
+                opacity: 0.7;
+            }
+        }
+        .note-header {
+            position: sticky;
+            left: 0;
+            top: 0;
+            margin-bottom: 8px;
+            background-color: var(--bodyBGC);
+            z-index: 10;
+            .note-title {
+                position: relative;
+                font-family: var(--lostFont);
+                font-size: var(--fontsSubtit);
+                font-weight: 400;
+                letter-spacing: 2px;
+                line-height: 1;
+                color: var(--textColor1);
+                transition: var(--baseTran);
+            }
+            .note-time {
+                font-size: var(--fontsSM);
+                line-height: 2.5;
+                color: var(--textColor3);
+            }
+        }
+        .note-footer {
+            margin-top: 16px;
+            .note-tag {
+                margin-right: 16px;
+                font-size: var(--fontsSM);
+                color: var(--textColor1);
+            }
+            
+        }
+        &:hover {
+            .left-line::before { height: 100%; background-color: var(--mainColor) }
+            .note-header .note-title { color: var(--mainColor); }
+        }
+    }
+</style>

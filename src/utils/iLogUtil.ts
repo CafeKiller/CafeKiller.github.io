@@ -9,7 +9,7 @@ type iLogObj = {
     [property: string] : Function 
 }
 
-function ILog(options?: iLogOptType) {
+export default function ILog(options?: iLogOptType) {
 
     const config = Object.assign({
         info: { defaTitle:'Info', color:'#ff8033'},
@@ -44,11 +44,4 @@ function ILog(options?: iLogOptType) {
         })
         return _obj
     })()
-}
-
-const iLog = ILog()
-
-export {
-    iLog,
-    ILog,
 }

@@ -1,116 +1,85 @@
 ---
-import ToolBar from "@components/ToolBar.astro"
-
-import '@styles/global.min.css'
+import '@styles/base.min.css'
 ---
-<section class="head-wrapper">
+<section class="header-wrapper">
     <header class="header">
-        <nav>
+        <div class="header-title">
+            <h1 class="title">Cafe Blogs</h1>
+            <p class="desc">
+                <span class="tag">代码</span>、<span class="tag">游戏</span>、以及<span class="tag">有趣的故事</span>
+            </p>
+        </div>
+        <nav class="link-navs flexbox">
             <a class="nav-link" href="/">首页</a>
-            <a class="nav-link" href="/blogs">归档</a>
+            <a class="nav-link" href="/archieve/">归档</a>
             <a class="nav-link" href="/notes/1">随笔</a>
             <a class="nav-link" href="/about">关于</a>
         </nav>
-        <div class="header-title">
-            <h1 class="title">Cafe Blogs</h1>
-            <p class="description">
-                <span class="tag">代码</span>，
-                <span class="tag">游戏</span>，
-                以及<span class="tag">有趣的故事</span>
-            </p>
-        </div>
     </header>
-    <ToolBar />
 </section>
 
-
 <style lang="scss">
-    // Header 通用头部 组件样式
-    .head-wrapper {
-        margin-bottom: 20px;
+    .header-wrapper {
         width: 100%;
-        position: relative;
+        height: 80px;
+        transition: var(--baseTran);
         .header {
-            margin: 0 auto 20px;
-            width: 100%;
             display: flex;
             justify-content: space-between;
-            height: 60px;
-            transition: all .3s ease;
-            box-sizing: content-box;
-            nav {
-                display: flex;
-                order: 2;
-                .nav-link {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 80px;
-                    font-size: var(--fonts-base);
-                    transition: all .25s ease;
-                    border-bottom: 3px solid transparent;
-                    color: var(--fontcolor3);
-                    &:hover {
-                        color: var(--main-color);
-                        border-bottom: 3px solid var(--main-color);
-                    }
+        }
+        .header-title {
+            transition: var(--baseTran);
+            .title {
+                font-family: var(--baseFont);
+                font-size: var(--fontsTitle);
+                line-height: 1.4;
+                color: var(--textColor1);
+            }
+            .desc {
+                font-family: var(--baseFont);
+                font-size: var(--fontsBase);
+                line-height: 1.4;
+                color: var(--textColor2);
+                .tag:hover {
+                    color: var(--mainColor);
                 }
             }
-            .header-title {
-                position: relative;
-                align-self: center;
-                order: 1;
-                .title {
-                    width: 100%;
-                    font-weight: 600;
-                    font-size: calc(var(--fonts-tit-big) / 2);
-                    letter-spacing: 2px;
-                    color: var(--fontcolor1);
-                    z-index: 10;
-                }
-                .description {
-                    position: relative;
-                    left: 0;
-                    bottom: 0;
-                    font-size: var(--fonts-base);
-                    vertical-align: middle;
-                    .tag {
-                        transition: all .2s ease;
-                        color: var(--fontcolor3);
-                        &:hover {
-                            color: var(--main-color);
-                        }
-                    }
+        }
+        .link-navs {
+            transition: var(--baseTran);
+            .nav-link {
+                width: 80px;
+                height: 40px;
+                font-family: var(--baseFont);
+                font-size: var(--fontsBase);
+                text-align: center;
+                color: var(--textColor3);
+                border-bottom: 2px solid transparent;
+                transition: var(--baseTran);
+                &:hover {
+                    color: var(--mainColor);
+                    border-bottom: 2px solid var(--mainColor);
                 }
             }
         }
     }
 
-    // 移动端or小屏适配
-    @media screen and (max-width: 786px) {
-        .head-wrapper .header {
+    @media screen and (max-width: 640px) {
+        .header-wrapper {
             height: auto;
-            flex-wrap: wrap;
-            nav {
-                margin-top: 20px;
-                width: 100%;
-                justify-content: center;
-                order: 2;
-                a {
-                    font-size: var(--fonts-base);
-                    height: 60px;
-                }
+            .header {
+                flex-wrap: wrap;
             }
             .header-title {
                 width: 100%;
-                padding-right: 0;
                 text-align: center;
-                order: 1;
-                .description {
-                    width: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
+                .desc {
+                    font-size: var(--fontsSM);
                 }
+            }
+            .link-navs {
+                margin-top: 20px;
+                width: 100%;
             }
         }
     }

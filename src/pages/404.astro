@@ -1,34 +1,42 @@
 ---
+import "@styles/base.min.css"
+
 import BaseLayout from "@layouts/BaseLayout.astro"
-import '@styles/global.min.css'
 ---
 
-<BaseLayout title="404 - Page Not Found">
+<BaseLayout title="Page Not Found!">
     <div class="not-found-wrapper">
         <span class="loader"></span>
-        <h1 class="title">404 | 四〇四 | 肆零肆</h1>
+        <h1 class="title"><span>四〇四</span> | 4 0 4 | <span>肆零肆</span></h1>
         <p class="desc">oops! page not found ~</p>
         <p class="desc">页面不存在，可能是访问页面参数错误，也可能是页面正在添加中......</p>
     </div>
 </BaseLayout>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
     .not-found-wrapper {
-        padding: 20px 40px 60px;
+        padding: 60px 40px 60px;
+        --subColor1: #a69579;
         .title {
             margin-top: 10px;
             margin-bottom: 20px;
             font-weight: 800;
-            font-size: 28px;
+            font-size: var(--fontsTitle);
             line-height: 38px;
             text-align: center;
-            color: var(--fontcolor1);
+            color: var(--textColor1);
+            span { 
+                font-size: var(--fontsTitle);
+                opacity: 1;
+                transition: var(--baseTran);
+            }
         }
         .desc {
-            font-size: 16px;
-            line-height: 32px;
+            font-size: var(--fontsBase);
+            line-height: 2;
             text-align: center;
-            color: var(--fontcolor2);
+            color: var(--textColor2);
         }
         .loader {
             margin: 0 auto 0;
@@ -36,7 +44,7 @@ import '@styles/global.min.css'
             width: 160px;
             height: 160px;
             position: relative;
-            background: var(--main-color);
+            background: var(--mainColor);
             border-radius: 100px 100px 0 0;
             &:after {
                 content: "";
@@ -51,9 +59,9 @@ import '@styles/global.min.css'
                     radial-gradient(circle, #fff 30%, transparent 45%),
                     radial-gradient(circle, #000 48%, transparent 51%),
                     linear-gradient(#000 20px, transparent 0),
-                    linear-gradient(var(--sub1-color) 60px, transparent 0),
-                    radial-gradient(circle, var(--sub1-color) 50%, transparent 51%),
-                    radial-gradient(circle, var(--sub1-color) 50%, transparent 51%);
+                    linear-gradient(var(--subColor1) 60px, transparent 0),
+                    radial-gradient(circle, var(--subColor1) 50%, transparent 51%),
+                    radial-gradient(circle, var(--subColor1) 50%, transparent 51%);
                 background-repeat: no-repeat;
                 background-size: 16px 16px, 16px 16px, 10px 10px, 42px 42px, 12px 3px,
                     50px 25px, 70px 70px, 70px 70px;
@@ -68,8 +76,8 @@ import '@styles/global.min.css'
                 height: 125px;
                 left: -20%;
                 top: 0;
-                background-image: radial-gradient(circle, var(--main-color) 48%, transparent 50%),
-                    radial-gradient(circle, var(--main-color) 48%, transparent 50%);
+                background-image: radial-gradient(circle, var(--mainColor) 48%, transparent 50%),
+                    radial-gradient(circle, var(--mainColor) 48%, transparent 50%);
                 background-repeat: no-repeat;
                 background-size: 65px 65px;
                 background-position: 0px 12px, 145px 12px;
@@ -77,24 +85,17 @@ import '@styles/global.min.css'
             }
         }
     }
+
     @keyframes faceLift {
-        0% {
-            transform: translateX(-60%);
-        }
-        100% {
-            transform: translateX(-30%);
-        }
-        }
+        0% { transform: translateX(-60%) }
+        100% { transform: translateX(-30%) }
+    }
     @keyframes earLift {
-        0% {
-            transform: translateX(10px);
-        }
-        100% {
-            transform: translateX(0px);
-        }
+        0% { transform: translateX(10px) }
+        100% { transform: translateX(0px) }
     }
 
-    html.dark {
-
+    @media screen and (max-width: 640px) {
+        .not-found-wrapper .title span { font-size: 0; opacity: 0 }
     }
 </style>

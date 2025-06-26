@@ -8,15 +8,6 @@ export default defineConfig({
         port: 4321
     },
     site: 'https://CafeKiller.github.io',
-    redirects: {
-        '/posts': '/tags/posts',
-        '/articles': '/tags/articles',
-        '/notes': '/notes/1',
-        '/blogs/2025': '/blogs/#2025',
-        '/blogs/2024': '/blogs/#2024',
-        '/blogs/2023': '/blogs/#2023',
-        '/blogs/2022': '/blogs/#2022'
-    },
     integrations: [
         react()
     ],

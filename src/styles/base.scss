@@ -1,0 +1,150 @@
+// ===================================================================================
+// FILENAME: base.scss
+// 本样式文件为基础样式文件，需要再顶层容器引入
+// ===================================================================================
+
+// ========= RESET START ========= //
+body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,p,form,header,section,article,footer{ margin:0 }
+body,button,input,select,textarea{ font:12px/1.5 tahoma,sans-serif }
+h1,h2,h3,h4,h5,h6{ font-size:100% }
+img{ border:0 } 
+button,input,select,textarea{ font-size:100%; outline:none }
+table{ border-collapse:collapse; border-spacing:0 }
+td,th,ul,ol{ padding:0 }
+
+a {
+    text-decoration:none;
+    word-wrap: break-word;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+* {
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    img[src=""] {
+        display: none;
+    }
+}
+
+html, body {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-overflow-scrolling: touch;
+    font-family: 'Microsoft YaHei, Songti SC, Helvetica, Arial, sans-serif';
+    text-size-adjust: none;
+    scroll-behavior: smooth;
+}
+
+body *,
+body *::before,
+body *::after {
+    box-sizing: border-box;
+}
+// ========= RESET  END  ========= //
+
+
+// ========= SCSSMIXIN  START  ========= //
+@mixin fontHide {
+	font-size: 0;
+	text-indent: -9999em;
+	overflow: hidden;
+}
+
+@mixin flexbox($jc: center, $al: center) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $al;
+}
+// ========= SCSSMIXIN   END   ========= //
+
+
+
+// ========= CSS_VARIANT START ======== //
+html {
+    --mainColor: #8b4513;
+
+    --wranColor: #dc143c;
+
+    --pageBGC: #f4f6f9;
+    --bodyBGC: #ffffff;
+
+    --scrapBGC: #D1D1D1;
+    --chunkBGC: #EAEAEA;
+
+    --baseFont: '"PingFang SC", "OPPOSnac", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif';
+    --codeFont: '"FiraCodeR", "PingFang SC", "IBM Plex Sans", "monospace"';
+    --lostFont: "Microsoft YaHei";
+
+    --zoom: 1;
+
+    --fontsMini: 12px;
+    --fontsSM: 14px;
+    --fontsBase: 16px;
+    --fontsBIG: 20px;
+    --fontsULT: 24px;
+
+    --fontsSubtit: 28px;
+    --fontsTitle: 32px;
+
+    --textColor1: #1F1F1F;
+    --textColor2: #2E2E2E;
+    --textColor3: #333333;
+    --textColor4: #404040;
+    --textColor5: #404040;
+
+    --baseTran: all .3s ease-out;
+
+    --linkColor: #2896ff;
+}
+
+.dark {
+    --mainColor: #ff8033;
+
+    --pageBGC: #272727;
+    --bodyBGC: #3b3b3b;
+
+    --scrapBGC: #585858;
+    --chunkBGC: #292929;
+
+    --textColor1: #F8F8F8;
+    --textColor2: #D1D1D1;
+    --textColor3: #CCCCCC;
+    --textColor4: #BFBFBF;
+
+    --linkColor: deepskyblue;
+}
+
+// ========= CSS_VARIANT  END  ======== //
+
+
+// ========= COMMON STYLE START ========= //
+.flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-x {
+    overflow-x: auto;
+    table {
+        margin: 10px auto 0;
+    }
+    &::-webkit-scrollbar {
+        height: 4px;
+        width: 6px;
+        background-color: var(--scrapBGC);
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: var(--mainColor);
+    }
+}
+
+.iLine {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    border-bottom: 2px solid var(--scrapBGC);
+    opacity: 0.2;
+}
+// ========= COMMON STYLE  END  ========= //
