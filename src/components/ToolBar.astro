@@ -1,0 +1,158 @@
+---
+import { SITE } from "@config";
+
+const currentUrlPath = Astro.url.pathname.replace(/\/$/, "").replace(SITE.webPrefix, '');
+
+---
+<script src="/assets/js/iconfont.min.js" is:inline></script>
+<div class="toolbar" aria-label="toolbar">
+    
+    <ul class="navigation flexbox">
+        <span>有问题联系我：</span>
+        <a class="flexbox" href="mailto:zaiqiao2481@163.com" >
+            <svg class="icon icon-email" aria-hidden="true">
+                <use xlink:href="#icon-youjian"></use>
+            </svg>
+        </a>
+        <a class="flexbox" href="//space.bilibili.com/248826433" target="_blank">
+            <svg class="icon icon-bilibili" aria-hidden="true">
+                <use xlink:href="#icon-bilibili"></use>
+            </svg>
+        </a>
+        <a class="flexbox" href="//github.com/CafeKiller" target="_blank">
+            <svg class="icon icon-github" aria-hidden="true">
+                <use xlink:href="#icon-github"></use>
+            </svg>
+        </a>
+    </ul>
+
+    <div class="theme-wrapper flexbox">
+        <!-- TODO: 添加文字大小变化显示 -->
+        <div class="theme-box" id="theme-btn" style="opacity: 0;">
+            <svg class="icon" id="theme-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1756" width="200" height="200">
+                <!-- dark 显示: 太阳 -->
+                <g id="icon-dark">
+                    <path d="M510 192a32 32 0 0 1-32-32V80a32 32 0 1 1 64 0v80a32 32 0 0 1-32 32z m224.864 93.136a32 32 0 0 1 0-45.248l56.576-56.576a32 32 0 1 1 45.248 45.248l-56.56 56.56a32 32 0 0 1-45.264 0.016z m93.136 224.864a32 32 0 0 1 32-32h80a32 32 0 1 1 0 64h-80a32 32 0 0 1-32-32z m-93.136 224.864a32 32 0 0 1 45.248 0l56.56 56.56a32 32 0 1 1-45.248 45.248l-56.576-56.56a32 32 0 0 1 0.016-45.248zM510 828a32 32 0 0 1 32 32v80a32 32 0 1 1-64 0v-80a32 32 0 0 1 32-32z m-224.864-93.136a32 32 0 0 1 0 45.248l-56.56 56.56a32 32 0 0 1-45.248-45.248l56.576-56.56a32 32 0 0 1 45.232 0zM192 510a32 32 0 0 1-32 32H80a32 32 0 1 1 0-64h80a32 32 0 0 1 32 32z m93.136-224.864a32 32 0 0 1-45.248 0l-56.576-56.56a32 32 0 0 1 45.248-45.248l56.56 56.576a32 32 0 0 1 0.016 45.232zM510 272c132.544 0 240 107.456 240 240 0 132.544-107.456 240-240 240-132.544 0-240-107.456-240-240 0-132.544 107.456-240 240-240z m0 64c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176z" fill="#000000" p-id="15629"></path>
+                </g>
+                <!-- light 显示: 月亮 -->
+                <g id="icon-light">
+                    <path d="M408.32 143.872c6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667C196.266667 151.552 85.333333 305.152 85.333333 484.352c0 235.946667 191.146667 426.666667 426.666667 426.666667 179.2 0 332.8-110.933333 395.946667-267.946667 6.4-15.786667 2.56-34.133333-9.386667-46.08s-30.293333-15.786667-46.08-9.386667c-39.253333 15.786667-82.346667 24.746667-127.146667 24.746667-188.586667 0-341.333333-152.746667-341.333333-341.333333 0-44.8 8.533333-87.893333 24.32-127.146667zM170.666667 484.352a340.48 340.48 0 0 1 131.84-269.226667c-2.56 18.346667-3.84 37.12-3.84 55.893334 0 235.52 191.146667 426.666667 426.666666 426.666666 18.773333 0 37.546667-1.28 55.893334-3.84A341.248 341.248 0 0 1 170.666667 484.352z" p-id="3046" fill="#000000"></path>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    import SVGMorpheus from "@assets/lib/svg-morpheus.min";
+    import { themeValue } from "@utils/themeUtil";
+
+    let iconTheme = themeValue
+    const themeIcons = new SVGMorpheus('#theme-icon', {
+        iconId: 'icon-' + iconTheme
+    }, () => {
+        document.querySelector('.theme-box')?.setAttribute('style', 'opacity: 0.5;')
+    })
+    
+    const toggleThemeSvg = () => {
+        themeIcons.to("icon-light", { duration: 300 });
+        if (iconTheme == 'dark') {
+            iconTheme = 'light'
+            themeIcons.to("icon-"+iconTheme, { duration: 300 });
+            document.body.style.fill = "#" + (Math.random() + "").slice(-6);
+        } else {
+            iconTheme = 'dark'
+            themeIcons.to("icon-"+iconTheme, { duration: 300 });
+            
+        }
+    }
+    document.querySelector('#theme-btn')?.addEventListener('click', toggleThemeSvg)
+</script>
+
+<style lang="scss">
+    .toolbar {
+        margin-top: 20px;
+        padding-right: 20px;
+        position: relative;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        --drakThemeFilter: invert(98%) sepia(2%) saturate(433%) hue-rotate(206deg) brightness(116%) contrast(87%);
+        --lightThemeFilter: invert(34%) sepia(9%) saturate(0%) hue-rotate(35deg) brightness(95%) contrast(98%);
+        .theme-box {
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            filter: var(--lightThemeFilter);
+            opacity: .5;
+            transition: var(--baseTran);
+            .icon {
+                pointer-events: none;
+                width: 24px;
+                height: 24px;
+                color: var(--textColor4);
+                transform: scaleX(-1);
+            }
+            &:hover {
+                opacity: 1 !important;
+            }
+        }
+        .contr-icon {
+            margin: 0 4px;
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+            line-height: 24px;
+            text-align: center;
+        }
+        .navigation {
+            font-size: var(--fontsMini);
+            line-height: 1.6;
+            letter-spacing: 2px;
+            color: var(--textColor4);
+            .icon {
+                width: var(--fontsBase);
+                height: var(--fontsBase);
+                margin-right: 12px;
+                font-size: var(--fontsBase);    
+                color: var(--textColor4);
+                transform: rotateZ(0deg);
+                transition: var(--baseTran);
+                filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(324deg) brightness(96%) contrast(104%);
+                opacity: 1;
+                &:hover {
+                    transform: rotateZ(18deg);
+                    filter: invert(27%) sepia(48%) saturate(1436%) hue-rotate(353deg) brightness(94%) contrast(90%);
+                    opacity: .8;
+                }    
+            }
+        }
+    }
+
+    html.dark {
+        .toolbar {
+            .theme-box {
+                filter: var(--drakThemeFilter);
+                .icon {
+                    &.dark {
+                        display: none;
+                    }
+                    &.light {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .toolbar {
+            padding-right: 0;
+        }
+    }
+</style>
