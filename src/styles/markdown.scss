@@ -214,4 +214,25 @@
     }
 }
 
-
+// Markdown 标题导航
+.catalogs-wrapper {
+    padding: 12px;
+    display: inline-block;
+    min-width: 200px;
+    background: var(--chunkBGC);
+    .catalog-link {
+        display: block;
+        font-size: var(--fontsSM);
+        line-height: 2;
+        color: var(--textColor3);
+        &.level2 {
+            padding-left: var(--fontsSM);
+        }
+        &.level3 {
+            padding-left: calc(var(--fontsSM)*2);
+        }
+        &:hover {
+            color: var(--mainColor);
+        }
+    }
+}

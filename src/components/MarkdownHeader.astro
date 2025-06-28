@@ -34,6 +34,11 @@ const draftTips = ''
             : ''
         }
     </div>
+
+    <div class="header-catalog">
+        <slot />
+    </div>
+
     <div class="iLine"></div>
     { draft ? (<p class="draft-tips"><strong>注意！</strong>非最终版本，文章正在编辑中......</p>) : '' }
 </section>
@@ -90,6 +95,11 @@ const draftTips = ''
             font-weight: 400;
             color: var(--wranColor);
         }
+    }
+    .header-catalog {
+        display: inline-block;
+        margin-top: 12px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 }
 </style>

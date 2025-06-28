@@ -14,13 +14,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
-const { Content } = await post.render();
+const { Content, headings } = (await post.render())
 const nearPost = await selectNearPosts(post.id)
 ---
 
 <PostLayout 
     frontmatter={ post.data }
-    nearPosts={ nearPost }>
+    nearPosts={ nearPost }
+    headings={ headings }>
     
     <MarkdownContainer isDraft={ post.data.draft }>
         <Content />

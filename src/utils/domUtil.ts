@@ -112,3 +112,26 @@ export const iamgeTagInsertEvent = () => {
 	})
 	
 }
+
+/**
+ * @description 处理目录显示逻辑，指定元素在视口内时才显示，
+ * @param targetName 
+ * @param domName 
+ * */ 
+export const dispatchCatalogShow = (targetName: string, domName: string) => {
+	const target = document.querySelector(targetName)
+	const dom = document.querySelector(domName)
+
+	if(target && dom) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+					dom.setAttribute("data-show", "true")
+                } else {
+					dom.setAttribute("data-show", "false")
+                }
+            })
+        })
+		observer.observe(target)
+	}
+}

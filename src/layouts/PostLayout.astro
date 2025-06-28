@@ -5,27 +5,36 @@ import Comments from "@components/Comment";
 import MarkdownHeader from "@components/MarkdownHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { formatDate } from "@utils/commonUtil";
+import type { MarkdownHeading } from "astro";
+import Catalogs from "@components/Catalogs";
 
 export interface Props {
     frontmatter: postSchema,
     nearPosts: baseCollection[],    
+    headings: MarkdownHeading[],
 }
-const { frontmatter, nearPosts } = Astro.props
-
-console.log("nearposts", nearPosts)
+const { frontmatter, nearPosts, headings } = Astro.props
 ---
 
 <BaseLayout 
     title={ frontmatter.title }
-    description={ frontmatter.description } >
+    description={ frontmatter.description } 
+    >
 
-    <MarkdownHeader 
-        title = { frontmatter.title }
-        pubTime = { frontmatter.pubDate }
-        coverImg = { frontmatter.image }
-        draft = { frontmatter.draft }
-        tags = { frontmatter.tags }
-    />
+    <div class="page-header">
+        <MarkdownHeader 
+            title = { frontmatter.title }
+            pubTime = { frontmatter.pubDate }
+            coverImg = { frontmatter.image }
+            draft = { frontmatter.draft }
+            tags = { frontmatter.tags }>
+            <Catalogs headings={ headings } isTop={true} client:only />
+        </MarkdownHeader>
+    </div>
+
+    <nav class="page-catalog">
+        <Catalogs headings={ headings } client:only />
+    </nav>
 
     <slot />
 
@@ -53,6 +62,11 @@ console.log("nearposts", nearPosts)
 
 </BaseLayout>
 
+<script>
+import { dispatchCatalogShow } from "@utils/domUtil";
+
+    dispatchCatalogShow(".page-header", ".page-catalog")
+</script>
 
 <style lang="scss">
 .near-post-list {
@@ -121,6 +135,20 @@ console.log("nearposts", nearPosts)
                 span { color: var(--mainColor); }
             }
         }
+    }
+}
+
+.page-catalog {
+    position: fixed;
+    bottom: -500px;
+    right: -500px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    &[data-show="true"] {
+        bottom: 20px;
+        right: 20px;
+        opacity: 1;
     }
 }
 </style>
