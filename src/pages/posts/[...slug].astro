@@ -4,6 +4,7 @@ import PostLayout from "@layouts/PostLayout.astro";
 import MarkdownContainer from "@components/MarkdownContainer.astro"
 
 import { getCollection } from 'astro:content'
+import { selectNearPosts } from "@utils/astroUtil";
 
 export async function getStaticPaths() {
     const posts = await getCollection('posts');
@@ -14,10 +15,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 const { Content } = await post.render();
+const nearPost = await selectNearPosts(post.id)
 ---
 
 <PostLayout 
-    frontmatter={ post.data }>
+    frontmatter={ post.data }
+    nearPosts={ nearPost }>
     
     <MarkdownContainer isDraft={ post.data.draft }>
         <Content />

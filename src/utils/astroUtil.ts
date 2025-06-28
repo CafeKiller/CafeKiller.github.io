@@ -58,6 +58,33 @@ export const selectPostsByFeatured = async (): Promise<baseCollection[]> => {
     return reuslt
 }
 
+/**
+ * @description 查询与当前文章相临的两篇文章
+*/
+export const selectNearPosts = async (id: string): Promise<baseCollection[]> => {
+    let result: baseCollection[] = []
+    const allPosts = (await getCollection('posts'))
+                    .sort((postBef, postAft) => postAft.data.pubDate.valueOf() - postBef.data.pubDate.valueOf())
+    const currIdx = allPosts.findIndex(post => post.id === id)
+
+    if (allPosts.length === 1) return result
+    if (allPosts.length === 2) return result = allPosts
+    if (currIdx === -1) return result
+
+    // 判断前后文章是否存在
+    if (currIdx === 0) {
+        // 获取后两篇
+        result = allPosts.slice(1, 3) 
+    } else if (currIdx === allPosts.length - 1) {
+        // 获取前两篇
+        result = allPosts.slice(currIdx - 2, currIdx)
+    } else {
+        result.push(allPosts[currIdx - 1])
+        result.push(allPosts[currIdx + 1])
+    }
+    return result
+} 
+
 // const ALL_MARKDOWN = await getAllMarkdown()
 
 

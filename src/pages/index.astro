@@ -21,7 +21,7 @@ const featuredPosts = (await selectPostsByFeatured())
 						title={ post.data.title }
 						time={ post.data.pubDate }
 						tags={ post.data.tags }
-						url={ post.slug }
+						url={ `${post.collection}/${post.slug}` }
 						desc={ post.body }>
 					</PostCard>
 				))

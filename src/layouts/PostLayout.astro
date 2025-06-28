@@ -1,14 +1,18 @@
 ---
-import type { postSchema } from "@type/astro"
+import type { baseCollection, postSchema } from "@type/astro"
 
 import Comments from "@components/Comment";
 import MarkdownHeader from "@components/MarkdownHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro"
+import { formatDate } from "@utils/commonUtil";
 
 export interface Props {
-    frontmatter: postSchema
+    frontmatter: postSchema,
+    nearPosts: baseCollection[],    
 }
-const { frontmatter } = Astro.props
+const { frontmatter, nearPosts } = Astro.props
+
+console.log("nearposts", nearPosts)
 ---
 
 <BaseLayout 
@@ -25,8 +29,98 @@ const { frontmatter } = Astro.props
 
     <slot />
 
+    <div class="iLine"></div>
+    <section class="near-post-list">
+        <div class="title">近期文章</div>
+        {
+            nearPosts.map(post => {
+                return (
+                    <a class="near-post-item" href={`/${post.collection}/${post.slug}`}>
+                        <div class="post-title">title: <span>{ post.data.title }</span></div>
+                        <div class="post-bar flexbox">
+                            <div>time: <span>{ formatDate(post.data.pubDate).slice(0, 10) }</span></div>
+                            <div>tag: {  post.data.tags.map(tag => (<span>#{tag}</span>)) }</div>
+                        </div>
+                    </a>
+                )
+            })
+        }
+    </section>
+
     <section class="mark-comment">
         <Comments client:only="react" />
     </section>
 
 </BaseLayout>
+
+
+<style lang="scss">
+.near-post-list {
+    position: relative;
+    .title {
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: var(--fontsULT);
+        letter-spacing: 2px;
+        line-height: 1.2;
+        color: var(--textColor1);
+    }
+    .near-post-item {
+        margin-bottom: 16px;
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 4px 0;
+        padding-left: 8px;
+        border-left: 2px solid var(--mainColor);
+        transition: all .1s ease-out;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 0;
+            height: 100%;
+            background-color: transparent;
+            transition: var(--baseTran);
+        }
+        .post-title {
+            position: relative;
+            font-size: var(--fontsBIG);
+            color: var(--textColor4);
+            transition: var(--baseTran);
+            span { 
+                transition: var(--baseTran);
+                color: var(--textColor2); 
+            }
+            z-index: 10;
+        }
+        .post-bar {
+            position: relative;
+            justify-content: flex-start;
+            gap: 40px;
+            margin-top: 4px;
+            font-size: var(--fontsSM);
+            color: var(--textColor4);
+            z-index: 10;
+            span { 
+                margin-right: 4px;
+                transition: var(--baseTran);
+                color: var(--textColor2); 
+            }
+        }
+        &:hover {
+            padding-left: 16px;
+            border-left: 6px solid var(--mainColor);
+            &::before {
+                width: 100%;
+                background-color: #8b45132B;
+                // background-color: rgba($color: var(--linkColor), $alpha: 0.7);
+            }
+            .post-title, .post-bar {
+                span { color: var(--mainColor); }
+            }
+        }
+    }
+}
+</style>
