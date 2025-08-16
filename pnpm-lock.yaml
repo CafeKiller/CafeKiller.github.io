@@ -26,6 +26,9 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
+      viewerjs:
+        specifier: ^1.11.7
+        version: 1.11.7
     devDependencies:
       '@types/react':
         specifier: ^18.3.3
@@ -33,6 +36,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@types/viewerjs':
+        specifier: ^1.0.2
+        version: 1.0.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -686,6 +692,10 @@ packages:
 
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
+
+  '@types/viewerjs@1.0.2':
+    resolution: {integrity: sha512-IQj7e29b6gRpkXbj8H5l0TlHsrCQP+YasYozr85aLX4No4UJgvthHUYbzFkSPUZdcNEKRCIJY+7rR4DTfC0AQw==, tarball: https://registry.npmmirror.com/@types/viewerjs/-/viewerjs-1.0.2.tgz}
+    deprecated: This is a stub types definition. viewerjs provides its own type definitions, so you do not need this installed.
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -1871,6 +1881,9 @@ packages:
   vfile@6.0.1:
     resolution: {integrity: sha512-1bYqc7pt6NIADBJ98UiG0Bn/CHIVOoZ/IyEkqIruLg0mE1BKzkOXY2D6CSqQIcKqgadppE5lrxgWXJmXd7zZJw==}
 
+  viewerjs@1.11.7:
+    resolution: {integrity: sha512-0JuVqOmL5v1jmEAlG5EBDR3XquxY8DWFQbFMprOXgaBB0F7Q/X9xWdEaQc59D8xzwkdUgXEMSSknTpriq95igg==, tarball: https://registry.npmmirror.com/viewerjs/-/viewerjs-1.11.7.tgz}
+
   vite@5.3.1:
     resolution: {integrity: sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -2645,6 +2658,10 @@ snapshots:
   '@types/unist@2.0.10': {}
 
   '@types/unist@3.0.2': {}
+
+  '@types/viewerjs@1.0.2':
+    dependencies:
+      viewerjs: 1.11.7
 
   '@ungap/structured-clone@1.2.0': {}
 
@@ -4223,6 +4240,8 @@ snapshots:
       '@types/unist': 3.0.2
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
+
+  viewerjs@1.11.7: {}
 
   vite@5.3.1(sass@1.77.6):
     dependencies:

@@ -182,8 +182,9 @@
     img {
         margin: 0 auto 0;
         display: block;
-        max-width: 720px;
-        height: 200px;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
         filter: drop-shadow(2px 2px 4px #00000033);
     }
 
@@ -218,6 +219,8 @@
 .catalogs-wrapper {
     padding: 12px;
     display: inline-block;
+    width: auto;
+    max-width: 300px;
     min-width: 200px;
     background: var(--chunkBGC);
     .catalog-link {
@@ -233,6 +236,14 @@
         }
         &:hover {
             color: var(--mainColor);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .catalogs-wrapper {
+        .catalog-link {
+            font-size: var(--fontsMini);
         }
     }
 }

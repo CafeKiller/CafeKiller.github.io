@@ -39,6 +39,7 @@ const Catalogs = ( {headings, isTop}: {headings: MarkdownHeading[], isTop?: bool
                 })
             }
             { isTop ? '' : (<a className="catalog-link" href="javascript:void(0)" onClick={ handleScrollTop }> ↑ 回到顶部</a>) }
+            { isTop ? '' : (<a className="mobile-btn" href="javascript:void(0)"></a>)}
         </div>
     )
 

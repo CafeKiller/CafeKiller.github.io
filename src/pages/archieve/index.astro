@@ -67,10 +67,10 @@ const yearList = Object.keys(yearsObj).reverse()
 			align-items: center;
 			font-weight: 400;
 			font-size: var(--fontsSubtit);
-			line-height: 1;
+			line-height: calc(var(--fontsBase) * 2.6);
 			color: var(--textColor1);
 			user-select: none;
-			background-color: var(--bodyBGC);
+			// background-color: var(--bodyBGC);
 			span {
                 &:nth-last-of-type(2),
 				&:last-child {
@@ -89,7 +89,7 @@ const yearList = Object.keys(yearsObj).reverse()
 			}
 		}
         .nav-cont {
-			margin-top: -30px;
+			margin-top: calc(var(--fontsBase) * -2.6);
 			padding-left: 100px;
 			.nav-item {
 				display: flex;
@@ -98,7 +98,7 @@ const yearList = Object.keys(yearsObj).reverse()
 					align-self: flex-start;
                     min-width: 50px;
 					font-size: var(--fontsMini);
-					line-height: calc(var(--fontsBase) * 2);
+					line-height: calc(var(--fontsBase) * 2.6);
 					color: var(--textColor4);
                     opacity: 0.5;
 				}
@@ -107,7 +107,7 @@ const yearList = Object.keys(yearsObj).reverse()
 					position: relative;
 					max-width: 80%;
 					font-size: var(--fontsBase);
-					line-height: calc(var(--fontsBase) * 2);
+					line-height: calc(var(--fontsBase) * 2.6);
 					color: var(--textColor2);
 					text-decoration: none;
                     transition: var(--baseTran);
