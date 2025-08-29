@@ -31,3 +31,6 @@ pnpm-debug.log*
 /src/components/**/*.css
 /src/components/**/*.css.map
 !/src/components/**/*.min.css
+
+# Obsidian vault
+.obsidian/
