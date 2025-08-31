@@ -119,6 +119,7 @@ export const createYearHistories = ( collection: baseCollection[] ): yearObj => 
                     tit: entry.data.title,
                     time: entry.data.pubDate,
                     draft: entry.data.draft,
+                    tags: entry.data.tags,
                 })
             }
         })     

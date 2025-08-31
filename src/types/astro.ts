@@ -15,6 +15,7 @@ export type yearNavObj = {
     tit: string,
     time: Date,
     draft: boolean,
+    tags: Array<string>,
 }
 export type yearObj = {
     [key: string]: yearNavObj[],

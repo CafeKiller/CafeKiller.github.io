@@ -27,7 +27,7 @@ const Catalogs = ( {headings, isTop}: {headings: MarkdownHeading[], isTop?: bool
     }, [])
 
     return (
-        <div className={ `catalogs-wrapper ${isTop ? "top" : 'bottom'}` }>
+        <div className={ `catalogs-wrapper ${isTop ? "top" : 'bottom'}` } style={{display: `${ headings.length ? 'block' : 'none' }`}} >
             {
                 headings.map(head => {
                     return (
@@ -38,8 +38,8 @@ const Catalogs = ( {headings, isTop}: {headings: MarkdownHeading[], isTop?: bool
                     )
                 })
             }
-            { isTop ? '' : (<a className="catalog-link" href="javascript:void(0)" onClick={ handleScrollTop }> ↑ 回到顶部</a>) }
-            { isTop ? '' : (<a className="mobile-btn" href="javascript:void(0)"></a>)}
+            { isTop ? '' : (<a className="catalog-link" href="#!" onClick={ handleScrollTop }> ↑ 回到顶部</a>) }
+            { isTop ? '' : (<a className="mobile-btn" href="#!" onClick={(e) => e.preventDefault()}></a>)}
         </div>
     )
 

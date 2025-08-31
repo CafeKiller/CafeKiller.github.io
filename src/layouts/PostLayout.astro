@@ -65,11 +65,10 @@ const { frontmatter, nearPosts, headings } = Astro.props
     import { dispatchCatalogShow } from "@utils/domUtil";
     import Viewer from 'viewerjs';
     import 'viewerjs/dist/viewer.css';
-
     dispatchCatalogShow(".page-header", ".page-catalog")
 
     // 初始化图片查看器
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
         const gallery = document.createElement('div');
         const images = document.querySelectorAll('img:not(.modal-content)');
         images.forEach(img => gallery.appendChild(img.cloneNode(true)));
@@ -83,8 +82,8 @@ const { frontmatter, nearPosts, headings } = Astro.props
             tooltip: true,
             movable: true,
             zoomable: true,
-            rotatable: true,
-            scalable: true,
+            rotatable: false,
+            scalable: false,
             transition: true,
             fullscreen: true,
             keyboard: true,
